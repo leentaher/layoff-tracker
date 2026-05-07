@@ -4,7 +4,12 @@ const nextConfig = {
     return [
       {
         source: '/layofftracker',
-        destination: '/layoffs',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/layoffs',
+        destination: '/',
         permanent: true,
       },
     ]
