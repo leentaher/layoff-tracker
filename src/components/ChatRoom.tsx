@@ -6,8 +6,20 @@ type Message = { id: string; username: string; text: string; created_at: string 
 
 const ANON_NAMES = ['exhausted_pm', 'laid_off_lucia', 'jobless_in_sf', 'surviving_dev', 'day_12_still_weird', 'waiting_room_wren', 'severance_pending', 'updating_resume', 'ghosted_again', 'recruiter_replied']
 
+const AUTO_STATUSES = [
+  'recently laid off 🙃', 'refreshing email constantly 📧', 'day 12. still weird.',
+  'staring at linkedin 😶', 'pretending to be fine 🙂', 'applying to everything rn',
+  'in my situational depression era', 'just here. existing.', 'sent 40 apps this week',
+  'waiting for recruiter to reply', 'my dog is my therapist now 🐶', 'crying but make it cute',
+  'technically funemployed', 'open to opportunities 🥲', 'skill issue? no. economy issue.',
+]
+
 function randomName() {
   return ANON_NAMES[Math.floor(Math.random() * ANON_NAMES.length)] + '_' + Math.floor(Math.random() * 99)
+}
+
+function randomStatus() {
+  return AUTO_STATUSES[Math.floor(Math.random() * AUTO_STATUSES.length)]
 }
 
 const XP_BLUE = 'linear-gradient(180deg, #0a246a 0%, #3a6ea5 100%)'
@@ -21,6 +33,10 @@ export default function ChatRoom() {
   const [input, setInput] = useState('')
   const [username] = useState(randomName)
   const [onlineCount, setOnlineCount] = useState(10)
+  const [status, setStatus] = useState(randomStatus)
+  const [editingStatus, setEditingStatus] = useState(false)
+  const [statusDraft, setStatusDraft] = useState('')
+  const statusInputRef = useRef<HTMLInputElement>(null)
   const chatRef = useRef<HTMLDivElement>(null)
   const optimisticIds = useRef<Set<string>>(new Set())
 
@@ -59,6 +75,18 @@ export default function ChatRoom() {
     }, 15000)
     return () => clearInterval(t)
   }, [])
+
+  function startEditStatus() {
+    setStatusDraft(status)
+    setEditingStatus(true)
+    setTimeout(() => statusInputRef.current?.select(), 30)
+  }
+
+  function saveStatus() {
+    const s = statusDraft.trim()
+    if (s) setStatus(s)
+    setEditingStatus(false)
+  }
 
   async function send() {
     const t = input.trim()
@@ -154,17 +182,41 @@ export default function ChatRoom() {
           <div style={{
             background: '#d9e8fb', borderBottom: '1px solid #b3cce8',
             padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 8,
+            position: 'relative',
           }}>
             <div style={{
               width: 28, height: 28, borderRadius: '50%', background: '#f0a500',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 14, border: '2px solid #0a246a',
+              fontSize: 14, border: '2px solid #0a246a', flexShrink: 0,
             }}>😶</div>
-            <div>
+            <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 700, fontSize: 11, color: '#0a246a' }}>{username}</div>
-              <div style={{ fontSize: 10, color: '#555' }}>recently laid off 🙃</div>
+              {editingStatus ? (
+                <input
+                  ref={statusInputRef}
+                  value={statusDraft}
+                  onChange={e => setStatusDraft(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter') saveStatus(); if (e.key === 'Escape') setEditingStatus(false) }}
+                  onBlur={saveStatus}
+                  maxLength={50}
+                  style={{
+                    fontSize: 10, width: '100%', border: '1px solid #7f9db9',
+                    borderRadius: 2, padding: '1px 4px', fontFamily: 'Tahoma, Arial, sans-serif',
+                    outline: 'none', background: 'white',
+                  }}
+                />
+              ) : (
+                <div
+                  onClick={startEditStatus}
+                  title="click to edit your status"
+                  style={{ fontSize: 10, color: '#555', cursor: 'text', display: 'flex', alignItems: 'center', gap: 3 }}
+                >
+                  <span>{status}</span>
+                  <span style={{ fontSize: 8, color: '#999', opacity: 0.7 }}>✏️</span>
+                </div>
+              )}
             </div>
-            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 4 }}>
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
               <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4caf50', display: 'inline-block', border: '1px solid #2e7d32' }} />
               <span style={{ fontSize: 10, color: '#333' }}>online</span>
             </div>
