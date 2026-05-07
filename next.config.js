@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverActions: true,
+  async redirects() {
+    return [
+      {
+        source: '/layofftracker',
+        destination: '/layoffs',
+        permanent: true,
+      },
+    ]
   },
 }
 
