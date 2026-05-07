@@ -58,6 +58,13 @@ export default function ChatRoom() {
     const t = input.trim()
     if (!t) return
     setInput('')
+    const optimistic: Message = {
+      id: crypto.randomUUID(),
+      username,
+      text: t,
+      created_at: new Date().toISOString(),
+    }
+    setMessages(prev => [...prev.slice(-99), optimistic])
     await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
