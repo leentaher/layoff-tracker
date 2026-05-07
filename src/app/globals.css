@@ -1,0 +1,28 @@
+:root {
+  --orange: #F03D00;
+  --yellow: #FEE41D;
+  --pink: #F07CBA;
+  --black: #1a1a1a;
+  --white: #ffffff;
+  --green: #1a6e38;
+  --bg: #f5f0e8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  font-family: 'Work Sans', sans-serif;
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
