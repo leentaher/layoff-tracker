@@ -159,7 +159,7 @@ export default function ChatRoom() {
             {/* Window controls */}
             <div style={{ display: 'flex', gap: 2 }}>
               {['_', '□', '×'].map((c, i) => (
-                <button key={i} onClick={c === '×' ? () => setOpen(false) : undefined} style={{
+                <button key={i} onClick={c === '×' ? () => setOpen(false) : c === '_' ? () => setOpen(false) : undefined} style={{
                   width: 18, height: 18, background: i === 2 ? '#c0392b' : '#3a8fde',
                   border: '1px solid rgba(255,255,255,0.3)',
                   borderRadius: 2, color: 'white', fontSize: 10,
