@@ -10,6 +10,10 @@ function randomName() {
   return ANON_NAMES[Math.floor(Math.random() * ANON_NAMES.length)] + '_' + Math.floor(Math.random() * 99)
 }
 
+const XP_BLUE = 'linear-gradient(180deg, #0a246a 0%, #3a6ea5 100%)'
+const XP_GREY = '#ece9d8'
+const XP_BORDER = '2px solid #0a246a'
+
 export default function ChatRoom() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
@@ -20,7 +24,6 @@ export default function ChatRoom() {
   const chatRef = useRef<HTMLDivElement>(null)
   const optimisticIds = useRef<Set<string>>(new Set())
 
-  // Load messages when chat opens
   useEffect(() => {
     if (!open) return
     setLoading(true)
@@ -30,7 +33,6 @@ export default function ChatRoom() {
       .finally(() => setLoading(false))
   }, [open])
 
-  // Realtime subscription — skip own messages (already added optimistically)
   useEffect(() => {
     const channel = supabase
       .channel('chat')
@@ -46,12 +48,10 @@ export default function ChatRoom() {
     return () => { supabase.removeChannel(channel) }
   }, [])
 
-  // Scroll to bottom on new messages
   useEffect(() => {
     if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight
   }, [messages, open])
 
-  // Randomize count on client, then fluctuate
   useEffect(() => {
     setOnlineCount(Math.floor(Math.random() * 12) + 8)
     const t = setInterval(() => {
@@ -85,83 +85,163 @@ export default function ChatRoom() {
 
   return (
     <>
-      {/* Floating button */}
+      {/* Taskbar button */}
       <button
         onClick={() => setOpen(o => !o)}
         style={{
           position: 'fixed', bottom: 24, right: 24, zIndex: 999,
-          background: 'var(--black)', color: 'white', border: '2px solid var(--yellow)',
-          borderRadius: 12, padding: '12px 18px', fontFamily: "'Work Sans', sans-serif",
-          fontWeight: 700, fontSize: 13, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8,
+          background: XP_BLUE, color: 'white',
+          border: '1px solid #1b3f7a',
+          borderRadius: 4, padding: '7px 14px',
+          fontFamily: 'Tahoma, Arial, sans-serif',
+          fontWeight: 700, fontSize: 12, cursor: 'pointer',
+          display: 'flex', alignItems: 'center', gap: 8,
+          boxShadow: '1px 1px 0 #6b8fc4 inset, -1px -1px 0 #03125a inset',
         }}
       >
-        <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4cff91', display: 'inline-block' }} />
-        waiting room · {onlineCount} online
+        <span style={{ fontSize: 14 }}>💬</span>
+        the waiting room · {onlineCount} online
       </button>
 
-      {/* Chat window */}
+      {/* Window */}
       {open && (
         <div style={{
-          position: 'fixed', bottom: 80, right: 24, zIndex: 998,
-          width: 340, background: '#1a1a1a', border: '2px solid rgba(255,255,255,0.1)',
-          borderRadius: 12, overflow: 'hidden', display: 'flex', flexDirection: 'column',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
+          position: 'fixed', bottom: 72, right: 24, zIndex: 998,
+          width: 360,
+          fontFamily: 'Tahoma, Arial, sans-serif',
+          boxShadow: '4px 4px 12px rgba(0,0,0,0.5)',
+          border: '3px solid #0a246a',
+          borderRadius: 6,
+          overflow: 'hidden',
+          display: 'flex', flexDirection: 'column',
         }}>
-          {/* Header */}
-          <div style={{ background: 'var(--black)', borderBottom: '1px solid rgba(255,255,255,0.08)', padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <div style={{ fontWeight: 900, fontSize: 13, color: 'white' }}>waiting room 💙</div>
-              <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, color: 'rgba(255,255,255,0.35)', marginTop: 2 }}>
-                {onlineCount} people in here · anonymous
-              </div>
+
+          {/* Title bar */}
+          <div style={{
+            background: XP_BLUE,
+            padding: '4px 8px',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ fontSize: 13 }}>💬</span>
+              <span style={{ color: 'white', fontWeight: 700, fontSize: 12, letterSpacing: 0.2 }}>
+                juicebokx messenger
+              </span>
             </div>
-            <button onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', cursor: 'pointer', fontSize: 18 }}>×</button>
+            {/* Window controls */}
+            <div style={{ display: 'flex', gap: 2 }}>
+              {['_', '□', '×'].map((c, i) => (
+                <button key={i} onClick={c === '×' ? () => setOpen(false) : undefined} style={{
+                  width: 18, height: 18, background: i === 2 ? '#c0392b' : '#3a8fde',
+                  border: '1px solid rgba(255,255,255,0.3)',
+                  borderRadius: 2, color: 'white', fontSize: 10,
+                  fontWeight: 700, cursor: 'pointer', display: 'flex',
+                  alignItems: 'center', justifyContent: 'center', lineHeight: 1,
+                  fontFamily: 'Tahoma, Arial, sans-serif',
+                }}>{c}</button>
+              ))}
+            </div>
           </div>
 
-          {/* You are */}
-          <div style={{ padding: '6px 16px', background: 'rgba(254,228,29,0.08)', borderBottom: '1px solid rgba(255,255,255,0.05)', fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.35)' }}>
-            you are: <span style={{ color: 'var(--yellow)' }}>{username}</span>
+          {/* Menu bar */}
+          <div style={{ background: XP_GREY, borderBottom: '1px solid #aca899', padding: '2px 8px', display: 'flex', gap: 16 }}>
+            {['File', 'View', 'Actions', 'Help'].map(m => (
+              <span key={m} style={{ fontSize: 11, color: '#000', cursor: 'default', padding: '1px 4px' }}>{m}</span>
+            ))}
+          </div>
+
+          {/* User info bar */}
+          <div style={{
+            background: '#d9e8fb', borderBottom: '1px solid #b3cce8',
+            padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 8,
+          }}>
+            <div style={{
+              width: 28, height: 28, borderRadius: '50%', background: '#f0a500',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 14, border: '2px solid #0a246a',
+            }}>😶</div>
+            <div>
+              <div style={{ fontWeight: 700, fontSize: 11, color: '#0a246a' }}>{username}</div>
+              <div style={{ fontSize: 10, color: '#555' }}>recently laid off 🙃</div>
+            </div>
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 4 }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4caf50', display: 'inline-block', border: '1px solid #2e7d32' }} />
+              <span style={{ fontSize: 10, color: '#333' }}>online</span>
+            </div>
+          </div>
+
+          {/* Room label */}
+          <div style={{ background: '#c5d9f1', borderBottom: '1px solid #b3cce8', padding: '3px 10px' }}>
+            <span style={{ fontSize: 10, color: '#0a246a', fontWeight: 700 }}>▼ the waiting room ({onlineCount})</span>
           </div>
 
           {/* Messages */}
-          <div ref={chatRef} style={{ flex: 1, overflowY: 'auto', padding: 16, minHeight: 260, maxHeight: 320, display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <div ref={chatRef} style={{
+            flex: 1, overflowY: 'auto', background: 'white',
+            padding: '8px 10px', minHeight: 220, maxHeight: 280,
+            display: 'flex', flexDirection: 'column', gap: 6,
+            borderBottom: '1px solid #aca899',
+          }}>
             {loading && (
-              <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 11, color: 'rgba(255,255,255,0.25)', textAlign: 'center', marginTop: 40 }}>
-                loading...
-              </div>
+              <div style={{ fontSize: 11, color: '#999', textAlign: 'center', marginTop: 40 }}>loading...</div>
             )}
             {!loading && messages.length === 0 && (
-              <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 11, color: 'rgba(255,255,255,0.25)', textAlign: 'center', marginTop: 40 }}>
+              <div style={{ fontSize: 11, color: '#999', textAlign: 'center', marginTop: 40 }}>
                 be the first to say something.
               </div>
             )}
             {messages.map((msg) => {
               const isMe = msg.username === username
               return (
-                <div key={msg.id}>
-                  <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: isMe ? 'var(--yellow)' : 'rgba(255,255,255,0.4)', marginBottom: 2 }}>
-                    {msg.username} · {timeStr(msg.created_at)}
-                  </div>
-                  <div style={{ fontSize: 13, color: isMe ? 'white' : 'rgba(255,255,255,0.8)', lineHeight: 1.5 }}>{msg.text}</div>
+                <div key={msg.id} style={{ fontSize: 12, lineHeight: 1.5 }}>
+                  <span style={{ fontWeight: 700, color: isMe ? '#0a246a' : '#c0392b' }}>
+                    {msg.username} says:
+                  </span>
+                  <span style={{ fontSize: 10, color: '#999', marginLeft: 6 }}>({timeStr(msg.created_at)})</span>
+                  <div style={{ color: '#111', paddingLeft: 2 }}>{msg.text}</div>
                 </div>
               )
             })}
           </div>
 
+          {/* Toolbar */}
+          <div style={{ background: XP_GREY, borderBottom: '1px solid #aca899', padding: '3px 8px', display: 'flex', gap: 8, alignItems: 'center' }}>
+            {['😊', '😢', '👋', '☕'].map(e => (
+              <button key={e} onClick={() => setInput(i => i + e)} style={{
+                background: 'none', border: 'none', cursor: 'pointer', fontSize: 14, padding: 2,
+              }}>{e}</button>
+            ))}
+            <span style={{ marginLeft: 'auto', fontSize: 10, color: '#666', cursor: 'pointer', border: '1px solid #aca899', borderRadius: 2, padding: '1px 6px', background: 'white' }}>
+              nudge
+            </span>
+          </div>
+
           {/* Input */}
-          <div style={{ padding: 12, borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', gap: 8 }}>
-            <input
+          <div style={{ background: XP_GREY, padding: '6px 8px', display: 'flex', gap: 6, alignItems: 'flex-end' }}>
+            <textarea
               value={input}
               onChange={e => setInput(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && send()}
-              placeholder="say something..."
+              onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() } }}
+              placeholder="type a message..."
               maxLength={300}
-              style={{ flex: 1, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, padding: '8px 12px', color: 'white', fontSize: 13, fontFamily: "'Work Sans', sans-serif", outline: 'none' }}
+              rows={2}
+              style={{
+                flex: 1, border: '1px solid #7f9db9', borderRadius: 2,
+                padding: '4px 6px', fontSize: 12, fontFamily: 'Tahoma, Arial, sans-serif',
+                resize: 'none', outline: 'none', background: 'white',
+              }}
             />
-            <button onClick={send} style={{ background: 'var(--yellow)', border: 'none', borderRadius: 6, padding: '8px 14px', fontWeight: 700, fontSize: 12, color: 'var(--black)', cursor: 'pointer' }}>
-              →
+            <button onClick={send} style={{
+              background: XP_BLUE, color: 'white', border: '1px solid #1b3f7a',
+              borderRadius: 3, padding: '6px 14px', fontWeight: 700, fontSize: 11,
+              cursor: 'pointer', fontFamily: 'Tahoma, Arial, sans-serif',
+              boxShadow: '1px 1px 0 #6b8fc4 inset',
+              whiteSpace: 'nowrap',
+            }}>
+              Send
             </button>
           </div>
+
         </div>
       )}
     </>
