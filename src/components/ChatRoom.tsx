@@ -13,29 +13,34 @@ function randomName() {
 export default function ChatRoom() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
+  const [loading, setLoading] = useState(false)
   const [input, setInput] = useState('')
   const [username] = useState(randomName)
-  const [onlineCount, setOnlineCount] = useState(Math.floor(Math.random() * 12) + 8)
+  const [onlineCount, setOnlineCount] = useState(10)
   const chatRef = useRef<HTMLDivElement>(null)
+  const optimisticIds = useRef<Set<string>>(new Set())
 
-  // Load recent messages
+  // Load messages when chat opens
   useEffect(() => {
-    supabase
-      .from('chat_messages')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(50)
-      .then(({ data }) => {
-        if (data) setMessages(data.reverse())
-      })
-  }, [])
+    if (!open) return
+    setLoading(true)
+    fetch('/api/chat')
+      .then(r => r.json())
+      .then(data => { if (Array.isArray(data)) setMessages(data) })
+      .finally(() => setLoading(false))
+  }, [open])
 
-  // Realtime subscription
+  // Realtime subscription — skip own messages (already added optimistically)
   useEffect(() => {
     const channel = supabase
       .channel('chat')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages' }, (payload) => {
-        setMessages(prev => [...prev.slice(-99), payload.new as Message])
+        const msg = payload.new as Message
+        if (optimisticIds.current.has(msg.username + msg.text)) {
+          optimisticIds.current.delete(msg.username + msg.text)
+          return
+        }
+        setMessages(prev => [...prev.slice(-99), msg])
       })
       .subscribe()
     return () => { supabase.removeChannel(channel) }
@@ -46,8 +51,9 @@ export default function ChatRoom() {
     if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight
   }, [messages, open])
 
-  // Simulate online count fluctuating
+  // Randomize count on client, then fluctuate
   useEffect(() => {
+    setOnlineCount(Math.floor(Math.random() * 12) + 8)
     const t = setInterval(() => {
       setOnlineCount(n => Math.max(5, n + (Math.random() > 0.5 ? 1 : -1)))
     }, 15000)
@@ -58,6 +64,7 @@ export default function ChatRoom() {
     const t = input.trim()
     if (!t) return
     setInput('')
+    optimisticIds.current.add(username + t)
     const optimistic: Message = {
       id: crypto.randomUUID(),
       username,
@@ -118,7 +125,12 @@ export default function ChatRoom() {
 
           {/* Messages */}
           <div ref={chatRef} style={{ flex: 1, overflowY: 'auto', padding: 16, minHeight: 260, maxHeight: 320, display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {messages.length === 0 && (
+            {loading && (
+              <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 11, color: 'rgba(255,255,255,0.25)', textAlign: 'center', marginTop: 40 }}>
+                loading...
+              </div>
+            )}
+            {!loading && messages.length === 0 && (
               <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 11, color: 'rgba(255,255,255,0.25)', textAlign: 'center', marginTop: 40 }}>
                 be the first to say something.
               </div>
