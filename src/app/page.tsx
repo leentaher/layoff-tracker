@@ -9,6 +9,7 @@ import Checklist from '@/components/Checklist'
 import SeveranceCalc from '@/components/SeveranceCalc'
 import WhatNow from '@/components/WhatNow'
 import Timeline from '@/components/Timeline'
+import TwitterFeed from '@/components/TwitterFeed'
 import Community from '@/components/Community'
 import FooterCTA from '@/components/FooterCTA'
 import ChatRoom from '@/components/ChatRoom'
@@ -51,6 +52,7 @@ export default async function LayoffTrackerPage() {
       <Nav />
       <Hero />
       <CounterStrip total={totalLaidOff} companies={companiesCount} />
+      <TwitterFeed />
       <WhatNow />
       <AmINext />
       <SeveranceCalc />
