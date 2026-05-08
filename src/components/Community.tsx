@@ -123,7 +123,7 @@ export default function Community() {
               </div>
               {latest && (
                 <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.25)', letterSpacing: '0.06em' }}>
-                  last added · <span style={{ color: 'rgba(255,255,255,0.45)' }}>{latest.handle}</span> · {timeAgo(latest.created_at)}
+                  last added · <span style={{ color: 'rgba(255,255,255,0.45)' }}>{latest.role || latest.handle}</span> · {timeAgo(latest.created_at)}
                 </p>
               )}
               {!latest && (
