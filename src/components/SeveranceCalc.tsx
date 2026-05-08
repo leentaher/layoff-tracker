@@ -35,9 +35,9 @@ export default function SeveranceCalc() {
   return (
     <div id="severance" style={{ background: 'var(--yellow)' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
-        <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginBottom: 12 }}>tool · 04</p>
-        <h2 style={{ fontSize: 'clamp(28px,4vw,42px)', fontWeight: 900, letterSpacing: '-1.5px', marginBottom: 10 }}>is your severance fair?</h2>
-        <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(0,0,0,0.55)', maxWidth: 500, marginBottom: 32 }}>most people don't negotiate. most people should.</p>
+        <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginBottom: 12 }}>tool · 02</p>
+        <h2 style={{ fontSize: 'clamp(36px,5vw,58px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1.0, marginBottom: 10 }}>is your severance fair?</h2>
+        <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(0,0,0,0.55)', maxWidth: 560, marginBottom: 32 }}>most people don't negotiate. most people should. enter your details. get a benchmark and a script.</p>
 
         <div style={{ background: 'white', borderRadius: 8, padding: 22 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 14 }}>
@@ -63,7 +63,10 @@ export default function SeveranceCalc() {
               </select>
             </div>
           </div>
-          <button onClick={calc} style={{ background: 'var(--black)', color: 'white', border: 'none', borderRadius: 6, padding: '12px 0', fontWeight: 700, fontSize: 13, cursor: 'pointer', width: '100%' }}>
+          <div style={{ marginBottom: 14, padding: '10px 14px', background: '#fff5f2', borderLeft: '3px solid var(--orange)', borderRadius: 4, fontSize: 12, fontFamily: "'Courier Prime', monospace", color: 'rgba(0,0,0,0.55)' }}>
+            <strong>severance is negotiable.</strong> most people don't know that. run the numbers first.
+          </div>
+          <button onClick={calc} style={{ background: 'var(--black)', color: 'white', border: 'none', borderRadius: 6, padding: '14px 0', fontWeight: 700, fontSize: 14, cursor: 'pointer', width: '100%' }}>
             calculate
           </button>
 

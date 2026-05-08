@@ -53,8 +53,8 @@ export default async function LayoffTrackerPage() {
       <AmINext />
       <Confessions initialConfessions={confessions} />
       <Checklist />
-      <SeveranceCalc />
       <WhatNow />
+      <SeveranceCalc />
       <Timeline layoffs={layoffs} />
       <FooterCTA />
       <ChatRoom />
