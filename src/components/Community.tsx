@@ -186,9 +186,6 @@ export default function Community() {
               </div>
             )}
 
-            <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, color: 'rgba(255,255,255,0.2)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 24, lineHeight: 1.7 }}>
-              no spam · unsubscribe anytime · written by real people
-            </p>
           </div>
 
         </div>
