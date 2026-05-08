@@ -5,9 +5,14 @@ export default function FooterCTA() {
   const [email, setEmail] = useState('')
   const [done, setDone] = useState(false)
 
-  function join() {
+  async function join() {
     if (!email.includes('@')) return
     setDone(true)
+    fetch('/api/waitlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email.trim() }),
+    }).catch(() => {})
     setEmail('')
   }
 
