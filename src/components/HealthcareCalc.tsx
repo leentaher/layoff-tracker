@@ -187,20 +187,20 @@ export default function HealthcareCalc() {
         {result && (
           <div style={{ animation: 'fadeUp 0.3s ease' }}>
             {/* Urgency banner */}
-            <div style={{ background: 'rgba(255,165,0,0.08)', border: '1px solid rgba(255,165,0,0.2)', borderRadius: 8, padding: '10px 16px', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div style={{ background: 'rgba(255,165,0,0.08)', border: '1px solid rgba(255,165,0,0.25)', borderRadius: 8, padding: '10px 16px', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--orange)', fontWeight: 700 }}>⏱ {result.urgency}</span>
-              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>you have 60 days from your last day to elect coverage</span>
+              <span style={{ fontSize: 12, color: 'rgba(0,0,0,0.5)' }}>you have 60 days from your last day to elect coverage</span>
             </div>
 
             {/* Option cards */}
             <div style={{ display: 'grid', gridTemplateColumns: result.medicaid ? '1fr 1fr 1fr' : result.marketplace ? '1fr 1fr' : '1fr', gap: 12, marginBottom: 20 }}>
 
               {/* COBRA */}
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: 20 }}>
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 8 }}>option A · COBRA</div>
-                <div style={{ fontSize: 36, fontWeight: 900, color: 'white', letterSpacing: '-1.5px', lineHeight: 1 }}>${result.cobra.monthly.toLocaleString()}</div>
-                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 4, marginBottom: 12 }}>per month · ${result.cobra.annual.toLocaleString()}/yr</div>
-                <ul style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, paddingLeft: 14, margin: 0 }}>
+              <div style={{ background: 'var(--bg)', border: '1px solid rgba(0,0,0,0.1)', borderRadius: 10, padding: 20 }}>
+                <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginBottom: 8 }}>option A · COBRA</div>
+                <div style={{ fontSize: 36, fontWeight: 900, color: 'var(--black)', letterSpacing: '-1.5px', lineHeight: 1 }}>${result.cobra.monthly.toLocaleString()}</div>
+                <div style={{ fontSize: 11, color: 'rgba(0,0,0,0.4)', marginTop: 4, marginBottom: 12 }}>per month · ${result.cobra.annual.toLocaleString()}/yr</div>
+                <ul style={{ fontSize: 12, color: 'rgba(0,0,0,0.55)', lineHeight: 1.7, paddingLeft: 14, margin: 0 }}>
                   <li>same plan, same doctors</li>
                   <li>no network disruption</li>
                   <li>covers up to 18 months</li>
@@ -210,13 +210,13 @@ export default function HealthcareCalc() {
 
               {/* Marketplace */}
               {result.marketplace && !result.medicaid && (
-                <div style={{ background: 'rgba(255,165,0,0.06)', border: '1px solid rgba(255,165,0,0.2)', borderRadius: 10, padding: 20 }}>
+                <div style={{ background: 'rgba(255,165,0,0.05)', border: '1px solid rgba(255,165,0,0.3)', borderRadius: 10, padding: 20 }}>
                   <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: 8 }}>option B · ACA marketplace</div>
-                  <div style={{ fontSize: 36, fontWeight: 900, color: 'white', letterSpacing: '-1.5px', lineHeight: 1 }}>${result.marketplace.net.toLocaleString()}</div>
-                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 4, marginBottom: 12 }}>
+                  <div style={{ fontSize: 36, fontWeight: 900, color: 'var(--black)', letterSpacing: '-1.5px', lineHeight: 1 }}>${result.marketplace.net.toLocaleString()}</div>
+                  <div style={{ fontSize: 11, color: 'rgba(0,0,0,0.4)', marginTop: 4, marginBottom: 12 }}>
                     per month after ~${result.marketplace.subsidy.toLocaleString()} subsidy
                   </div>
-                  <ul style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, paddingLeft: 14, margin: 0 }}>
+                  <ul style={{ fontSize: 12, color: 'rgba(0,0,0,0.55)', lineHeight: 1.7, paddingLeft: 14, margin: 0 }}>
                     <li>subsidy based on your income</li>
                     <li>enroll at healthcare.gov</li>
                     <li>60-day special enrollment</li>
@@ -227,11 +227,11 @@ export default function HealthcareCalc() {
 
               {/* Medicaid */}
               {result.medicaid && (
-                <div style={{ background: 'rgba(100,220,100,0.06)', border: '1px solid rgba(100,220,100,0.2)', borderRadius: 10, padding: 20 }}>
-                  <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6ddc6d', marginBottom: 8 }}>option B · Medicaid</div>
-                  <div style={{ fontSize: 36, fontWeight: 900, color: 'white', letterSpacing: '-1.5px', lineHeight: 1 }}>$0</div>
-                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 4, marginBottom: 12 }}>per month · you qualify</div>
-                  <ul style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, paddingLeft: 14, margin: 0 }}>
+                <div style={{ background: 'rgba(100,200,100,0.06)', border: '1px solid rgba(60,160,60,0.25)', borderRadius: 10, padding: 20 }}>
+                  <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#2e8b2e', marginBottom: 8 }}>option B · Medicaid</div>
+                  <div style={{ fontSize: 36, fontWeight: 900, color: 'var(--black)', letterSpacing: '-1.5px', lineHeight: 1 }}>$0</div>
+                  <div style={{ fontSize: 11, color: 'rgba(0,0,0,0.4)', marginTop: 4, marginBottom: 12 }}>per month · you qualify</div>
+                  <ul style={{ fontSize: 12, color: 'rgba(0,0,0,0.55)', lineHeight: 1.7, paddingLeft: 14, margin: 0 }}>
                     <li>income qualifies at 138% FPL</li>
                     <li>apply at healthcare.gov</li>
                     <li>coverage starts immediately</li>
@@ -242,10 +242,10 @@ export default function HealthcareCalc() {
 
               {/* Coverage gap warning */}
               {result.coverageGap && (
-                <div style={{ background: 'rgba(255,80,80,0.06)', border: '1px solid rgba(255,80,80,0.2)', borderRadius: 10, padding: 20 }}>
-                  <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#ff8080', marginBottom: 8 }}>heads up · coverage gap</div>
-                  <div style={{ fontSize: 20, fontWeight: 900, color: 'white', letterSpacing: '-0.5px', lineHeight: 1.2, marginBottom: 12 }}>your state hasn't expanded Medicaid</div>
-                  <ul style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, paddingLeft: 14, margin: 0 }}>
+                <div style={{ background: 'rgba(255,80,80,0.05)', border: '1px solid rgba(200,60,60,0.2)', borderRadius: 10, padding: 20 }}>
+                  <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#c0392b', marginBottom: 8 }}>heads up · coverage gap</div>
+                  <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--black)', letterSpacing: '-0.5px', lineHeight: 1.2, marginBottom: 12 }}>your state hasn't expanded Medicaid</div>
+                  <ul style={{ fontSize: 12, color: 'rgba(0,0,0,0.55)', lineHeight: 1.7, paddingLeft: 14, margin: 0 }}>
                     <li>check your state's assistance programs</li>
                     <li>community health centers offer sliding-scale care</li>
                     <li>COBRA may be your best option short-term</li>
@@ -256,10 +256,10 @@ export default function HealthcareCalc() {
             </div>
 
             {/* Recommendation */}
-            <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: '18px 22px' }}>
-              <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 8 }}>our read</div>
-              <p style={{ fontSize: 13, lineHeight: 1.7, color: 'rgba(255,255,255,0.8)', margin: 0 }}>{result.recommendation}</p>
-              <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.25)', marginTop: 12, lineHeight: 1.6 }}>
+            <div style={{ background: 'var(--bg)', border: '1px solid rgba(0,0,0,0.1)', borderRadius: 10, padding: '18px 22px' }}>
+              <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginBottom: 8 }}>our read</div>
+              <p style={{ fontSize: 13, lineHeight: 1.7, color: 'rgba(0,0,0,0.75)', margin: 0 }}>{result.recommendation}</p>
+              <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(0,0,0,0.3)', marginTop: 12, lineHeight: 1.6 }}>
                 estimates based on 2024 KFF data and federal poverty guidelines. actual costs vary by plan, age, and insurer. always verify at healthcare.gov.
               </p>
             </div>
