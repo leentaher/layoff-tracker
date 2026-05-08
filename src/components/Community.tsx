@@ -100,7 +100,7 @@ export default function Community() {
         </p>
 
         {/* Two column cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 16, alignItems: 'start', maxWidth: 560 }}>
 
           {/* Directory card */}
           <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: 28 }}>
@@ -152,41 +152,6 @@ export default function Community() {
             )}
           </div>
 
-          {/* Dispatch card */}
-          <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: 28 }}>
-            <div style={{ fontSize: 28, marginBottom: 14 }}>📬</div>
-            <h3 style={{ fontSize: 20, fontWeight: 900, color: 'white', letterSpacing: '-0.5px', marginBottom: 10, lineHeight: 1.2 }}>
-              the weekly dispatch.
-            </h3>
-            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, marginBottom: 28 }}>
-              one email a week. what's actually hiring, who got funded, what industries are moving. no fluff. written by humans who've been laid off, not a content team.
-            </p>
-
-            {dispatchDone ? (
-              <div style={{ background: 'rgba(255,165,0,0.1)', border: '1px solid rgba(255,165,0,0.2)', borderRadius: 8, padding: '20px', textAlign: 'center' }}>
-                <p style={{ color: 'var(--orange)', fontWeight: 800, fontSize: 14 }}>you're on the list ✓</p>
-                <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginTop: 4 }}>first issue goes out this week.</p>
-              </div>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <input
-                  style={inputStyle}
-                  placeholder="your@email.com"
-                  type="email"
-                  value={dispatchEmail}
-                  onChange={e => setDispatchEmail(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && joinDispatch()}
-                />
-                <button
-                  onClick={joinDispatch}
-                  style={{ background: 'var(--orange)', color: 'white', border: 'none', borderRadius: 8, padding: '14px 20px', fontWeight: 800, fontSize: 14, cursor: 'pointer' }}
-                >
-                  in →
-                </button>
-              </div>
-            )}
-
-          </div>
 
         </div>
       </div>
