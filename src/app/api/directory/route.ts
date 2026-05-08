@@ -4,7 +4,7 @@ import { supabaseAdmin } from '@/lib/supabase'
 export async function GET() {
   const { data, error } = await supabaseAdmin()
     .from('directory')
-    .select('id, handle, role, contact, created_at')
+    .select('id, handle, role, company, contact, created_at')
     .order('created_at', { ascending: false })
     .limit(50)
 
@@ -15,19 +15,18 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const { handle, email, company, role, contact } = await req.json()
 
-  if (!handle || !role) {
-    return NextResponse.json({ error: 'handle and role required' }, { status: 400 })
+  if (!handle) {
+    return NextResponse.json({ error: 'name is required' }, { status: 400 })
   }
-
-  const displayRole = `${role.trim()}${company?.trim() ? ` · ex-${company.trim()}` : ''}`
 
   const { error } = await supabaseAdmin()
     .from('directory')
     .insert({
       handle: handle.trim(),
       email: email?.trim() || null,
-      role: displayRole,
-      contact: contact?.trim() || 'anonymous',
+      company: company?.trim() || null,
+      role: role?.trim() || null,
+      contact: contact?.trim() || null,
     })
 
   if (error) {
