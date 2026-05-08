@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 
-const groups = [
+const laidOffGroups = [
   { title: 'right now', items: [
     'take a breath. seriously.',
     'screenshot your offer letter and severance terms',
@@ -28,11 +28,40 @@ const groups = [
   ]},
 ]
 
+const mightBeNextGroups = [
+  { title: 'right now', items: [
+    'screenshot your employment contract',
+    'save work you\'re proud of — now, not later',
+    'document your wins and contributions',
+    'know your notice period and severance policy',
+  ]},
+  { title: 'this week', items: [
+    'build your emergency fund. 3–6 months minimum',
+    'quietly update your resume',
+    'strengthen relationships before you need them',
+    'know exactly what you\'d do if it happened tomorrow',
+  ]},
+  { title: 'be ready', items: [
+    'don\'t sign anything in the room — take 24hrs',
+    'know your COBRA options in advance',
+    'have 3 people on speed dial (not LinkedIn)',
+    'get clarity on equity and vesting schedule',
+  ]},
+  { title: 'do not do yet', items: [
+    'panic — most people survive this',
+    'quit before you\'re pushed',
+    'tell your manager you\'re looking',
+    'make any major financial commitments',
+  ]},
+]
+
 export default function Checklist() {
+  const [mode, setMode] = useState<'laid-off' | 'might-be-next'>('laid-off')
   const [done, setDone] = useState<Set<string>>(new Set())
 
+  const groups = mode === 'laid-off' ? laidOffGroups : mightBeNextGroups
   const allItems = groups.flatMap(g => g.items)
-  const doneCount = done.size
+  const doneCount = allItems.filter(i => done.has(i)).size
 
   function toggle(item: string) {
     setDone(prev => {
@@ -43,12 +72,44 @@ export default function Checklist() {
     })
   }
 
+  function switchMode(next: 'laid-off' | 'might-be-next') {
+    setMode(next)
+    setDone(new Set())
+  }
+
   return (
     <div id="checklist" style={{ background: 'var(--black)' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>tool · 04</p>
         <h2 style={{ fontSize: 'clamp(36px,5vw,58px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1.0, color: 'white', marginBottom: 10 }}>the 48hr<br />checklist.</h2>
-        <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.4)', maxWidth: 500, marginBottom: 32 }}>interactive. checkable. do these before anything else.</p>
+        <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.4)', maxWidth: 500, marginBottom: 28 }}>interactive. checkable. do these before anything else.</p>
+
+        {/* Toggle */}
+        <div style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.06)', borderRadius: 100, padding: 4, marginBottom: 32, gap: 4 }}>
+          {([
+            { key: 'laid-off', label: 'i just got laid off' },
+            { key: 'might-be-next', label: 'i might be next' },
+          ] as const).map(({ key, label }) => (
+            <button
+              key={key}
+              onClick={() => switchMode(key)}
+              style={{
+                padding: '9px 20px',
+                borderRadius: 100,
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: 13,
+                fontWeight: 700,
+                fontFamily: "'Work Sans', sans-serif",
+                transition: 'all 0.2s',
+                background: mode === key ? 'white' : 'transparent',
+                color: mode === key ? 'var(--black)' : 'rgba(255,255,255,0.4)',
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
           {groups.map((group) => (
