@@ -36,7 +36,7 @@ export default function FooterCTA() {
               onClick={join}
               style={{ background: 'var(--yellow)', color: 'var(--black)', border: 'none', borderRadius: 6, padding: '0 24px', fontWeight: 800, fontSize: 14, cursor: 'pointer', height: 52 }}
             >
-              join the directory
+              join the conversation
             </button>
           </div>
         )}
