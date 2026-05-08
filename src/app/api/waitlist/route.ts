@@ -14,19 +14,20 @@ export async function POST(req: NextRequest) {
   await supabaseAdmin()
     .from('waitlist')
     .insert({ email: clean })
-    .then(() => {}) // ignore duplicate errors
+    .then(() => {})
 
   // ── Klaviyo ──────────────────────────────────────────────
   const apiKey = process.env.KLAVIYO_API_KEY
   const listId = process.env.KLAVIYO_LIST_ID
 
   if (apiKey && listId) {
-    await fetch('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/', {
+    const res = await fetch('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/', {
       method: 'POST',
       headers: {
         'Authorization': `Klaviyo-API-Key ${apiKey}`,
-        'revision': '2023-12-15',
+        'revision': '2024-02-15',
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify({
         data: {
@@ -36,7 +37,16 @@ export async function POST(req: NextRequest) {
               data: [
                 {
                   type: 'profile',
-                  attributes: { email: clean },
+                  attributes: {
+                    email: clean,
+                    subscriptions: {
+                      email: {
+                        marketing: {
+                          consent: 'SUBSCRIBED',
+                        },
+                      },
+                    },
+                  },
                 },
               ],
             },
@@ -48,7 +58,12 @@ export async function POST(req: NextRequest) {
           },
         },
       }),
-    }).catch(() => {}) // fail silently — don't block UX
+    })
+
+    if (!res.ok) {
+      const err = await res.text()
+      console.error('Klaviyo error:', res.status, err)
+    }
   }
 
   return NextResponse.json({ ok: true })
