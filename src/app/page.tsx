@@ -53,29 +53,12 @@ export default async function LayoffTrackerPage() {
       <Ticker />
       <Nav />
 
-      {/* 1. FEEL SEEN — land, understand scale */}
       <Hero />
       <CounterStrip total={totalLaidOff} companies={companiesCount} />
-
-      {/* 2. ACT NOW — immediate actions before panic sets in */}
-      <Checklist />
       <WhatNow />
-
-      {/* 3. UNDERSTAND YOUR SITUATION — tools */}
-      <AmINext />
       <SeveranceCalc />
-      <HealthcareCalc />
-
-      {/* 4. FEEL LESS ALONE — community + social proof */}
+      <Checklist />
       <Confessions initialConfessions={confessions} />
-      <WaitingRoom />
-      <TwitterFeed />
-
-      {/* 5. BIGGER PICTURE — context, it's systemic */}
-      <Timeline layoffs={layoffs} />
-
-      {/* 6. CONNECT + STAY IN — close with action */}
-      <Community />
       <FooterCTA />
       <ChatRoom />
     </>
