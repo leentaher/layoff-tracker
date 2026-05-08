@@ -2,10 +2,30 @@
 import { useState } from 'react'
 
 const groups = [
-  { title: 'first 24 hours', items: ['read your severance agreement fully', 'do not sign anything yet', 'file for unemployment today', 'save all your work contacts', ] },
-  { title: 'this week', items: ['update your LinkedIn (you don\'t have to announce)', 'text 3 people you trust', 'understand your health insurance timeline', 'calculate your runway'] },
-  { title: 'this month', items: ['reach out to your network — just to reconnect', 'pick 2-3 target companies, not 20', 'get your resume reviewed by a human', 'negotiate your severance if you haven\'t'] },
-  { title: 'when you\'re ready', items: ['decide what you actually want to do next', 'don\'t accept the first offer out of fear', 'take one day completely off from job hunting', 'accept that this takes longer than it should'] },
+  { title: 'right now', items: [
+    'take a breath. seriously.',
+    'screenshot your offer letter and severance terms',
+    'save copies of work you\'re proud of',
+    'don\'t send that email. just don\'t.',
+  ]},
+  { title: 'today', items: [
+    'file for unemployment. takes time to kick in',
+    'review severance before signing',
+    'check COBRA / healthcare options',
+    'tell 3 people you trust. not on LinkedIn.',
+  ]},
+  { title: 'this week', items: [
+    'negotiate your severance. you can ask for more',
+    'update resume quietly, not publicly',
+    'reach out to network before posting publicly',
+    'do one thing offline. juicebokx.com.',
+  ]},
+  { title: 'do not do yet', items: [
+    'post on LinkedIn about it',
+    'make any major financial decisions',
+    'accept the first offer you get',
+    'decide what you want to do next',
+  ]},
 ]
 
 export default function Checklist() {
@@ -26,9 +46,9 @@ export default function Checklist() {
   return (
     <div id="checklist" style={{ background: 'var(--black)' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
-        <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>tool · 03</p>
-        <h2 style={{ fontSize: 'clamp(28px,4vw,42px)', fontWeight: 900, letterSpacing: '-1.5px', color: 'white', marginBottom: 10 }}>what to actually do.</h2>
-        <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.4)', maxWidth: 500, marginBottom: 32 }}>not a productivity framework. the things that actually matter when this happens to you.</p>
+        <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>tool · 04</p>
+        <h2 style={{ fontSize: 'clamp(36px,5vw,58px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1.0, color: 'white', marginBottom: 10 }}>the 48hr<br />checklist.</h2>
+        <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.4)', maxWidth: 500, marginBottom: 32 }}>interactive. checkable. do these before anything else.</p>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
           {groups.map((group) => (
