@@ -7,11 +7,11 @@ type Message = { id: string; username: string; text: string; created_at: string 
 const ANON_NAMES = ['exhausted_pm', 'laid_off_lucia', 'jobless_in_sf', 'surviving_dev', 'day_12_still_weird', 'waiting_room_wren', 'severance_pending', 'updating_resume', 'ghosted_again', 'recruiter_replied']
 
 const AUTO_STATUSES = [
-  'recently laid off 🙃', 'refreshing email constantly 📧', 'day 12. still weird.',
-  'staring at linkedin 😶', 'pretending to be fine 🙂', 'applying to everything rn',
+  'recently laid off', 'refreshing email constantly', 'day 12. still weird.',
+  'staring at linkedin', 'pretending to be fine', 'applying to everything rn',
   'in my situational depression era', 'just here. existing.', 'sent 40 apps this week',
-  'waiting for recruiter to reply', 'my dog is my therapist now 🐶', 'crying but make it cute',
-  'technically funemployed', 'open to opportunities 🥲', 'skill issue? no. economy issue.',
+  'waiting for recruiter to reply', 'technically funemployed', 'open to opportunities',
+  'skill issue? no. economy issue.', 'ghosted by three recruiters today', 'one day at a time',
 ]
 
 function randomName() {
@@ -36,6 +36,7 @@ export default function ChatRoom() {
   const [status, setStatus] = useState(randomStatus)
   const [editingStatus, setEditingStatus] = useState(false)
   const [statusDraft, setStatusDraft] = useState('')
+  const [hoveringStatus, setHoveringStatus] = useState(false)
   const statusInputRef = useRef<HTMLInputElement>(null)
   const chatRef = useRef<HTMLDivElement>(null)
   const optimisticIds = useRef<Set<string>>(new Set())
@@ -239,12 +240,29 @@ export default function ChatRoom() {
                 />
               ) : (
                 <div
-                  onClick={startEditStatus}
-                  title="click to edit your status"
-                  style={{ fontSize: 10, color: '#555', cursor: 'text', display: 'flex', alignItems: 'center', gap: 3 }}
+                  onMouseEnter={() => setHoveringStatus(true)}
+                  onMouseLeave={() => setHoveringStatus(false)}
+                  style={{ fontSize: 10, color: '#555', display: 'flex', alignItems: 'center', gap: 4 }}
                 >
                   <span>{status}</span>
-                  <span style={{ fontSize: 8, color: '#999', opacity: 0.7 }}>✏️</span>
+                  <button
+                    onClick={startEditStatus}
+                    title="update status"
+                    style={{
+                      opacity: hoveringStatus ? 1 : 0,
+                      transition: 'opacity 0.15s',
+                      background: 'white',
+                      border: '1px solid #b3cce8',
+                      borderRadius: 3,
+                      padding: '1px 5px',
+                      fontSize: 10,
+                      color: '#555',
+                      cursor: 'pointer',
+                      fontFamily: 'Tahoma, Arial, sans-serif',
+                      lineHeight: 1.4,
+                      flexShrink: 0,
+                    }}
+                  >···</button>
                 </div>
               )}
             </div>
