@@ -16,11 +16,9 @@ export async function POST(req: NextRequest) {
     .insert({ email: clean })
     .then(() => {})
 
-  // ── Klaviyo v2 subscribe ─────────────────────────────────
+  // ── Klaviyo v2 ───────────────────────────────────────────
   const apiKey = process.env.KLAVIYO_API_KEY
   const listId = process.env.KLAVIYO_LIST_ID
-
-  console.log('Klaviyo env check — apiKey present:', !!apiKey, '| listId:', listId)
 
   if (apiKey && listId) {
     const res = await fetch(`https://a.klaviyo.com/api/v2/list/${listId}/subscribe`, {
@@ -31,9 +29,10 @@ export async function POST(req: NextRequest) {
         profiles: [{ email: clean }],
       }),
     })
-
-    const body = await res.text()
-    console.log('Klaviyo response:', res.status, body)
+    const text = await res.text()
+    console.log('[klaviyo]', res.status, text)
+  } else {
+    console.log('[klaviyo] missing env vars — apiKey:', !!apiKey, 'listId:', !!listId)
   }
 
   return NextResponse.json({ ok: true })
