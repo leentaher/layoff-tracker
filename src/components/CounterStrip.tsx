@@ -45,7 +45,7 @@ export default function CounterStrip({ total, companies }: { total: number; comp
         </div>
 
         {/* Visitors — flip clock */}
-        <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ flex: 1, minWidth: 220, overflow: 'visible' }}>
           <div style={{ marginBottom: 6 }}>
             <FlipCounter value={visitors} />
           </div>

@@ -103,7 +103,7 @@ export default function FlipCounter({ value }: { value: number }) {
   const formatted = value.toLocaleString()
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 0 }}>
+    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'nowrap', gap: 0, width: 'max-content' }}>
       {formatted.split('').map((ch, i) => (
         <FlipDigit key={i} digit={ch} />
       ))}
