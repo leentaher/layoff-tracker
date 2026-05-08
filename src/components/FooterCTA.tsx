@@ -18,7 +18,7 @@ export default function FooterCTA() {
           the weekly<br /><span style={{ color: 'var(--orange)' }}>dispatch.</span>
         </h2>
         <p style={{ fontSize: 14, color: 'rgba(0,0,0,0.5)', marginBottom: 28, lineHeight: 1.6 }}>
-          one email a week. what's actually hiring, who got funded, what industries are moving.<br />no fluff. written by humans who've been laid off, not a content team.
+          one email a week. what's actually hiring, who got funded, what industries are moving.<br />no fluff. written by people paying attention.
         </p>
         {done ? (
           <p style={{ fontWeight: 800, fontSize: 16, color: 'var(--orange)' }}>you're on the list. we'll be in touch.</p>
