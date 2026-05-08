@@ -320,9 +320,6 @@ export default function ChatRoom() {
                 background: 'none', border: 'none', cursor: 'pointer', fontSize: 14, padding: 2,
               }}>{e}</button>
             ))}
-            <span style={{ marginLeft: 'auto', fontSize: 10, color: '#666', cursor: 'pointer', border: '1px solid #aca899', borderRadius: 2, padding: '1px 6px', background: 'white' }}>
-              nudge
-            </span>
           </div>
 
           {/* Input */}
