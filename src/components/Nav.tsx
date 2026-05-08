@@ -61,7 +61,7 @@ export default function Nav() {
             </button>
           </li>
           <li>
-            <a href="#footer-cta" style={{
+            <a href="#community" style={{
               background: 'var(--orange)', color: '#fff', padding: '7px 16px',
               borderRadius: 6, fontWeight: 700, fontSize: 12, textDecoration: 'none'
             }}>

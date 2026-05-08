@@ -95,7 +95,7 @@ export default function Community() {
   }
 
   return (
-    <div style={{ background: 'var(--black)' }}>
+    <div id="community" style={{ background: 'var(--black)' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '80px 40px' }}>
 
         {/* Header */}
