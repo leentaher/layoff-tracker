@@ -9,6 +9,7 @@ import Checklist from '@/components/Checklist'
 import SeveranceCalc from '@/components/SeveranceCalc'
 import WhatNow from '@/components/WhatNow'
 import Timeline from '@/components/Timeline'
+import Community from '@/components/Community'
 import FooterCTA from '@/components/FooterCTA'
 import ChatRoom from '@/components/ChatRoom'
 import GatePopup from '@/components/GatePopup'
@@ -56,6 +57,7 @@ export default async function LayoffTrackerPage() {
       <Confessions initialConfessions={confessions} />
       <Checklist />
       <Timeline layoffs={layoffs} />
+      <Community />
       <FooterCTA />
       <ChatRoom />
     </>
