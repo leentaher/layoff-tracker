@@ -16,23 +16,48 @@ export async function POST(req: NextRequest) {
     .insert({ email: clean })
     .then(() => {})
 
-  // ── Klaviyo v2 ───────────────────────────────────────────
+  // ── Klaviyo v3 ───────────────────────────────────────────
   const apiKey = process.env.KLAVIYO_API_KEY
   const listId = process.env.KLAVIYO_LIST_ID
 
+  console.log('[klaviyo] apiKey present:', !!apiKey, '| listId:', listId)
+
   if (apiKey && listId) {
-    const res = await fetch(`https://a.klaviyo.com/api/v2/list/${listId}/subscribe`, {
+    const res = await fetch('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Authorization': `Klaviyo-API-Key ${apiKey}`,
+        'revision': '2024-10-15',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
       body: JSON.stringify({
-        api_key: apiKey,
-        profiles: [{ email: clean }],
+        data: {
+          type: 'profile-subscription-bulk-create-job',
+          attributes: {
+            profiles: {
+              data: [{
+                type: 'profile',
+                attributes: {
+                  email: clean,
+                  subscriptions: {
+                    email: {
+                      marketing: { consent: 'SUBSCRIBED' },
+                    },
+                  },
+                },
+              }],
+            },
+          },
+          relationships: {
+            list: { data: { type: 'list', id: listId } },
+          },
+        },
       }),
     })
+
     const text = await res.text()
-    console.log('[klaviyo]', res.status, text)
-  } else {
-    console.log('[klaviyo] missing env vars — apiKey:', !!apiKey, 'listId:', !!listId)
+    console.log('[klaviyo] status:', res.status, '| response:', text)
   }
 
   return NextResponse.json({ ok: true })
