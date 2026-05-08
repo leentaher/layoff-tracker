@@ -1,26 +1,10 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import FlipCounter from './FlipCounter'
 
-function useCount(target: number, duration = 2000) {
-  const [val, setVal] = useState(0)
-  useEffect(() => {
-    let start: number | null = null
-    const step = (ts: number) => {
-      if (!start) start = ts
-      const p = Math.min((ts - start) / duration, 1)
-      const ease = 1 - Math.pow(1 - p, 3)
-      setVal(Math.round(ease * target))
-      if (p < 1) requestAnimationFrame(step)
-    }
-    requestAnimationFrame(step)
-  }, [target, duration])
-  return val
-}
-
 export default function CounterStrip({ total, companies }: { total: number; companies: number }) {
-  const laid = useCount(Math.max(total, 332000), 5000)
-  const cos = useCount(Math.max(companies, 101), 4000)
+  const laid = Math.max(total, 332000)
+  const cos = Math.max(companies, 101)
   const [visitors, setVisitors] = useState(12441)
 
   useEffect(() => {
@@ -32,7 +16,8 @@ export default function CounterStrip({ total, companies }: { total: number; comp
 
   return (
     <div style={{ background: 'var(--orange)' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: 40, display: 'flex', gap: 0 }}>
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: 40, display: 'flex', gap: 0, alignItems: 'flex-start' }}>
+
         {/* Laid off */}
         <div style={{ flex: 1, borderRight: '1px solid rgba(255,255,255,0.2)', paddingRight: 40, marginRight: 40 }}>
           <span style={{ fontSize: 'clamp(36px,6vw,60px)', fontWeight: 900, letterSpacing: '-2px', color: 'white', display: 'block', lineHeight: 1 }}>
@@ -60,8 +45,10 @@ export default function CounterStrip({ total, companies }: { total: number; comp
         </div>
 
         {/* Visitors — flip clock */}
-        <div style={{ flex: 1 }}>
-          <FlipCounter value={visitors} />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ marginBottom: 6 }}>
+            <FlipCounter value={visitors} />
+          </div>
           <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', display: 'block', marginTop: 6 }}>
             people visited this page
           </span>
@@ -69,6 +56,7 @@ export default function CounterStrip({ total, companies }: { total: number; comp
             you are not the only one
           </span>
         </div>
+
       </div>
     </div>
   )

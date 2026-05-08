@@ -22,17 +22,17 @@ function FlipDigit({ digit }: { digit: string }) {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 44,
-    height: 60,
+    width: 32,
+    height: 44,
     background: '#1a1a1a',
-    borderRadius: 6,
-    margin: '0 2px',
+    borderRadius: 4,
+    margin: '0 1px',
     position: 'relative',
     overflow: 'hidden',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)',
+    boxShadow: '0 2px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)',
     fontFamily: "'Courier Prime', monospace",
     fontWeight: 700,
-    fontSize: 36,
+    fontSize: 26,
     color: 'white',
     letterSpacing: 0,
   }
@@ -40,7 +40,7 @@ function FlipDigit({ digit }: { digit: string }) {
   const isComma = digit === ',' || digit === ' '
   if (isComma) {
     return (
-      <span style={{ fontSize: 36, color: 'rgba(255,255,255,0.4)', fontWeight: 700, alignSelf: 'flex-end', paddingBottom: 4, fontFamily: "'Courier Prime', monospace", margin: '0 1px' }}>
+      <span style={{ fontSize: 26, color: 'rgba(255,255,255,0.4)', fontWeight: 700, alignSelf: 'flex-end', paddingBottom: 3, fontFamily: "'Courier Prime', monospace", margin: '0 1px' }}>
         {digit === ',' ? ',' : ''}
       </span>
     )
