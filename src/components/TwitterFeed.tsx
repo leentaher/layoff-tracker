@@ -14,16 +14,31 @@ function timeAgo(ts: string) {
 }
 
 function TweetCard({ tweet }: { tweet: Tweet }) {
+  const href = tweet.id.startsWith('f')
+    ? `https://x.com/search?q=%23techlayoffs&src=typed_query`
+    : `https://x.com/i/web/status/${tweet.id}`
+
   return (
-    <div style={{
-      flexShrink: 0,
-      width: 300,
-      background: 'rgba(255,255,255,0.04)',
-      border: '1px solid rgba(255,255,255,0.08)',
-      borderRadius: 10,
-      padding: '16px 18px',
-      marginRight: 12,
-    }}>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        flexShrink: 0,
+        width: 300,
+        background: 'rgba(255,255,255,0.04)',
+        border: '1px solid rgba(255,255,255,0.08)',
+        borderRadius: 10,
+        padding: '16px 18px',
+        marginRight: 12,
+        display: 'block',
+        textDecoration: 'none',
+        cursor: 'pointer',
+        transition: 'background 0.15s, border-color 0.15s',
+      }}
+      onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.16)' }}
+      onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.04)'; (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.08)' }}
+    >
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
         <div style={{
@@ -52,7 +67,7 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
       }}>
         {tweet.text}
       </p>
-    </div>
+    </a>
   )
 }
 
