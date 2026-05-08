@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "you're not alone",
     description: 'tech layoff tracker 2026 · juicebokx',
-    url: 'https://layoffs.juicebokx.com',
+    url: 'https://directory.juicebokx.com',
   },
 }
 
