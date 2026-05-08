@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function FlipDigit({ digit }: { digit: string }) {
   const [current, setCurrent] = useState(digit)
@@ -13,76 +13,98 @@ function FlipDigit({ digit }: { digit: string }) {
     const t = setTimeout(() => {
       setCurrent(digit)
       setFlipping(false)
-    }, 280)
+    }, 300)
     return () => clearTimeout(t)
-  }, [digit])
+  }, [digit]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const cardStyle: React.CSSProperties = {
-    display: 'inline-flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 32,
-    height: 44,
-    background: '#1a1a1a',
-    borderRadius: 4,
-    margin: '0 1px',
-    position: 'relative',
-    overflow: 'hidden',
-    boxShadow: '0 2px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)',
-    fontFamily: "'Courier Prime', monospace",
-    fontWeight: 700,
-    fontSize: 26,
-    color: 'white',
-    letterSpacing: 0,
-  }
-
-  const isComma = digit === ',' || digit === ' '
-  if (isComma) {
+  if (digit === ',' || digit === ' ') {
     return (
-      <span style={{ fontSize: 26, color: 'rgba(255,255,255,0.4)', fontWeight: 700, alignSelf: 'flex-end', paddingBottom: 3, fontFamily: "'Courier Prime', monospace", margin: '0 1px' }}>
+      <span style={{
+        fontSize: 26, color: 'rgba(255,255,255,0.4)', fontWeight: 700,
+        alignSelf: 'center', fontFamily: "'Courier Prime', monospace",
+        margin: '0 2px', lineHeight: 1,
+      }}>
         {digit === ',' ? ',' : ''}
       </span>
     )
   }
 
   return (
-    <div style={cardStyle}>
-      {/* Centre line */}
-      <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: 1, background: 'rgba(0,0,0,0.5)', zIndex: 3 }} />
-
-      {/* Top half — static current */}
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', background: '#222' }}>
-        <span style={{ lineHeight: 1, paddingBottom: 2 }}>{current}</span>
+    <div style={{
+      position: 'relative',
+      display: 'inline-flex',
+      flexDirection: 'column',
+      width: 32,
+      height: 44,
+      margin: '0 1px',
+      borderRadius: 4,
+      overflow: 'hidden',
+      background: '#1a1a1a',
+      boxShadow: '0 2px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)',
+      flexShrink: 0,
+    }}>
+      {/* Top half — clips digit to upper portion */}
+      <div style={{
+        flex: 1,
+        background: '#222',
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        overflow: 'hidden',
+      }}>
+        <span style={{ fontFamily: "'Courier Prime', monospace", fontWeight: 700, fontSize: 26, color: 'white', lineHeight: 1, flexShrink: 0 }}>
+          {current}
+        </span>
       </div>
 
-      {/* Bottom half — static current */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%', overflow: 'hidden', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', background: '#1a1a1a' }}>
-        <span style={{ lineHeight: 1, paddingTop: 2 }}>{current}</span>
+      {/* Center seam */}
+      <div style={{ height: 1, background: 'rgba(0,0,0,0.7)', flexShrink: 0, zIndex: 2 }} />
+
+      {/* Bottom half — clips digit to lower portion */}
+      <div style={{
+        flex: 1,
+        background: '#1a1a1a',
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        overflow: 'hidden',
+      }}>
+        <span style={{ fontFamily: "'Courier Prime', monospace", fontWeight: 700, fontSize: 26, color: 'white', lineHeight: 1, flexShrink: 0 }}>
+          {current}
+        </span>
       </div>
 
-      {/* Flip top — old top folding down */}
+      {/* Flip overlay — old digit folding away */}
       {flipping && (
-        <div style={{
-          position: 'absolute', top: 0, left: 0, right: 0, height: '50%',
-          overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
-          background: '#333', zIndex: 2, transformOrigin: 'bottom center',
-          animation: 'flipTop 0.28s ease-in forwards',
-        }}>
-          <span style={{ lineHeight: 1, paddingBottom: 2 }}>{prev}</span>
-        </div>
-      )}
-
-      {/* Flip bottom — new bottom revealed */}
-      {flipping && (
-        <div style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%',
-          overflow: 'hidden', display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
-          background: '#1a1a1a', zIndex: 2, transformOrigin: 'top center',
-          animation: 'flipBottom 0.28s ease-out 0.14s forwards',
-        }}>
-          <span style={{ lineHeight: 1, paddingTop: 2 }}>{digit}</span>
-        </div>
+        <>
+          <div style={{
+            position: 'absolute', top: 0, left: 0, right: 0, height: '50%',
+            background: '#333',
+            display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+            overflow: 'hidden',
+            transformOrigin: 'bottom center',
+            animation: 'flipTop 0.15s ease-in forwards',
+            zIndex: 3,
+          }}>
+            <span style={{ fontFamily: "'Courier Prime', monospace", fontWeight: 700, fontSize: 26, color: 'white', lineHeight: 1, flexShrink: 0 }}>
+              {prev}
+            </span>
+          </div>
+          <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%',
+            background: '#1a1a1a',
+            display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+            overflow: 'hidden',
+            transformOrigin: 'top center',
+            animation: 'flipBottom 0.15s ease-out 0.15s forwards',
+            zIndex: 3,
+            transform: 'rotateX(90deg)',
+          }}>
+            <span style={{ fontFamily: "'Courier Prime', monospace", fontWeight: 700, fontSize: 26, color: 'white', lineHeight: 1, flexShrink: 0 }}>
+              {current}
+            </span>
+          </div>
+        </>
       )}
 
       <style>{`
@@ -103,7 +125,13 @@ export default function FlipCounter({ value }: { value: number }) {
   const formatted = value.toLocaleString()
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'nowrap', gap: 0, width: 'max-content' }}>
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      flexWrap: 'nowrap',
+      gap: 0,
+      width: 'max-content',
+    }}>
       {formatted.split('').map((ch, i) => (
         <FlipDigit key={i} digit={ch} />
       ))}
