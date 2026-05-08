@@ -18,9 +18,9 @@ function useCount(target: number, duration = 2000) {
 }
 
 export default function CounterStrip({ total, companies }: { total: number; companies: number }) {
-  const visitors = useCount(12441 + Math.floor(Math.random() * 80), 1400)
-  const laid = useCount(Math.max(total, 332000), 2000)
-  const cos = useCount(Math.max(companies, 101), 1400)
+  const visitors = useCount(12441 + Math.floor(Math.random() * 80), 4000)
+  const laid = useCount(Math.max(total, 332000), 5000)
+  const cos = useCount(Math.max(companies, 101), 4000)
 
   const items = [
     { id: 'laid', num: laid.toLocaleString(), label: 'workers laid off in 2026', note: '3,400+ per day. and counting.' },
