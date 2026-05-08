@@ -150,7 +150,7 @@ export default function Community() {
                   <input style={inputStyle} placeholder="your@email.com" type="email" value={email} onChange={e => setEmail(e.target.value)} />
                   <input style={inputStyle} placeholder="last company (optional)" value={company} onChange={e => setCompany(e.target.value)} />
                   <input style={inputStyle} placeholder="what are you looking for? (optional)" value={role} onChange={e => setRole(e.target.value)} />
-                  <input style={inputStyle} placeholder="how to reach you — linkedin, twitter, email" value={contact} onChange={e => setContact(e.target.value)} />
+                  <input style={inputStyle} placeholder="linkedin URL" type="url" value={contact} onChange={e => setContact(e.target.value)} />
                   {dirError && <p style={{ fontSize: 11, color: 'var(--orange)', marginTop: -2 }}>{dirError}</p>}
                   <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '6px 2px' }}>
                     <input
