@@ -41,7 +41,7 @@ export default function FooterCTA() {
           </div>
         )}
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(0,0,0,0.3)', letterSpacing: '0.1em' }}>
-          analog-first · batch 1 · limited · juicebokx.com
+          no spam · unsubscribe anytime · written by real people
         </p>
       </div>
       <footer style={{ background: 'var(--black)', borderTop: '1px solid rgba(255,255,255,0.05)', padding: '16px 40px', display: 'flex', justifyContent: 'space-between' }}>
