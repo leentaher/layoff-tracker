@@ -41,6 +41,7 @@ export default function Community() {
   const [submitting, setSubmitting] = useState(false)
   const [joined, setJoined] = useState(false)
   const [dirError, setDirError] = useState('')
+  const [subscribeDispatch, setSubscribeDispatch] = useState(false)
 
   const [dispatchEmail, setDispatchEmail] = useState('')
   const [dispatchDone, setDispatchDone] = useState(false)
@@ -67,6 +68,13 @@ export default function Community() {
     if (res.ok) {
       const newEntry: Entry = { id: crypto.randomUUID(), handle: handle.trim(), role: `${role.trim()}${company.trim() ? ` · ex-${company.trim()}` : ''}`, contact: contact.trim() || 'anonymous', created_at: new Date().toISOString() }
       setEntries(prev => [newEntry, ...prev])
+      if (subscribeDispatch && email.trim().includes('@')) {
+        fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email.trim() }),
+        }).catch(() => {})
+      }
       setHandle(''); setEmail(''); setCompany(''); setRole(''); setContact('')
       setJoined(true)
     } else {
@@ -144,6 +152,17 @@ export default function Community() {
                   <input style={inputStyle} placeholder="what are you looking for? (optional)" value={role} onChange={e => setRole(e.target.value)} />
                   <input style={inputStyle} placeholder="how to reach you — linkedin, twitter, email" value={contact} onChange={e => setContact(e.target.value)} />
                   {dirError && <p style={{ fontSize: 11, color: 'var(--orange)', marginTop: -2 }}>{dirError}</p>}
+                  <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '6px 2px' }}>
+                    <input
+                      type="checkbox"
+                      checked={subscribeDispatch}
+                      onChange={e => setSubscribeDispatch(e.target.checked)}
+                      style={{ width: 16, height: 16, accentColor: 'var(--orange)', cursor: 'pointer', flexShrink: 0 }}
+                    />
+                    <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', lineHeight: 1.4 }}>
+                      subscribe to the weekly dispatch
+                    </span>
+                  </label>
                   <button
                     onClick={joinDirectory}
                     disabled={submitting}
