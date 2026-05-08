@@ -31,24 +31,24 @@ const laidOffGroups = [
 const mightBeNextGroups = [
   { title: 'right now', items: [
     'screenshot your employment contract',
-    'save work you\'re proud of — now, not later',
+    'save work you\'re proud of. now, not later.',
     'document your wins and contributions',
     'know your notice period and severance policy',
   ]},
   { title: 'this week', items: [
-    'build your emergency fund. 3–6 months minimum',
+    'build your emergency fund. 3 to 6 months minimum',
     'quietly update your resume',
     'strengthen relationships before you need them',
     'know exactly what you\'d do if it happened tomorrow',
   ]},
   { title: 'be ready', items: [
-    'don\'t sign anything in the room — take 24hrs',
+    'don\'t sign anything in the room. take 24hrs.',
     'know your COBRA options in advance',
     'have 3 people on speed dial (not LinkedIn)',
     'get clarity on equity and vesting schedule',
   ]},
   { title: 'do not do yet', items: [
-    'panic — most people survive this',
+    'panic. most people survive this.',
     'quit before you\'re pushed',
     'tell your manager you\'re looking',
     'make any major financial commitments',
