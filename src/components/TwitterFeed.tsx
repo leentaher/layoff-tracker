@@ -13,33 +13,15 @@ function timeAgo(ts: string) {
   return `${Math.floor(h / 24)}d`
 }
 
-function TweetCard({ tweet }: { tweet: Tweet }) {
-  const href = tweet.id.startsWith('f')
-    ? `https://x.com/search?q=%23techlayoffs&src=typed_query`
-    : `https://x.com/i/web/status/${tweet.id}`
+const XIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(255,255,255,0.2)">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.261 5.635 5.903-5.635zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+)
 
+function CardInner({ tweet }: { tweet: Tweet }) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        flexShrink: 0,
-        width: 300,
-        background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(255,255,255,0.08)',
-        borderRadius: 10,
-        padding: '16px 18px',
-        marginRight: 12,
-        display: 'block',
-        textDecoration: 'none',
-        cursor: 'pointer',
-        transition: 'background 0.15s, border-color 0.15s',
-      }}
-      onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.16)' }}
-      onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.04)'; (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.08)' }}
-    >
-      {/* Header */}
+    <>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
         <div style={{
           width: 28, height: 28, borderRadius: '50%',
@@ -53,21 +35,51 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
           <div style={{ fontSize: 12, fontWeight: 700, color: 'white', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{tweet.name}</div>
           <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, color: 'rgba(255,255,255,0.3)' }}>@{tweet.username} · {timeAgo(tweet.created_at)}</div>
         </div>
-        <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(255,255,255,0.2)">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.261 5.635 5.903-5.635zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-        </div>
+        <div style={{ marginLeft: 'auto', flexShrink: 0 }}><XIcon /></div>
       </div>
-      {/* Text */}
       <p style={{
         fontSize: 13, lineHeight: 1.55, color: 'rgba(255,255,255,0.8)',
         display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical',
-        overflow: 'hidden',
+        overflow: 'hidden', margin: 0,
       }}>
         {tweet.text}
       </p>
-    </a>
+    </>
+  )
+}
+
+function TweetCard({ tweet }: { tweet: Tweet }) {
+  const isReal = !tweet.id.startsWith('f')
+
+  const baseStyle: React.CSSProperties = {
+    flexShrink: 0,
+    width: 300,
+    background: 'rgba(255,255,255,0.04)',
+    border: '1px solid rgba(255,255,255,0.08)',
+    borderRadius: 10,
+    padding: '16px 18px',
+    marginRight: 12,
+  }
+
+  if (isReal) {
+    return (
+      <a
+        href={`https://x.com/i/web/status/${tweet.id}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ ...baseStyle, display: 'block', textDecoration: 'none', cursor: 'pointer', transition: 'background 0.15s, border-color 0.15s' }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.16)' }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)' }}
+      >
+        <CardInner tweet={tweet} />
+      </a>
+    )
+  }
+
+  return (
+    <div style={baseStyle}>
+      <CardInner tweet={tweet} />
+    </div>
   )
 }
 
@@ -82,7 +94,6 @@ export default function TwitterFeed() {
       .catch(() => {})
   }, [])
 
-  // Duplicate for seamless infinite loop
   const doubled = [...tweets, ...tweets]
 
   return (
@@ -99,10 +110,8 @@ export default function TwitterFeed() {
         </div>
       </div>
 
-      {/* Scrolling strip — full bleed */}
       {tweets.length > 0 && (
         <div style={{ position: 'relative', paddingBottom: 56 }}>
-          {/* Fade edges */}
           <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 80, background: 'linear-gradient(to right, var(--black), transparent)', zIndex: 2, pointerEvents: 'none' }} />
           <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 80, background: 'linear-gradient(to left, var(--black), transparent)', zIndex: 2, pointerEvents: 'none' }} />
 
