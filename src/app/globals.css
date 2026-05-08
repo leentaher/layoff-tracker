@@ -15,6 +15,7 @@ body {
   font-family: 'Work Sans', sans-serif;
   color: var(--black);
   overflow-x: hidden;
+  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text y='28' font-size='26'>🧃</text></svg>") 0 0, auto;
 }
 
 @keyframes fadeUp {
