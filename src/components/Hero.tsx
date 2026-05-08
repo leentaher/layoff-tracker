@@ -11,7 +11,7 @@ export default function Hero() {
         the industry is doing this to people. it has been doing this since 2022. you didn't cause this. we built this because we've been there.
       </p>
       <a
-        href="#footer-cta"
+        href="#community"
         style={{
           display: 'inline-flex', alignItems: 'center', gap: 10,
           background: 'var(--orange)', color: 'white',

@@ -160,6 +160,7 @@ export default function ChatRoom() {
           boxShadow: '1px 1px 0 #6b8fc4 inset, -1px -1px 0 #03125a inset',
         }}
       >
+        <span style={{ fontSize: 14 }}>💬</span>
         <span style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 10, height: 10 }}>
           <span style={{ position: 'absolute', width: 10, height: 10, borderRadius: '50%', background: '#4caf50', animation: 'pulse-ring 1.4s ease-out infinite', opacity: 0.6 }} />
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4caf50', display: 'inline-block', flexShrink: 0 }} />
