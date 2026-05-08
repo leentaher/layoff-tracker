@@ -7,7 +7,7 @@ const laidOff = [
   { when: 'today',     title: 'file for unemployment',                         body: 'do it today not tomorrow. the money takes time to kick in.', dark: false },
   { when: 'this week', title: 'your severance is negotiable',                  body: 'most people don\'t know this. you can ask for more. you have nothing to lose.', dark: false },
   { when: 'always',    title: 'put your phone down',                           body: 'doomscrolling is not helping. we made something for this. juicebokx.com', dark: false },
-  { when: 'ongoing',   title: 'you are not your job title',                    body: 'you were a person before this job. you will be a person after. the algorithm lied.', dark: true },
+  { when: 'ongoing',   title: 'we know you have bills to pay.',                 body: 'rent doesn\'t pause. obligations don\'t disappear. this page exists because the practical stuff matters as much as the emotional stuff. use every tool here. ask for help. you don\'t have to figure this out alone.', dark: true },
 ]
 
 const mightBeNext = [
