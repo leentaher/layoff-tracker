@@ -40,6 +40,7 @@ export default function ChatRoom() {
   const chatRef = useRef<HTMLDivElement>(null)
   const optimisticIds = useRef<Set<string>>(new Set())
 
+  // Load messages when chat opens
   useEffect(() => {
     if (!open) return
     setLoading(true)
@@ -49,20 +50,44 @@ export default function ChatRoom() {
       .finally(() => setLoading(false))
   }, [open])
 
+  // Supabase Realtime — primary live updates
   useEffect(() => {
     const channel = supabase
-      .channel('chat')
+      .channel('chat-room', { config: { broadcast: { self: false } } })
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages' }, (payload) => {
         const msg = payload.new as Message
         if (optimisticIds.current.has(msg.username + msg.text)) {
           optimisticIds.current.delete(msg.username + msg.text)
           return
         }
-        setMessages(prev => [...prev.slice(-99), msg])
+        setMessages(prev => {
+          if (prev.find(m => m.id === msg.id)) return prev
+          return [...prev.slice(-99), msg]
+        })
       })
       .subscribe()
     return () => { supabase.removeChannel(channel) }
   }, [])
+
+  // Polling fallback — catch messages if websocket drops
+  useEffect(() => {
+    if (!open) return
+    const poll = setInterval(() => {
+      fetch('/api/chat')
+        .then(r => r.json())
+        .then((data: Message[]) => {
+          if (!Array.isArray(data)) return
+          setMessages(prev => {
+            const existingIds = new Set(prev.map(m => m.id))
+            const newMsgs = data.filter(m => !existingIds.has(m.id))
+            if (newMsgs.length === 0) return prev
+            return [...prev, ...newMsgs].slice(-100)
+          })
+        })
+        .catch(() => {})
+    }, 5000)
+    return () => clearInterval(poll)
+  }, [open])
 
   useEffect(() => {
     if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight
