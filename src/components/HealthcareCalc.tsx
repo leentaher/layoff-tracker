@@ -51,13 +51,13 @@ type Result = {
 
 const fieldStyle = {
   width: '100%',
-  background: 'rgba(255,255,255,0.06)',
-  border: '1px solid rgba(255,255,255,0.12)',
+  background: 'white',
+  border: '1.5px solid rgba(0,0,0,0.12)',
   borderRadius: 8,
   padding: '14px 16px',
   fontFamily: "'Work Sans', sans-serif",
   fontSize: 13,
-  color: 'white',
+  color: 'var(--black)',
   outline: 'none',
   boxSizing: 'border-box' as const,
   appearance: 'none' as const,
@@ -69,7 +69,7 @@ const labelStyle = {
   fontSize: 9,
   letterSpacing: '0.14em',
   textTransform: 'uppercase' as const,
-  color: 'rgba(255,255,255,0.35)',
+  color: 'rgba(0,0,0,0.4)',
   marginBottom: 6,
 }
 
@@ -132,18 +132,18 @@ export default function HealthcareCalc() {
   }
 
   return (
-    <div style={{ background: 'var(--black)' }}>
+    <div style={{ background: 'white' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
-        <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>tool · 03</p>
-        <h2 style={{ fontSize: 'clamp(36px,5vw,64px)', fontWeight: 900, letterSpacing: '-2.5px', lineHeight: 1.0, color: 'white', marginBottom: 12 }}>
+        <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)', marginBottom: 12 }}>tool · 03</p>
+        <h2 style={{ fontSize: 'clamp(36px,5vw,64px)', fontWeight: 900, letterSpacing: '-2.5px', lineHeight: 1.0, color: 'var(--black)', marginBottom: 12 }}>
           what happens to<br />your healthcare.
         </h2>
-        <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.45)', maxWidth: 520, marginBottom: 36 }}>
+        <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(0,0,0,0.5)', maxWidth: 520, marginBottom: 36 }}>
           the clock starts the day you're cut. you have 60 days to decide. here's what it actually costs.
         </p>
 
         {/* Form */}
-        <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: 28, marginBottom: 20 }}>
+        <div style={{ background: 'var(--bg)', border: '1px solid rgba(0,0,0,0.08)', borderRadius: 12, padding: 28, marginBottom: 20 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14, marginBottom: 16 }}>
             <div>
               <label style={labelStyle}>monthly salary</label>
@@ -177,7 +177,7 @@ export default function HealthcareCalc() {
           </div>
           <button
             onClick={calculate}
-            style={{ width: '100%', background: 'white', color: 'var(--black)', border: 'none', borderRadius: 8, padding: '15px 0', fontWeight: 800, fontSize: 14, cursor: 'pointer', letterSpacing: '-0.3px' }}
+            style={{ width: '100%', background: 'var(--black)', color: 'white', border: 'none', borderRadius: 8, padding: '15px 0', fontWeight: 800, fontSize: 14, cursor: 'pointer', letterSpacing: '-0.3px' }}
           >
             calculate my options
           </button>

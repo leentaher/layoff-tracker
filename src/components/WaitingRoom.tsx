@@ -16,18 +16,18 @@ export default function WaitingRoom() {
   }
 
   return (
-    <div style={{ background: 'var(--black)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+    <div style={{ background: 'var(--bg)', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '72px 40px' }}>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
 
           {/* Left — copy */}
           <div>
-            <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 14 }}>live · right now</p>
-            <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1.0, color: 'white', marginBottom: 16 }}>
+            <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)', marginBottom: 14 }}>live · right now</p>
+            <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1.0, color: 'var(--black)', marginBottom: 16 }}>
               the waiting<br />room is open.
             </h2>
-            <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(255,255,255,0.45)', marginBottom: 28, maxWidth: 360 }}>
+            <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(0,0,0,0.5)', marginBottom: 28, maxWidth: 360 }}>
               anonymous. no account. just a room full of people going through the same thing. say hi. or just lurk. both are fine.
             </p>
             <button
@@ -41,7 +41,7 @@ export default function WaitingRoom() {
             >
               <span>💬</span> join the waiting room
             </button>
-            <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.2)', marginTop: 14, letterSpacing: '0.08em' }}>
+            <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(0,0,0,0.25)', marginTop: 14, letterSpacing: '0.08em' }}>
               no login · anonymous · real people
             </p>
           </div>
