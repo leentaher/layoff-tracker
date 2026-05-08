@@ -146,7 +146,7 @@ export default function Community() {
                 </div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 60 }}>
-                  <input style={inputStyle} placeholder="first name or handle" value={handle} onChange={e => setHandle(e.target.value)} />
+                  <input style={inputStyle} placeholder="first & last name" value={handle} onChange={e => setHandle(e.target.value)} />
                   <input style={inputStyle} placeholder="your@email.com" type="email" value={email} onChange={e => setEmail(e.target.value)} />
                   <input style={inputStyle} placeholder="last company (optional)" value={company} onChange={e => setCompany(e.target.value)} />
                   <input style={inputStyle} placeholder="what are you looking for? (optional)" value={role} onChange={e => setRole(e.target.value)} />
