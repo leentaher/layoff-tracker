@@ -13,6 +13,7 @@ import Timeline from '@/components/Timeline'
 import TwitterFeed from '@/components/TwitterFeed'
 import WaitingRoom from '@/components/WaitingRoom'
 import Community from '@/components/Community'
+import AboutJuicebokx from '@/components/AboutJuicebokx'
 import FooterCTA from '@/components/FooterCTA'
 import ChatRoom from '@/components/ChatRoom'
 import GatePopup from '@/components/GatePopup'
@@ -63,6 +64,7 @@ export default async function LayoffTrackerPage() {
       <WaitingRoom />
       <Community />
       <TwitterFeed />
+      <AboutJuicebokx />
       <FooterCTA />
       <ChatRoom />
     </>
