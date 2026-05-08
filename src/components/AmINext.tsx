@@ -35,14 +35,14 @@ export default function AmINext() {
 
   return (
     <div id="am-i-next" style={{ background: 'var(--black)' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: '50px 40px' }}>
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>tool · 01</p>
         <h2 style={{ fontSize: 'clamp(28px,4vw,42px)', fontWeight: 900, letterSpacing: '-1.5px', color: 'white', marginBottom: 10 }}>am i next?</h2>
         <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.45)', maxWidth: 500, marginBottom: 32 }}>
           we can't tell you for sure. nobody can. but we can tell you what the data says about your situation.
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 12 }}>
           <div>
             <label style={field.label}>company name</label>
             <input style={field.input} placeholder="e.g. Salesforce" value={company} onChange={e => setCompany(e.target.value)} />
@@ -51,16 +51,16 @@ export default function AmINext() {
             <label style={field.label}>your department</label>
             <input style={field.input} placeholder="e.g. Engineering" value={dept} onChange={e => setDept(e.target.value)} />
           </div>
-        </div>
-        <div style={{ marginBottom: 12 }}>
-          <label style={field.label}>years at company</label>
-          <select style={{ ...field.input, width: '50%' }} value={tenure} onChange={e => setTenure(e.target.value)}>
-            <option value="">select...</option>
-            <option value="under 1 year">under 1 year</option>
-            <option value="1–2 years">1–2 years</option>
-            <option value="3–5 years">3–5 years</option>
-            <option value="5+ years">5+ years</option>
-          </select>
+          <div>
+            <label style={field.label}>years at company</label>
+            <select style={field.input} value={tenure} onChange={e => setTenure(e.target.value)}>
+              <option value="">select...</option>
+              <option value="under 1 year">under 1 year</option>
+              <option value="1–2 years">1–2 years</option>
+              <option value="3–5 years">3–5 years</option>
+              <option value="5+ years">5+ years</option>
+            </select>
+          </div>
         </div>
 
         <button
