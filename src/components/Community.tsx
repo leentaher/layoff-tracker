@@ -100,56 +100,61 @@ export default function Community() {
         </p>
 
         {/* Two column cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 16, alignItems: 'start', maxWidth: 560 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 16, alignItems: 'start' }}>
 
           {/* Directory card */}
-          <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: 28 }}>
-            <div style={{ fontSize: 28, marginBottom: 14 }}>📦</div>
-            <h3 style={{ fontSize: 20, fontWeight: 900, color: 'white', letterSpacing: '-0.5px', marginBottom: 10, lineHeight: 1.2 }}>
-              find people.<br />make warm intros.
-            </h3>
-            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, marginBottom: 6 }}>
-              a searchable directory of people going through it. add yourself, find others. no algorithms. no feed. just a list of humans and what they need.
-            </p>
-            <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', marginBottom: 18 }}>
-              role · what you're open to · how to reach you
-            </p>
+          <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: 32, display: 'flex', gap: 40, alignItems: 'flex-start' }}>
 
-            {/* Entries */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20, maxHeight: 200, overflowY: 'auto' }}>
-              {entries.slice(0, 6).map(e => (
-                <div key={e.id} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 8, padding: '12px 14px' }}>
-                  <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', lineHeight: 1.5, marginBottom: 4 }}>{e.role}</p>
-                  <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>
-                    {e.contact} · {timeAgo(e.created_at)}
-                  </p>
-                </div>
-              ))}
+            {/* Left — header + entries */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 28, marginBottom: 14 }}>📦</div>
+              <h3 style={{ fontSize: 20, fontWeight: 900, color: 'white', letterSpacing: '-0.5px', marginBottom: 10, lineHeight: 1.2 }}>
+                find people.<br />make warm intros.
+              </h3>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, marginBottom: 6 }}>
+                a searchable directory of people going through it. add yourself, find others. no algorithms. no feed. just a list of humans and what they need.
+              </p>
+              <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', marginBottom: 18 }}>
+                role · what you're open to · how to reach you
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {entries.slice(0, 6).map(e => (
+                  <div key={e.id} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 8, padding: '12px 14px' }}>
+                    <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', lineHeight: 1.5, marginBottom: 4 }}>{e.role}</p>
+                    <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>
+                      {e.contact} · {timeAgo(e.created_at)}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Form */}
-            {joined ? (
-              <div style={{ background: 'rgba(255,165,0,0.1)', border: '1px solid rgba(255,165,0,0.2)', borderRadius: 8, padding: '16px', textAlign: 'center' }}>
-                <p style={{ color: 'var(--orange)', fontWeight: 800, fontSize: 14 }}>you're in the directory ✓</p>
-                <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginTop: 4 }}>others can find you now.</p>
-              </div>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <input style={inputStyle} placeholder="first name or handle" value={handle} onChange={e => setHandle(e.target.value)} />
-                <input style={inputStyle} placeholder="your@email.com" type="email" value={email} onChange={e => setEmail(e.target.value)} />
-                <input style={inputStyle} placeholder="last company (optional)" value={company} onChange={e => setCompany(e.target.value)} />
-                <input style={inputStyle} placeholder="what are you looking for? (optional)" value={role} onChange={e => setRole(e.target.value)} />
-                <input style={inputStyle} placeholder="how to reach you — linkedin, twitter, email" value={contact} onChange={e => setContact(e.target.value)} />
-                {dirError && <p style={{ fontSize: 11, color: 'var(--orange)', marginTop: -2 }}>{dirError}</p>}
-                <button
-                  onClick={joinDirectory}
-                  disabled={submitting}
-                  style={{ background: 'var(--orange)', color: 'white', border: 'none', borderRadius: 8, padding: '14px 20px', fontWeight: 800, fontSize: 14, cursor: 'pointer', opacity: submitting ? 0.7 : 1, marginTop: 4 }}
-                >
-                  {submitting ? 'adding you...' : 'add me to the directory →'}
-                </button>
-              </div>
-            )}
+            {/* Right — form */}
+            <div style={{ width: 340, flexShrink: 0 }}>
+              {joined ? (
+                <div style={{ background: 'rgba(255,165,0,0.1)', border: '1px solid rgba(255,165,0,0.2)', borderRadius: 8, padding: '24px', textAlign: 'center', marginTop: 60 }}>
+                  <p style={{ color: 'var(--orange)', fontWeight: 800, fontSize: 14 }}>you're in the directory ✓</p>
+                  <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginTop: 4 }}>others can find you now.</p>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 60 }}>
+                  <input style={inputStyle} placeholder="first name or handle" value={handle} onChange={e => setHandle(e.target.value)} />
+                  <input style={inputStyle} placeholder="your@email.com" type="email" value={email} onChange={e => setEmail(e.target.value)} />
+                  <input style={inputStyle} placeholder="last company (optional)" value={company} onChange={e => setCompany(e.target.value)} />
+                  <input style={inputStyle} placeholder="what are you looking for? (optional)" value={role} onChange={e => setRole(e.target.value)} />
+                  <input style={inputStyle} placeholder="how to reach you — linkedin, twitter, email" value={contact} onChange={e => setContact(e.target.value)} />
+                  {dirError && <p style={{ fontSize: 11, color: 'var(--orange)', marginTop: -2 }}>{dirError}</p>}
+                  <button
+                    onClick={joinDirectory}
+                    disabled={submitting}
+                    style={{ background: 'var(--orange)', color: 'white', border: 'none', borderRadius: 8, padding: '14px 20px', fontWeight: 800, fontSize: 14, cursor: 'pointer', opacity: submitting ? 0.7 : 1, marginTop: 4 }}
+                  >
+                    {submitting ? 'adding you...' : 'add me to the directory →'}
+                  </button>
+                </div>
+              )}
+            </div>
+
           </div>
 
 
