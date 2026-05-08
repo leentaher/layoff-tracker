@@ -11,6 +11,7 @@ import WhatNow from '@/components/WhatNow'
 import Timeline from '@/components/Timeline'
 import FooterCTA from '@/components/FooterCTA'
 import ChatRoom from '@/components/ChatRoom'
+import GatePopup from '@/components/GatePopup'
 
 export const revalidate = 3600 // revalidate page every hour
 
@@ -44,6 +45,7 @@ export default async function LayoffTrackerPage() {
 
   return (
     <>
+      <GatePopup />
       <Ticker />
       <Nav />
       <Hero />
