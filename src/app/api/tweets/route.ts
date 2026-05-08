@@ -7,9 +7,9 @@ const CACHE_MS = 5 * 60 * 1000
 type Tweet = { id: string; text: string; username: string; name: string; created_at: string }
 
 const FALLBACK: Tweet[] = [
-  { id: 'f1',  text: 'just got laid off from my PM role at a series C. 6 years in tech. didn't see it coming. if anyone knows of openings, i'm open to it.',  username: 'pmlife_sarah', name: 'sarah k.', created_at: new Date(Date.now() - 8  * 60000).toISOString() },
-  { id: 'f2',  text: 'the "it's not personal, it's business" line hits different when it's you. 3rd layoff in 4 years in tech.',  username: 'devs_perspective', name: 'marcus', created_at: new Date(Date.now() - 22 * 60000).toISOString() },
-  { id: 'f3',  text: 'tech layoffs update: 332,000+ workers laid off in 2026 so far. that's 3,400+ per day. these aren't just numbers.',  username: 'layofftracker_io', name: 'layoff tracker', created_at: new Date(Date.now() - 41 * 60000).toISOString() },
+  { id: 'f1',  text: "just got laid off from my PM role at a series C. 6 years in tech. didn't see it coming. if anyone knows of openings, i'm open to it.",  username: 'pmlife_sarah', name: 'sarah k.', created_at: new Date(Date.now() - 8  * 60000).toISOString() },
+  { id: 'f2',  text: "the \"it's not personal, it's business\" line hits different when it's you. 3rd layoff in 4 years in tech.",  username: 'devs_perspective', name: 'marcus', created_at: new Date(Date.now() - 22 * 60000).toISOString() },
+  { id: 'f3',  text: "tech layoffs update: 332,000+ workers laid off in 2026 so far. that's 3,400+ per day. these aren't just numbers.",  username: 'layofftracker_io', name: 'layoff tracker', created_at: new Date(Date.now() - 41 * 60000).toISOString() },
   { id: 'f4',  text: 'anyone else notice that "streamlining operations" has become corporate speak for "we hired too many people in 2021"',  username: 'techworker_real', name: 'alex t.', created_at: new Date(Date.now() - 55 * 60000).toISOString() },
   { id: 'f5',  text: 'day 1 of being laid off: panic. day 7: realizing i was burned out anyway. day 30: applying intentionally. the reset is real.',  username: 'eng_journey', name: 'priya m.', created_at: new Date(Date.now() - 72 * 60000).toISOString() },
   { id: 'f6',  text: 'got laid off. updated resume. reached out to 10 people. had 3 coffee chats. got a referral. 3 weeks later, offer. your network > job boards.',  username: 'hired_again_2026', name: 'james o.', created_at: new Date(Date.now() - 90 * 60000).toISOString() },
