@@ -34,13 +34,13 @@ export default function SeveranceCalc() {
 
   return (
     <div id="severance" style={{ background: 'var(--yellow)' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
+      <div className="section-inner" style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginBottom: 12 }}>tool · 02</p>
         <h2 style={{ fontSize: 'clamp(36px,5vw,58px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1.0, marginBottom: 10 }}>is your severance fair?</h2>
         <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(0,0,0,0.55)', maxWidth: 560, marginBottom: 32 }}>most people don't negotiate. most people should. enter your details. get a benchmark and a script.</p>
 
         <div style={{ background: 'white', borderRadius: 8, padding: 22 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 14 }}>
+          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 14 }}>
             <div><label style={labelStyle}>years at company</label><input type="number" style={inputStyle} placeholder="3" min={0} max={30} value={years} onChange={e => setYears(e.target.value)} /></div>
             <div>
               <label style={labelStyle}>level</label>

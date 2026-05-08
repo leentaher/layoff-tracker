@@ -18,12 +18,12 @@ export default function FooterCTA() {
           the weekly<br /><span style={{ color: 'var(--orange)' }}>dispatch.</span>
         </h2>
         <p style={{ fontSize: 14, color: 'rgba(0,0,0,0.5)', marginBottom: 28, lineHeight: 1.6 }}>
-          one email a week. what's actually hiring, who got funded, what industries are moving.<br />no fluff. written by people paying attention.
+          one email a week. what's actually hiring, who got funded, what industries are moving. no fluff. written by people paying attention.
         </p>
         {done ? (
           <p style={{ fontWeight: 800, fontSize: 16, color: 'var(--orange)' }}>you're on the list. we'll be in touch.</p>
         ) : (
-          <div style={{ display: 'flex', gap: 10, maxWidth: 400, margin: '0 auto 12px', alignItems: 'stretch' }}>
+          <div className="form-row" style={{ display: 'flex', gap: 10, maxWidth: 400, margin: '0 auto 12px', alignItems: 'stretch' }}>
             <input
               type="email"
               placeholder="your@email.com"
@@ -44,7 +44,7 @@ export default function FooterCTA() {
           no spam · unsubscribe anytime · written by real people
         </p>
       </div>
-      <footer style={{ background: 'var(--black)', borderTop: '1px solid rgba(255,255,255,0.05)', padding: '16px 40px', display: 'flex', justifyContent: 'space-between' }}>
+      <footer style={{ background: 'var(--black)', borderTop: '1px solid rgba(255,255,255,0.05)', padding: '16px 20px', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
         <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, color: 'rgba(255,255,255,0.18)' }}>© 2026 juicebokx · yourenotalone</span>
         <a href="https://juicebokx.com" style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, color: 'var(--yellow)', textDecoration: 'none', opacity: 0.45 }}>juicebokx.com →</a>
       </footer>

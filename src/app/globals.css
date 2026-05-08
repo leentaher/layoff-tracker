@@ -18,6 +18,47 @@ body {
   cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text y='28' font-size='26'>🧃</text></svg>") 0 0, auto;
 }
 
+/* ── Mobile ─────────────────────────────────── */
+@media (max-width: 680px) {
+  /* Nav */
+  nav { padding: 12px 20px !important; }
+  .nav-link-item { display: none !important; }
+
+  /* Section inner padding */
+  .section-inner { padding: 48px 20px !important; }
+
+  /* Grids → single column */
+  .grid-3 { grid-template-columns: 1fr !important; }
+  .grid-2 { grid-template-columns: 1fr !important; }
+
+  /* WaitingRoom */
+  .grid-waiting { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .waiting-mockup { display: none !important; }
+
+  /* Community card */
+  .community-card { flex-direction: column !important; gap: 24px !important; }
+  .community-form { width: 100% !important; }
+  .community-form > * { margin-top: 0 !important; }
+
+  /* Email + button rows */
+  .form-row { flex-direction: column !important; max-width: 100% !important; }
+  .form-row input { width: 100% !important; box-sizing: border-box !important; }
+  .form-row button { width: 100% !important; height: auto !important; padding: 14px 20px !important; }
+
+  /* Gate popup card */
+  .gate-card { padding: 32px 20px !important; }
+
+  /* Checklist toggle */
+  .mode-toggle { flex-direction: column !important; border-radius: 12px !important; width: 100% !important; }
+  .mode-toggle button { width: 100% !important; }
+
+  /* HealthcareCalc result grid */
+  .hc-result-grid { grid-template-columns: 1fr !important; }
+
+  /* Chat window full-width on mobile */
+  .chat-window { width: calc(100vw - 16px) !important; right: 8px !important; left: 8px !important; bottom: 72px !important; }
+}
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }

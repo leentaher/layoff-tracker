@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <div style={{ padding: '80px 40px 60px', maxWidth: 900, margin: '0 auto' }}>
+    <div className="section-inner" style={{ padding: '80px 40px 60px', maxWidth: 900, margin: '0 auto' }}>
       <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 14, letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.5, marginBottom: 20 }}>
         juicebokx · 2026
       </p>

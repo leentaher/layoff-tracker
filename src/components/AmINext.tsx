@@ -35,14 +35,14 @@ export default function AmINext() {
 
   return (
     <div id="am-i-next" style={{ background: 'var(--black)' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '50px 40px' }}>
+      <div className="section-inner" style={{ maxWidth: 900, margin: '0 auto', padding: '50px 40px' }}>
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>tool · 01</p>
         <h2 style={{ fontSize: 'clamp(28px,4vw,42px)', fontWeight: 900, letterSpacing: '-1.5px', color: 'white', marginBottom: 10 }}>am i next?</h2>
         <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.45)', maxWidth: 500, marginBottom: 32 }}>
           we can't tell you for sure. nobody can. but we can tell you what the data says about your situation.
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 12 }}>
+        <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 12 }}>
           <div>
             <label style={field.label}>company name</label>
             <input style={field.input} placeholder="e.g. Salesforce" value={company} onChange={e => setCompany(e.target.value)} />

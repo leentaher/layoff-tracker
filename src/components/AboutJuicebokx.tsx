@@ -1,7 +1,7 @@
 export default function AboutJuicebokx() {
   return (
     <div style={{ background: 'var(--yellow)', borderTop: '3px solid var(--black)' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '80px 40px' }}>
+      <div className="section-inner" style={{ maxWidth: 900, margin: '0 auto', padding: '80px 40px' }}>
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: 16 }}>
           the people behind this
         </p>

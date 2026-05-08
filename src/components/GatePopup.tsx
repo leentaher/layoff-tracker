@@ -50,7 +50,7 @@ export default function GatePopup() {
       />
 
       {/* Card */}
-      <div style={{
+      <div className="gate-card" style={{
         position: 'relative', zIndex: 1,
         background: '#f5f0e8', borderRadius: 16,
         maxWidth: 480, width: '100%',
@@ -110,7 +110,7 @@ export default function GatePopup() {
             you're in. welcome. 🧡
           </div>
         ) : (
-          <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+          <div className="form-row" style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
             <input
               type="email"
               value={email}

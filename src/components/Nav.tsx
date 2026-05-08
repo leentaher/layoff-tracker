@@ -47,13 +47,13 @@ export default function Nav() {
             ['#checklist',  'checklist'],
             ['#confessions','confessions'],
           ].map(([href, label]) => (
-            <li key={href}>
+            <li key={href} className="nav-link-item">
               <a href={href} style={{ fontSize: 12, fontWeight: 600, color: 'var(--black)', textDecoration: 'none', opacity: 0.55 }}>
                 {label}
               </a>
             </li>
           ))}
-          <li>
+          <li className="nav-link-item">
             <button
               onClick={openTimeline}
               style={{ fontSize: 12, fontWeight: 600, color: 'var(--black)', background: 'none', border: 'none', cursor: 'pointer', opacity: 0.55, padding: 0 }}

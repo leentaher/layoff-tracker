@@ -38,7 +38,7 @@ export default function WhatNow() {
 
   return (
     <div id="what-now" style={{ background: 'var(--bg)', borderTop: '1px solid rgba(0,0,0,0.08)' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
+      <div className="section-inner" style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)', marginBottom: 12 }}>
           first things first · 01
         </p>
@@ -56,7 +56,7 @@ export default function WhatNow() {
         </div>
 
         {/* Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
+        <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
           {cards.map((c, i) => (
             <div key={i} style={{
               background: c.dark ? 'var(--black)' : 'white',

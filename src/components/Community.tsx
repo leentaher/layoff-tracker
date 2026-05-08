@@ -87,7 +87,7 @@ export default function Community() {
 
   return (
     <div id="community" style={{ background: 'var(--black)' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '80px 40px' }}>
+      <div className="section-inner" style={{ maxWidth: 900, margin: '0 auto', padding: '80px 40px' }}>
 
         {/* Header */}
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>community · 06</p>
@@ -99,7 +99,7 @@ export default function Community() {
         </p>
 
         {/* Card */}
-        <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: 32, display: 'flex', gap: 40, alignItems: 'flex-start' }}>
+        <div className="community-card" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: 32, display: 'flex', gap: 40, alignItems: 'flex-start' }}>
 
           {/* Left — copy + live stats */}
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -135,7 +135,7 @@ export default function Community() {
           </div>
 
           {/* Right — form */}
-          <div style={{ width: 340, flexShrink: 0 }}>
+          <div className="community-form" style={{ width: 340, flexShrink: 0 }}>
             {joined ? (
               <div style={{ background: 'rgba(255,165,0,0.1)', border: '1px solid rgba(255,165,0,0.2)', borderRadius: 8, padding: '24px', textAlign: 'center', marginTop: 60 }}>
                 <p style={{ color: 'var(--orange)', fontWeight: 800, fontSize: 14 }}>you're in the directory ✓</p>

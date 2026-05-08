@@ -79,13 +79,13 @@ export default function Checklist() {
 
   return (
     <div id="checklist" style={{ background: 'var(--black)' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
+      <div className="section-inner" style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>tool · 04</p>
         <h2 style={{ fontSize: 'clamp(36px,5vw,58px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1.0, color: 'white', marginBottom: 10 }}>the 48hr<br />checklist.</h2>
         <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.4)', maxWidth: 500, marginBottom: 28 }}>interactive. checkable. do these before anything else.</p>
 
         {/* Toggle */}
-        <div style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.06)', borderRadius: 100, padding: 4, marginBottom: 32, gap: 4 }}>
+        <div className="mode-toggle" style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.06)', borderRadius: 100, padding: 4, marginBottom: 32, gap: 4 }}>
           {([
             { key: 'laid-off', label: 'i just got laid off' },
             { key: 'might-be-next', label: 'i might be next' },
@@ -111,7 +111,7 @@ export default function Checklist() {
           ))}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+        <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
           {groups.map((group) => (
             <div key={group.title} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 8, padding: 18 }}>
               <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginBottom: 12 }}>

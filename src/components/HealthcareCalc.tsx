@@ -133,7 +133,7 @@ export default function HealthcareCalc() {
 
   return (
     <div style={{ background: 'white' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
+      <div className="section-inner" style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)', marginBottom: 12 }}>tool · 03</p>
         <h2 style={{ fontSize: 'clamp(36px,5vw,64px)', fontWeight: 900, letterSpacing: '-2.5px', lineHeight: 1.0, color: 'var(--black)', marginBottom: 12 }}>
           what happens to<br />your healthcare.
@@ -144,7 +144,7 @@ export default function HealthcareCalc() {
 
         {/* Form */}
         <div style={{ background: 'var(--bg)', border: '1px solid rgba(0,0,0,0.08)', borderRadius: 12, padding: 28, marginBottom: 20 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14, marginBottom: 16 }}>
+          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14, marginBottom: 16 }}>
             <div>
               <label style={labelStyle}>monthly salary</label>
               <input
@@ -193,7 +193,7 @@ export default function HealthcareCalc() {
             </div>
 
             {/* Option cards */}
-            <div style={{ display: 'grid', gridTemplateColumns: result.medicaid ? '1fr 1fr 1fr' : result.marketplace ? '1fr 1fr' : '1fr', gap: 12, marginBottom: 20 }}>
+            <div className="hc-result-grid" style={{ display: 'grid', gridTemplateColumns: result.medicaid ? '1fr 1fr 1fr' : result.marketplace ? '1fr 1fr' : '1fr', gap: 12, marginBottom: 20 }}>
 
               {/* COBRA */}
               <div style={{ background: 'var(--bg)', border: '1px solid rgba(0,0,0,0.1)', borderRadius: 10, padding: 20 }}>

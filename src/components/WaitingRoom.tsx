@@ -17,9 +17,9 @@ export default function WaitingRoom() {
 
   return (
     <div style={{ background: 'var(--bg)', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '72px 40px' }}>
+      <div className="section-inner" style={{ maxWidth: 900, margin: '0 auto', padding: '72px 40px' }}>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
+        <div className="grid-waiting" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
 
           {/* Left — copy */}
           <div>
@@ -47,7 +47,7 @@ export default function WaitingRoom() {
           </div>
 
           {/* Right — messenger preview */}
-          <div style={{
+          <div className="waiting-mockup" style={{
             fontFamily: 'Tahoma, Arial, sans-serif',
             boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
             border: '3px solid #0a246a',

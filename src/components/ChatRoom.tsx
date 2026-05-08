@@ -173,7 +173,7 @@ export default function ChatRoom() {
 
       {/* Window */}
       {open && (
-        <div style={{
+        <div className="chat-window" style={{
           position: 'fixed', bottom: 72, right: 24, zIndex: 998,
           width: 360,
           fontFamily: 'Tahoma, Arial, sans-serif',
