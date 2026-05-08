@@ -40,6 +40,13 @@ export default function ChatRoom() {
   const chatRef = useRef<HTMLDivElement>(null)
   const optimisticIds = useRef<Set<string>>(new Set())
 
+  // Allow external sections to open the chat via custom event
+  useEffect(() => {
+    const handler = () => setOpen(true)
+    window.addEventListener('open-chat', handler)
+    return () => window.removeEventListener('open-chat', handler)
+  }, [])
+
   // Load messages when chat opens
   useEffect(() => {
     if (!open) return

@@ -11,6 +11,7 @@ import HealthcareCalc from '@/components/HealthcareCalc'
 import WhatNow from '@/components/WhatNow'
 import Timeline from '@/components/Timeline'
 import TwitterFeed from '@/components/TwitterFeed'
+import WaitingRoom from '@/components/WaitingRoom'
 import Community from '@/components/Community'
 import FooterCTA from '@/components/FooterCTA'
 import ChatRoom from '@/components/ChatRoom'
@@ -67,6 +68,7 @@ export default async function LayoffTrackerPage() {
 
       {/* 4. FEEL LESS ALONE — community + social proof */}
       <Confessions initialConfessions={confessions} />
+      <WaitingRoom />
       <TwitterFeed />
 
       {/* 5. BIGGER PICTURE — context, it's systemic */}
