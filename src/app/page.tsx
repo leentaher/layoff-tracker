@@ -7,6 +7,7 @@ import AmINext from '@/components/AmINext'
 import Confessions from '@/components/Confessions'
 import Checklist from '@/components/Checklist'
 import SeveranceCalc from '@/components/SeveranceCalc'
+import HealthcareCalc from '@/components/HealthcareCalc'
 import WhatNow from '@/components/WhatNow'
 import Timeline from '@/components/Timeline'
 import TwitterFeed from '@/components/TwitterFeed'
@@ -56,6 +57,7 @@ export default async function LayoffTrackerPage() {
       <WhatNow />
       <AmINext />
       <SeveranceCalc />
+      <HealthcareCalc />
       <Confessions initialConfessions={confessions} />
       <Checklist />
       <Timeline layoffs={layoffs} />
