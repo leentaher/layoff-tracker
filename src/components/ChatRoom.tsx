@@ -161,15 +161,13 @@ export default function ChatRoom() {
         }}
       >
         <span style={{ fontSize: 14 }}>💬</span>
-        <span style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 10, height: 10 }}>
-          <span style={{ position: 'absolute', width: 10, height: 10, borderRadius: '50%', background: '#4caf50', animation: 'pulse-ring 1.4s ease-out infinite', opacity: 0.6 }} />
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4caf50', display: 'inline-block', flexShrink: 0 }} />
-        </span>
+        <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4caf50', display: 'inline-block', flexShrink: 0, animation: 'liveDot 1.4s ease-in-out infinite', boxShadow: '0 0 0 0 rgba(76,175,80,0.7)' }} />
         the waiting room · {onlineCount} online
         <style>{`
-          @keyframes pulse-ring {
-            0%   { transform: scale(1); opacity: 0.6; }
-            100% { transform: scale(2.4); opacity: 0; }
+          @keyframes liveDot {
+            0%   { box-shadow: 0 0 0 0 rgba(76,175,80,0.7); }
+            70%  { box-shadow: 0 0 0 6px rgba(76,175,80,0); }
+            100% { box-shadow: 0 0 0 0 rgba(76,175,80,0); }
           }
         `}</style>
       </button>
