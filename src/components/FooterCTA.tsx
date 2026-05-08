@@ -13,7 +13,7 @@ export default function FooterCTA() {
 
   return (
     <>
-      <div style={{ background: 'var(--bg)', textAlign: 'center', padding: '72px 40px', borderTop: '3px solid var(--orange)' }}>
+      <div id="footer-cta" style={{ background: 'var(--bg)', textAlign: 'center', padding: '72px 40px', borderTop: '3px solid var(--orange)' }}>
         <h2 style={{ fontSize: 'clamp(28px,5vw,52px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1.0, color: 'var(--black)', marginBottom: 12 }}>
           we made something<br /><span style={{ color: 'var(--orange)' }}>for exactly this.</span>
         </h2>
@@ -36,7 +36,7 @@ export default function FooterCTA() {
               onClick={join}
               style={{ background: 'var(--yellow)', color: 'var(--black)', border: 'none', borderRadius: 6, padding: '0 24px', fontWeight: 800, fontSize: 14, cursor: 'pointer', height: 52 }}
             >
-              join waitlist
+              join the directory
             </button>
           </div>
         )}
