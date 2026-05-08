@@ -61,7 +61,7 @@ export default function Checklist() {
 
   const groups = mode === 'laid-off' ? laidOffGroups : mightBeNextGroups
   const allItems = groups.flatMap(g => g.items)
-  const doneCount = allItems.filter(i => done.has(i)).size
+  const doneCount = allItems.filter(i => done.has(i)).length
 
   function toggle(item: string) {
     setDone(prev => {
