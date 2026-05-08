@@ -28,7 +28,7 @@ export default function Nav() {
             background: 'var(--orange)', color: '#fff', padding: '7px 16px',
             borderRadius: 6, fontWeight: 700, fontSize: 12, textDecoration: 'none'
           }}>
-            join waitlist
+            join the directory
           </a>
         </li>
       </ul>
