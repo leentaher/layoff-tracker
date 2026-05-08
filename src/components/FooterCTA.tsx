@@ -15,10 +15,10 @@ export default function FooterCTA() {
     <>
       <div id="footer-cta" style={{ background: 'var(--bg)', textAlign: 'center', padding: '72px 40px', borderTop: '3px solid var(--orange)' }}>
         <h2 style={{ fontSize: 'clamp(28px,5vw,52px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1.0, color: 'var(--black)', marginBottom: 12 }}>
-          we made something<br /><span style={{ color: 'var(--orange)' }}>for exactly this.</span>
+          the weekly<br /><span style={{ color: 'var(--orange)' }}>dispatch.</span>
         </h2>
         <p style={{ fontSize: 14, color: 'rgba(0,0,0,0.5)', marginBottom: 28, lineHeight: 1.6 }}>
-          not an app. not a productivity tool. something you hold with your hands.<br />something that has never sent you a push notification.
+          one email a week. what's actually hiring, who got funded, what industries are moving.<br />no fluff. written by humans who've been laid off, not a content team.
         </p>
         {done ? (
           <p style={{ fontWeight: 800, fontSize: 16, color: 'var(--orange)' }}>you're on the list. we'll be in touch.</p>
