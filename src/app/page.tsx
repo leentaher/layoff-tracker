@@ -52,9 +52,9 @@ export default async function LayoffTrackerPage() {
       <CounterStrip total={totalLaidOff} companies={companiesCount} />
       <WhatNow />
       <AmINext />
+      <SeveranceCalc />
       <Confessions initialConfessions={confessions} />
       <Checklist />
-      <SeveranceCalc />
       <Timeline layoffs={layoffs} />
       <FooterCTA />
       <ChatRoom />
