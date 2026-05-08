@@ -153,7 +153,7 @@ export default function GatePopup() {
             display: 'block', marginLeft: 'auto', marginRight: 'auto',
           }}
         >
-          skip for now
+          i'll look around first
         </button>
       </div>
     </div>
