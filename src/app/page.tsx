@@ -62,7 +62,6 @@ export default async function LayoffTrackerPage() {
       <Checklist />
       <WaitingRoom />
       <Community />
-      <Confessions initialConfessions={confessions} />
       <TwitterFeed />
       <FooterCTA />
       <ChatRoom />
