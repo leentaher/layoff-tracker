@@ -45,7 +45,6 @@ export default function Nav() {
             ['#what-now',   'what now'],
             ['#severance',  'severance'],
             ['#checklist',  'checklist'],
-            ['#confessions','confessions'],
           ].map(([href, label]) => (
             <li key={href} className="nav-link-item">
               <a href={href} style={{ fontSize: 12, fontWeight: 600, color: 'var(--black)', textDecoration: 'none', opacity: 0.55 }}>
