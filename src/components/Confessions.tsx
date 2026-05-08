@@ -11,15 +11,38 @@ export default function Confessions({ initialConfessions }: { initialConfessions
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
 
-  // Realtime subscription — new confessions appear live
+  // Realtime subscription — other people's confessions appear live
   useEffect(() => {
     const channel = supabase
-      .channel('confessions')
+      .channel('confessions-room')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'confessions' }, (payload) => {
-        setConfessions((prev) => [payload.new as Confession, ...prev.slice(0, 19)])
+        const incoming = payload.new as Confession
+        setConfessions((prev) => {
+          if (prev.find(c => c.id === incoming.id)) return prev
+          return [incoming, ...prev.slice(0, 19)]
+        })
       })
       .subscribe()
     return () => { supabase.removeChannel(channel) }
+  }, [])
+
+  // Polling fallback — catch new confessions if websocket misses them
+  useEffect(() => {
+    const poll = setInterval(() => {
+      fetch('/api/confessions')
+        .then(r => r.json())
+        .then((data: Confession[]) => {
+          if (!Array.isArray(data)) return
+          setConfessions(prev => {
+            const existingIds = new Set(prev.map(c => c.id))
+            const newOnes = data.filter(c => !existingIds.has(c.id))
+            if (newOnes.length === 0) return prev
+            return [...newOnes, ...prev].slice(0, 20)
+          })
+        })
+        .catch(() => {})
+    }, 10000)
+    return () => clearInterval(poll)
   }, [])
 
   async function submit() {
@@ -28,13 +51,22 @@ export default function Confessions({ initialConfessions }: { initialConfessions
     setError('')
     setSubmitting(true)
 
+    const text = input.trim()
+
     const res = await fetch('/api/confessions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: input.trim() }),
+      body: JSON.stringify({ text }),
     })
 
     if (res.ok) {
+      // Optimistically add to top so it appears immediately
+      const optimistic: Confession = {
+        id: crypto.randomUUID(),
+        text,
+        created_at: new Date().toISOString(),
+      }
+      setConfessions(prev => [optimistic, ...prev.slice(0, 19)])
       setInput('')
       setSubmitted(true)
       setTimeout(() => setSubmitted(false), 4000)
