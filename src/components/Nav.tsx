@@ -37,8 +37,8 @@ export default function Nav() {
         top: 0, zIndex: 100, borderBottom: '1.5px solid rgba(0,0,0,0.08)'
       }}>
         <a href="https://directory.juicebokx.com" style={{ textDecoration: 'none', lineHeight: 1.2 }}>
-          <div style={{ fontWeight: 900, fontSize: 24, letterSpacing: '-1px', color: 'var(--black)' }}>Directory</div>
-          <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.08em', color: 'rgba(0,0,0,0.4)', textTransform: 'lowercase' }}>by juicebokx</div>
+          <div style={{ fontWeight: 900, fontSize: 24, letterSpacing: '-1px', color: 'var(--black)' }}>directory</div>
+          <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.08em', color: 'rgba(0,0,0,0.4)', textTransform: 'lowercase' }}>juicebokx × new consensus</div>
         </a>
         <ul style={{ display: 'flex', gap: 24, listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}>
           {[
