@@ -36,9 +36,9 @@ export default function Nav() {
         padding: '16px 40px', background: 'var(--bg)', position: 'sticky',
         top: 0, zIndex: 100, borderBottom: '1.5px solid rgba(0,0,0,0.08)'
       }}>
-        <a href="https://directory.juicebokx.com" style={{ textDecoration: 'none', lineHeight: 1.2 }}>
-          <div style={{ fontWeight: 900, fontSize: 24, letterSpacing: '-1px', color: 'var(--black)' }}>directory</div>
-          <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.08em', color: 'rgba(0,0,0,0.4)', textTransform: 'lowercase' }}>juicebokx × new consensus</div>
+        <a href="https://directory.juicebokx.com" style={{ textDecoration: 'none', lineHeight: 1.2, display: 'inline-block' }}>
+          <div style={{ fontWeight: 900, fontSize: 24, color: 'var(--black)', width: '100%', textAlign: 'justify', textAlignLast: 'justify' }}>directory</div>
+          <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.08em', color: 'rgba(0,0,0,0.4)', textTransform: 'lowercase', whiteSpace: 'nowrap' }}>juicebokx × new consensus</div>
         </a>
         <ul style={{ display: 'flex', gap: 24, listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}>
           {[
