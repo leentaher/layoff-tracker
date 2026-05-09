@@ -56,7 +56,24 @@ body {
   .hc-result-grid { grid-template-columns: 1fr !important; }
 
   /* Chat window full-width on mobile */
-  .chat-window { width: calc(100vw - 16px) !important; right: 8px !important; left: 8px !important; bottom: 72px !important; }
+  .chat-window {
+    width: calc(100vw - 16px) !important;
+    right: 8px !important;
+    left: 8px !important;
+    bottom: 68px !important;
+    max-height: calc(100vh - 90px) !important;
+  }
+
+  /* Chat trigger button — smaller on mobile */
+  .chat-trigger {
+    bottom: 12px !important;
+    right: 12px !important;
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+  }
+
+  /* Prevent iOS zoom on input focus */
+  .chat-window textarea { font-size: 16px !important; }
 }
 
 @keyframes fadeUp {

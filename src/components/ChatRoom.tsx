@@ -148,6 +148,7 @@ export default function ChatRoom() {
     <>
       {/* Taskbar button */}
       <button
+        className="chat-trigger"
         onClick={() => setOpen(o => !o)}
         style={{
           position: 'fixed', bottom: 24, right: 24, zIndex: 999,
@@ -287,7 +288,7 @@ export default function ChatRoom() {
           {/* Messages */}
           <div ref={chatRef} style={{
             flex: 1, overflowY: 'auto', background: 'white',
-            padding: '8px 10px', minHeight: 220, maxHeight: 280,
+            padding: '8px 10px', minHeight: 180, maxHeight: 280,
             display: 'flex', flexDirection: 'column', gap: 6,
             borderBottom: '1px solid #aca899',
           }}>
