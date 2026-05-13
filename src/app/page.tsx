@@ -1,24 +1,21 @@
 import Ticker from '@/components/Ticker'
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
-import AmINext from '@/components/AmINext'
-import Confessions from '@/components/Confessions'
-import Checklist from '@/components/Checklist'
-import SeveranceCalc from '@/components/SeveranceCalc'
-import HealthcareCalc from '@/components/HealthcareCalc'
-import WhatNow from '@/components/WhatNow'
-import Timeline from '@/components/Timeline'
-import TwitterFeed from '@/components/TwitterFeed'
-import WaitingRoom from '@/components/WaitingRoom'
+import ToolsSection from '@/components/ToolsSection'
 import Community from '@/components/Community'
+import WaitingRoom from '@/components/WaitingRoom'
+import StatsSection from '@/components/StatsSection'
+import NCMission from '@/components/NCMission'
+import TeamBios from '@/components/TeamBios'
 import AboutJuicebokx from '@/components/AboutJuicebokx'
+import TwitterFeed from '@/components/TwitterFeed'
 import FooterCTA from '@/components/FooterCTA'
 import ChatRoom from '@/components/ChatRoom'
 import GatePopup from '@/components/GatePopup'
 
-export const revalidate = 3600 // revalidate page every hour
+export const revalidate = 3600
 
-export default async function LayoffTrackerPage() {
+export default function LayoffTrackerPage() {
   return (
     <>
       <GatePopup />
@@ -26,15 +23,14 @@ export default async function LayoffTrackerPage() {
       <Nav />
 
       <Hero />
-      <AmINext />
-      <WhatNow />
-      <SeveranceCalc />
-      <HealthcareCalc />
-      <Checklist />
-      <WaitingRoom />
+      <ToolsSection />
       <Community />
-      <TwitterFeed />
+      <WaitingRoom />
+      <StatsSection />
+      <NCMission />
+      <TeamBios />
       <AboutJuicebokx />
+      <TwitterFeed />
       <FooterCTA />
       <ChatRoom />
     </>

@@ -55,6 +55,16 @@ body {
   /* HealthcareCalc result grid */
   .hc-result-grid { grid-template-columns: 1fr !important; }
 
+  /* Tools grid → 2 columns on mobile */
+  .grid-tools { grid-template-columns: 1fr 1fr !important; }
+
+  /* Stats grid → 2 columns on mobile */
+  .tracker-stats-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* Tracker table rows → hide industry column */
+  .tracker-row-grid { grid-template-columns: 2fr 1fr 1fr !important; }
+  .tracker-row-grid > *:nth-child(3) { display: none !important; }
+
   /* Chat window full-width on mobile */
   .chat-window {
     width: calc(100vw - 16px) !important;
