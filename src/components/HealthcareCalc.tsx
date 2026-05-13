@@ -134,7 +134,12 @@ export default function HealthcareCalc() {
   return (
     <div style={{ background: 'white' }}>
       <div className="section-inner" style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
-        <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)', marginBottom: 12 }}>tool · 03</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+          <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)', margin: 0 }}>tool · 03</p>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#eef0f8', border: '1px solid #c8cde8', borderRadius: 20, padding: '4px 10px', fontFamily: "'Courier Prime', monospace", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#2d3a6b', fontWeight: 700 }}>
+            🇺🇸 US workers only
+          </span>
+        </div>
         <h2 style={{ fontSize: 'clamp(36px,5vw,64px)', fontWeight: 900, letterSpacing: '-2.5px', lineHeight: 1.0, color: 'var(--black)', marginBottom: 12 }}>
           what happens to<br />your healthcare.
         </h2>
