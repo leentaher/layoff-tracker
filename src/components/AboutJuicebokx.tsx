@@ -18,7 +18,7 @@ export default function AboutJuicebokx() {
               what's juicebokx?
             </h3>
             <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(0,0,0,0.7)', marginBottom: 28 }}>
-              we started by making something you hold with your hands. then we noticed how many people needed help navigating what's happening right now. so we built this. the directory is free. what comes next is at juicebokx.com.
+              we started by making something you hold with your hands. then we noticed how many people needed help navigating what's happening right now. so we built this. everything here is free. more at juicebokx.com.
             </p>
             <a
               href="https://juicebokx.com"
@@ -39,7 +39,7 @@ export default function AboutJuicebokx() {
               what's new consensus?
             </h3>
             <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(255,255,255,0.6)', marginBottom: 28 }}>
-              a think tank writing the economic policy the next president will need on day one. the people losing jobs to AI are exactly who should build what comes next. new consensus is how that happens.
+              a think tank focused on the economic policy response to AI displacement. working on the frameworks and plans that governments will need as this wave continues to build.
             </p>
             <a
               href="https://www.newconsensus.com"

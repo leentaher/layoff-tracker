@@ -90,12 +90,12 @@ export default function Community() {
       <div className="section-inner" style={{ maxWidth: 900, margin: '0 auto', padding: '80px 40px' }}>
 
         {/* Header */}
-        <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>community · 06</p>
+        <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>directory</p>
         <h2 style={{ fontSize: 'clamp(36px,5vw,64px)', fontWeight: 900, letterSpacing: '-2.5px', lineHeight: 1.0, color: 'white', marginBottom: 12 }}>
-          you don't have to<br />navigate this alone.
+          find people<br />in the same boat.
         </h2>
         <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)', marginBottom: 48, lineHeight: 1.6 }}>
-          real people. real situations. no linkedin energy.
+          a directory of people navigating this. laid off, keeping an eye on things, or hiring. add yourself. get found by the people who can actually help.
         </p>
 
         {/* Card */}

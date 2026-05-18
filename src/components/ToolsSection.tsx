@@ -103,10 +103,10 @@ const NEXT_MOVE: Record<string, Record<string, MoveData>> = {
 // ─── Tool card definitions ────────────────────────────────────────────────────
 type TabId = 'severance' | 'healthcare' | 'nextmove' | 'legal'
 const TOOLS = [
-  { id: 'severance' as TabId, icon: '🧮', title: 'severance calculator', desc: 'know your number before they call you in. most people don\'t negotiate. most people should.', cta: 'calculate mine →' },
-  { id: 'healthcare' as TabId, icon: '🏥', title: 'healthcare calculator', desc: 'COBRA vs marketplace. your actual cost. your 60-day deadline. US workers only.', cta: 'calculate mine →' },
+  { id: 'severance' as TabId, icon: '🧮', title: 'severance calculator', desc: 'companies aren\'t legally required to offer severance in most states. if yours did, you don\'t have to sign immediately. this gives you a reference point. it is not legal advice. if you can, speak to a lawyer before signing anything.', cta: 'calculate mine →' },
+  { id: 'healthcare' as TabId, icon: '🏥', title: 'healthcare calculator', desc: 'losing job-based coverage may trigger a special enrollment window for marketplace plans. this helps you estimate and compare costs. numbers are estimates only. rules and timelines vary by state and insurer. verify directly with healthcare.gov or your state marketplace. US workers only.', cta: 'calculate mine →' },
   { id: 'nextmove' as TabId, icon: '🧭', title: 'what\'s your next move?', desc: 'your role is changing. here\'s where it\'s going and what you\'re already most of the way to.', cta: 'find out →' },
-  { id: 'legal' as TabId, icon: '⚖️', title: 'do you have legal options?', desc: 'you might. most people don\'t look into it because lawyers are expensive. here\'s what to know.', cta: 'find out →' },
+  { id: 'legal' as TabId, icon: '⚖️', title: 'understand your rights', desc: 'what you\'re entitled to depends on your state, company size, and contract. this is not legal advice. below are official government resources to help you understand where to start.', cta: 'find out →' },
 ]
 
 type HCResult = {
@@ -214,13 +214,13 @@ export default function ToolsSection() {
       <div className="section-inner" style={{ maxWidth: 900, margin: '0 auto', padding: '70px 40px' }}>
 
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginBottom: 14 }}>
-          layer 1 · stabilize · juicebokx tools
+          tools · juicebokx
         </p>
         <h2 style={{ fontSize: 'clamp(36px,5vw,64px)', fontWeight: 900, letterSpacing: '-2.5px', lineHeight: 1.0, color: 'var(--black)', marginBottom: 12 }}>
           get stable.<br />then get found.
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(0,0,0,0.5)', maxWidth: 520, marginBottom: 40 }}>
-          use these before you do anything else. they take 5 minutes each and most people don't know they exist.
+          practical tools for the first few days. free. these are starting points, not legal or financial advice. your situation is specific to you.
         </p>
 
         {/* ── Tool cards ─────────────────────────────────────────────────────── */}

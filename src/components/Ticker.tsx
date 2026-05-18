@@ -1,13 +1,14 @@
 'use client'
 
 const items = [
-  '332,000+ WORKERS LAID OFF IN 2026',
-  'META · 16,000 · MAR 2026',
   'ORACLE · 30,000 · MAR 2026',
+  'META · 16,000 · FEB 2026',
   'AMAZON · 30,000 · Q1 2026',
-  '82% OF TECH CUTS ATTRIBUTED TO AI',
-  '3,400+ JOBS LOST PER DAY',
-  'YOU ARE NOT ALONE · JUICEBOKX.COM',
+  'INTEL · 15,000 · JAN 2026',
+  '414,000+ WORKERS LAID OFF IN 2026',
+  '64% OF Q1 CUTS LINKED TO AI',
+  '3,900+ JOBS LOST PER DAY',
+  'YOU ARE NOT ALONE',
 ]
 
 export default function Ticker() {

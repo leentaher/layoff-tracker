@@ -13,7 +13,7 @@ const bios = [
     initial: 'Z',
     name: 'zack',
     role: 'new consensus',
-    desc: 'helped write the Green New Deal. now writing the plan the next president will need on day one. believes the people losing jobs to AI are exactly the ones who should build what comes next.',
+    desc: 'has spent years working on economic policy. now focused on what governments and institutions need to do as AI reshapes the labor market. believes the people most affected should be part of building the response.',
     link: 'https://www.newconsensus.com',
     linkText: 'newconsensus.com →',
     avatarBg: '#1A4DB5',

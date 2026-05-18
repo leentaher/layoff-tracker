@@ -28,7 +28,7 @@ export default function WaitingRoom() {
               the waiting<br />room is open.
             </h2>
             <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(0,0,0,0.5)', marginBottom: 28, maxWidth: 360 }}>
-              anonymous. no account. just a room full of people going through the same thing. say hi. or just lurk. both are fine.
+              anonymous. no account. a place to sit with other people going through the same thing. say hi or just read. no pressure either way.
             </p>
             <button
               onClick={openChat}

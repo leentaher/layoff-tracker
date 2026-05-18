@@ -47,10 +47,10 @@ export default function StatsSection() {
         </p>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, marginBottom: 36 }}>
           <h2 style={{ fontSize: 'clamp(36px,5vw,64px)', fontWeight: 900, letterSpacing: '-2.5px', lineHeight: 1.0, color: 'white', marginBottom: 0 }}>
-            the numbers are<br />staggering.
+            the scale of<br />this is real.
           </h2>
           <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, maxWidth: 280, textAlign: 'right' }}>
-            the response from those in power has been silence.
+            these are not anomalies. this is a structural shift happening across every industry, all at once.
           </p>
         </div>
 

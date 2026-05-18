@@ -37,14 +37,14 @@ export default function Nav() {
         top: 0, zIndex: 100, borderBottom: '1.5px solid rgba(0,0,0,0.08)'
       }}>
         <a href="https://directory.juicebokx.com" style={{ textDecoration: 'none', lineHeight: 1.2, display: 'inline-block' }}>
-          <div style={{ fontWeight: 900, fontSize: 24, color: 'var(--black)', width: '100%', textAlign: 'justify', textAlignLast: 'justify' }}>directory</div>
+          <div style={{ fontWeight: 900, fontSize: 24, color: 'var(--black)', width: '100%', textAlign: 'justify', textAlignLast: 'justify' }}>navigate</div>
           <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.08em', color: 'rgba(0,0,0,0.4)', textTransform: 'lowercase', whiteSpace: 'nowrap' }}>juicebokx × new consensus</div>
         </a>
         <ul style={{ display: 'flex', gap: 24, listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}>
           {[
-            ['#what-now',   'what now'],
-            ['#severance',  'severance'],
-            ['#checklist',  'checklist'],
+            ['#tools',      'am i next?'],
+            ['#tracker',    'tracker'],
+            ['#community',  'directory'],
           ].map(([href, label]) => (
             <li key={href} className="nav-link-item">
               <a href={href} style={{ fontSize: 12, fontWeight: 600, color: 'var(--black)', textDecoration: 'none', opacity: 0.55 }}>
@@ -57,7 +57,7 @@ export default function Nav() {
               onClick={openTimeline}
               style={{ fontSize: 12, fontWeight: 600, color: 'var(--black)', background: 'none', border: 'none', cursor: 'pointer', opacity: 0.55, padding: 0 }}
             >
-              timeline
+              the plan
             </button>
           </li>
           <li>
