@@ -5,7 +5,7 @@ export default function Hero() {
         navigate · by juicebokx × new consensus · 2026
       </p>
       <h1 style={{ fontSize: 'clamp(52px, 10vw, 96px)', fontWeight: 900, lineHeight: 0.92, letterSpacing: '-3px', marginBottom: 20 }}>
-        worried you're<br />next?
+        im editing on mandy laptop
       </h1>
       <p style={{ fontSize: 16, lineHeight: 1.65, opacity: 0.6, maxWidth: 520, marginBottom: 32 }}>
         414,000 people have been laid off in 2026. if you're trying to understand what's happening, covering your role, your industry, and your options, this is a place to start.
