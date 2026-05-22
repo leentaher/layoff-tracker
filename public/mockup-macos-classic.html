@@ -466,8 +466,11 @@
 
 <script>
   function navTo(el, id) {
-    const target = document.getElementById(id)
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    var target = document.getElementById(id)
+    var container = document.querySelector('.main')
+    if (target && container) {
+      container.scrollTop = target.offsetTop
+    }
     document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'))
     el.classList.add('active')
   }
