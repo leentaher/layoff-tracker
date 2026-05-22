@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Retro OS Mockup</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #008080;
+    font-family: 'MS Sans Serif', 'Courier New', monospace;
+    font-size: 13px;
+    color: #000;
+    min-height: 100vh;
+    padding: 8px;
+  }
+
+  /* Taskbar */
+  .taskbar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 32px;
+    background: #c0c0c0;
+    border-top: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    padding: 2px 4px;
+    gap: 4px;
+    z-index: 100;
+  }
+  .start-btn {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    padding: 2px 8px;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .taskbar-item {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 2px 12px;
+    font-size: 11px;
+  }
+  .taskbar-clock { margin-left: auto; padding: 2px 8px; border: 2px solid; border-color: #808080 #fff #fff #808080; font-size: 11px; }
+
+  /* Window */
+  .window {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    margin-bottom: 12px;
+    box-shadow: 2px 2px 0 #000;
+  }
+  .title-bar {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: #fff;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: bold;
+    user-select: none;
+  }
+  .title-bar-controls { display: flex; gap: 2px; }
+  .win-btn {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    width: 16px; height: 14px;
+    font-size: 10px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: #000;
+    font-family: monospace;
+  }
+  .window-body { padding: 12px; }
+
+  /* Menu bar */
+  .menu-bar {
+    background: #c0c0c0;
+    border-bottom: 1px solid #808080;
+    padding: 2px 0;
+    display: flex;
+    gap: 0;
+  }
+  .menu-item {
+    padding: 2px 10px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .menu-item:hover { background: #000080; color: #fff; }
+  .menu-item.active { background: #000080; color: #fff; }
+
+  /* Hero content */
+  .hero-text { padding: 20px 0 12px; }
+  .hero-label { font-size: 10px; color: #808080; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+  h1 { font-size: 32px; font-weight: bold; line-height: 1.1; margin-bottom: 12px; font-family: 'VT323', 'Courier New', monospace; letter-spacing: 1px; }
+  .hero-body { font-size: 13px; line-height: 1.7; margin-bottom: 16px; max-width: 560px; }
+
+  /* Buttons */
+  .btn {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    padding: 4px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    margin-right: 8px;
+    display: inline-block;
+  }
+  .btn:active { border-color: #808080 #fff #fff #808080; }
+  .btn-primary { background: #000080; color: #fff; border-color: #4040a0 #000040 #000040 #4040a0; }
+
+  /* Stats in a panel */
+  .panel {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  .panel-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #808080; margin-bottom: 4px; }
+  .panel-val { font-size: 28px; font-family: 'VT323', monospace; color: #800000; }
+
+  /* Grid */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+
+  /* Table */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .data-table th { background: #000080; color: #fff; padding: 4px 8px; text-align: left; font-size: 11px; text-transform: uppercase; }
+  .data-table td { padding: 4px 8px; border-bottom: 1px solid #808080; }
+  .data-table tr:hover td { background: #000080; color: #fff; }
+  .data-table .num { color: #800000; font-weight: bold; }
+  .data-table tr:hover .num { color: #ffff00; }
+
+  /* Status bar */
+  .status-bar {
+    background: #c0c0c0;
+    border-top: 1px solid #808080;
+    padding: 2px 8px;
+    display: flex;
+    gap: 8px;
+    font-size: 11px;
+    color: #000;
+  }
+  .status-cell { border: 1px solid #808080; padding: 1px 8px; }
+
+  /* Scrollbar style */
+  ::-webkit-scrollbar { width: 16px; }
+  ::-webkit-scrollbar-track { background: #c0c0c0; }
+  ::-webkit-scrollbar-thumb { background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; }
+
+  .inset {
+    border: 2px solid;
+    border-color: #808080 #fff #fff #808080;
+    padding: 8px;
+    background: #fff;
+    margin-bottom: 8px;
+  }
+
+  .alert-box {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #fff #808080 #808080 #fff;
+    padding: 16px 20px;
+    margin: 16px auto;
+    max-width: 400px;
+    box-shadow: 4px 4px 0 #000;
+  }
+  .alert-icon { font-size: 24px; margin-bottom: 8px; }
+  .alert-text { font-size: 13px; margin-bottom: 16px; }
+  .alert-btns { display: flex; gap: 8px; justify-content: center; }
+</style>
+</head>
+<body>
+
+<!-- Main window -->
+<div class="window">
+  <div class="title-bar">
+    <span>📊 Navigate.exe — Labor Crisis Tracker 2026</span>
+    <div class="title-bar-controls">
+      <div class="win-btn">_</div>
+      <div class="win-btn">□</div>
+      <div class="win-btn">×</div>
+    </div>
+  </div>
+  <div class="menu-bar">
+    <div class="menu-item active">File</div>
+    <div class="menu-item">Tools</div>
+    <div class="menu-item">Tracker</div>
+    <div class="menu-item">Directory</div>
+    <div class="menu-item">The Plan</div>
+    <div class="menu-item">Help</div>
+  </div>
+  <div class="window-body">
+
+    <div class="hero-text">
+      <div class="hero-label">navigate · juicebokx × new consensus · 2026</div>
+      <h1>THIS IS WHAT A<br>LABOR CRISIS<br>LOOKS LIKE.</h1>
+      <div class="inset">
+        <p class="hero-body">414,000 people cut so far this year. if you're in it or watching it approach, you're in the right place. tools, community, and people who get it.</p>
+      </div>
+      <span class="btn btn-primary">find your people →</span>
+      <span class="btn">view tracker</span>
+      <span class="btn">join directory</span>
+    </div>
+
+  </div>
+  <div class="status-bar">
+    <div class="status-cell">414,000 affected</div>
+    <div class="status-cell">150+ companies</div>
+    <div class="status-cell">live data</div>
+    <div class="status-cell" style="margin-left:auto">juicebokx × new consensus</div>
+  </div>
+</div>
+
+<!-- Stats window -->
+<div class="window">
+  <div class="title-bar">
+    <span>📈 2026 Stats — layoff_data.csv</span>
+    <div class="title-bar-controls">
+      <div class="win-btn">_</div>
+      <div class="win-btn">□</div>
+      <div class="win-btn">×</div>
+    </div>
+  </div>
+  <div class="window-body">
+    <div class="grid-4">
+      <div class="panel">
+        <div class="panel-label">2026 total</div>
+        <div class="panel-val">414k+</div>
+        <div style="font-size:10px;color:#808080">jobs cut so far</div>
+      </div>
+      <div class="panel">
+        <div class="panel-label">companies</div>
+        <div class="panel-val">150+</div>
+        <div style="font-size:10px;color:#808080">tracked in 2026</div>
+      </div>
+      <div class="panel">
+        <div class="panel-label">per day</div>
+        <div class="panel-val">3,900</div>
+        <div style="font-size:10px;color:#808080">jobs lost on avg</div>
+      </div>
+      <div class="panel">
+        <div class="panel-label">AI-driven</div>
+        <div class="panel-val">64%</div>
+        <div style="font-size:10px;color:#808080">of Q1 2026 cuts</div>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>company</th>
+          <th>people cut</th>
+          <th>industry</th>
+          <th>date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Oracle</td><td class="num">30,000</td><td>Enterprise Software</td><td>Mar 2026</td></tr>
+        <tr><td>Amazon</td><td class="num">30,000</td><td>E-commerce / Cloud</td><td>Feb 2026</td></tr>
+        <tr><td>Meta</td><td class="num">16,000</td><td>Social Media</td><td>Mar 2026</td></tr>
+        <tr><td>Salesforce</td><td class="num">8,000</td><td>CRM / SaaS</td><td>Jan 2026</td></tr>
+        <tr><td>Microsoft</td><td class="num">6,000</td><td>Enterprise Software</td><td>Nov 2025</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="status-bar">
+    <div class="status-cell">5 records shown</div>
+    <div class="status-cell">sorted by: impact</div>
+    <div class="status-cell">last updated: today</div>
+  </div>
+</div>
+
+<!-- Alert popup -->
+<div class="alert-box">
+  <div class="title-bar" style="margin:-16px -20px 16px;padding:3px 6px;">
+    <span>⚠️ System Alert</span>
+    <div class="title-bar-controls"><div class="win-btn">×</div></div>
+  </div>
+  <div class="alert-icon">⚠️</div>
+  <div class="alert-text">you are not uniquely failing.<br>the industry has been doing this<br>to people for years.<br><br>click OK to continue.</div>
+  <div class="alert-btns">
+    <span class="btn btn-primary">OK</span>
+    <span class="btn">find your people</span>
+  </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+  <div class="start-btn">⊞ Start</div>
+  <div class="taskbar-item">📊 Navigate.exe</div>
+  <div class="taskbar-item">📈 Stats</div>
+  <div class="taskbar-clock">12:00 PM</div>
+</div>
+
+</body>
+</html>

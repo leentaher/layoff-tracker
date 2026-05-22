@@ -190,29 +190,29 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <div class="sidebar-section">Navigate</div>
-      <div class="sidebar-item active"><span class="sidebar-icon">🏠</span> Home</div>
-      <div class="sidebar-item"><span class="sidebar-icon">🔧</span> Tools</div>
-      <div class="sidebar-item"><span class="sidebar-icon">📊</span> Tracker</div>
-      <div class="sidebar-item"><span class="sidebar-icon">👥</span> Directory</div>
+      <div class="sidebar-item active" onclick="scrollTo('sec-home')"><span class="sidebar-icon">🏠</span> Home</div>
+      <div class="sidebar-item" onclick="scrollTo('sec-tools')"><span class="sidebar-icon">🔧</span> Tools</div>
+      <div class="sidebar-item" onclick="scrollTo('sec-tracker')"><span class="sidebar-icon">📊</span> Tracker</div>
+      <div class="sidebar-item" onclick="scrollTo('sec-directory')"><span class="sidebar-icon">👥</span> Directory</div>
       <div class="sidebar-sep"></div>
       <div class="sidebar-section">More</div>
-      <div class="sidebar-item"><span class="sidebar-icon">📋</span> The Plan</div>
-      <div class="sidebar-item"><span class="sidebar-icon">✉️</span> Newsletter</div>
-      <div class="sidebar-item"><span class="sidebar-icon">ℹ️</span> About</div>
+      <div class="sidebar-item" onclick="scrollTo('sec-plan')"><span class="sidebar-icon">📋</span> The Plan</div>
+      <div class="sidebar-item" onclick="scrollTo('sec-newsletter')"><span class="sidebar-icon">✉️</span> Newsletter</div>
+      <div class="sidebar-item" onclick="scrollTo('sec-about')"><span class="sidebar-icon">ℹ️</span> About</div>
     </div>
 
     <!-- Main scrollable content -->
     <div class="main">
 
       <!-- Hero -->
-      <div class="hero">
+      <div class="hero" id="sec-home">
         <h1>this is what a<br>tech labor crisis<br>looks like.</h1>
         <p class="hero-body">414,000 people cut so far this year. if you're in it or watching it approach, you're in the right place. tools, community, and people who get it.</p>
         <a href="#" class="btn primary">find your people →</a>
       </div>
 
       <!-- Tools -->
-      <div class="section-head"><span>🔧 tools</span><small>built for people going through it</small></div>
+      <div class="section-head" id="sec-tools"><span>🔧 tools</span><small>built for people going through it</small></div>
       <div class="tools-grid">
 
         <div class="tool-card">
@@ -266,7 +266,7 @@
       </div>
 
       <!-- Directory -->
-      <div class="community">
+      <div class="community" id="sec-directory">
         <div class="eyebrow">👥 directory</div>
         <h2>find people in the same boat.</h2>
         <p>a directory of people navigating this. laid off, keeping an eye on things, or hiring. add yourself. get found by the people who can actually help.</p>
@@ -338,7 +338,7 @@
       </div>
 
       <!-- Tracker -->
-      <div class="section-head"><span>📊 layoff tracker · live data</span><small>sorted by impact</small></div>
+      <div class="section-head" id="sec-tracker"><span>📊 layoff tracker · live data</span><small>sorted by impact</small></div>
       <div style="background:#f9f9f9;padding:16px 32px;border-bottom:1px solid #ddd;">
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:16px;">
           <div class="stat-box" style="border:1px solid #ddd;border-right:none;background:#fff;"><div class="stat-box-label">2026 total</div><div class="stat-box-val">414,000+</div><div class="stat-box-sub">jobs cut so far</div></div>
@@ -361,7 +361,7 @@
       </table>
 
       <!-- NC Mission -->
-      <div class="community" style="background:#f0f0f0;">
+      <div class="community" id="sec-plan" style="background:#f0f0f0;">
         <div class="eyebrow">🏛 new consensus</div>
         <h2>the policy response to this has to come from people who actually lived it.</h2>
         <p>new consensus is building the economic frameworks governments will need as AI reshapes work. they want input from people on the inside — not just analysts on the outside.</p>
@@ -404,7 +404,7 @@
       </div>
 
       <!-- About -->
-      <div class="section-head"><span>ℹ️ about the collaboration</span></div>
+      <div class="section-head" id="sec-about"><span>ℹ️ about the collaboration</span></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #ddd;">
         <div style="padding:20px 24px;border-right:1px solid #ddd;background:#fff;">
           <div class="eyebrow">juicebokx</div>
@@ -438,7 +438,7 @@
       </div>
 
       <!-- Newsletter -->
-      <div class="community" style="background:#f5f5f5;">
+      <div class="community" id="sec-newsletter" style="background:#f5f5f5;">
         <div class="eyebrow">✉️ the weekly dispatch</div>
         <h2>stay in the loop.</h2>
         <p>one email, once a week. what's moving, who's hiring, what the policy conversation looks like. written by people paying close attention.</p>
@@ -463,6 +463,16 @@
     <span style="background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.3); padding:1px 7px; font-size:10px; font-family:'IBM Plex Mono',monospace; font-weight:400; letter-spacing:0.5px;">17 online</span>
   </div>
 </div>
+
+<script>
+  function scrollTo(id) {
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    // update active state
+    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'))
+    event.currentTarget.classList.add('active')
+  }
+</script>
 
 <!-- Email gate modal -->
 <script>

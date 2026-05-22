@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Brutalist Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Times New Roman', Times, serif; background: #fff; color: #000; }
+
+  nav {
+    border-bottom: 3px solid #000;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+  }
+  .logo { font-family: 'Courier New', monospace; font-size: 22px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+  nav a { font-family: 'Courier New', monospace; font-size: 12px; color: #0000EE; text-decoration: underline; margin-left: 20px; }
+  nav a:hover { color: #FF0000; }
+  .nav-cta { background: #FF0000; color: #fff !important; text-decoration: none !important; padding: 4px 10px; border: 2px solid #000; }
+
+  .hero {
+    border-bottom: 3px solid #000;
+    padding: 40px 24px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0;
+  }
+  .hero-left { border-right: 3px solid #000; padding-right: 32px; }
+  .hero-right { padding-left: 32px; }
+  .eyebrow { font-family: 'Courier New', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; border-bottom: 1px solid #000; padding-bottom: 8px; margin-bottom: 16px; }
+  h1 { font-size: 64px; font-weight: bold; line-height: 1.0; text-transform: uppercase; margin-bottom: 20px; }
+  .hero p { font-size: 16px; line-height: 1.8; margin-bottom: 24px; }
+  .btn { display: inline-block; background: #FF0000; color: #fff; padding: 12px 24px; border: 3px solid #000; font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+  .btn:hover { background: #000; }
+
+  .sidebar-box { border: 3px solid #000; padding: 20px; margin-bottom: 16px; }
+  .sidebar-box h3 { font-family: 'Courier New', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #000; padding-bottom: 8px; margin-bottom: 12px; }
+  .stat-big { font-size: 48px; font-weight: bold; color: #FF0000; font-family: 'Courier New', monospace; line-height: 1; }
+  .stat-label { font-family: 'Courier New', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; }
+
+  .tracker {
+    border-bottom: 3px solid #000;
+    padding: 0;
+  }
+  .tracker-header { background: #000; color: #fff; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .tracker-header h2 { font-size: 14px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 2px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { font-family: 'Courier New', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; padding: 10px 24px; text-align: left; border-bottom: 3px solid #000; background: #f0f0f0; }
+  td { font-size: 14px; padding: 12px 24px; border-bottom: 1px solid #000; }
+  td:first-child { font-weight: bold; }
+  td.num { color: #FF0000; font-family: 'Courier New', monospace; font-weight: bold; }
+  td.mono { font-family: 'Courier New', monospace; font-size: 11px; }
+  tr:hover td { background: #FFFF00; }
+
+  .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 3px solid #000; }
+  .stat-cell { padding: 24px; border-right: 3px solid #000; }
+  .stat-cell:last-child { border-right: none; }
+  .stat-val { font-size: 36px; font-weight: bold; font-family: 'Courier New', monospace; color: #FF0000; }
+  .stat-sub { font-family: 'Courier New', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Navigate</div>
+  <div>
+    <a href="#">tools</a>
+    <a href="#">tracker</a>
+    <a href="#">directory</a>
+    <a href="#">the plan</a>
+    <a href="#" class="nav-cta">join the directory</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">navigate · juicebokx × new consensus · 2026</div>
+    <h1>this is what a labor crisis looks like.</h1>
+    <p>414,000 people cut so far this year. if you're in it or watching it approach, you're in the right place. tools, community, and people who get it.</p>
+    <a href="#" class="btn">find your people →</a>
+  </div>
+  <div class="hero-right">
+    <div class="sidebar-box">
+      <h3>2026 total</h3>
+      <div class="stat-big">414k</div>
+      <div class="stat-label">jobs cut so far</div>
+    </div>
+    <div class="sidebar-box">
+      <h3>per day average</h3>
+      <div class="stat-big">3,900</div>
+      <div class="stat-label">people losing jobs daily</div>
+    </div>
+    <div class="sidebar-box">
+      <h3>AI-driven cuts</h3>
+      <div class="stat-big">64%</div>
+      <div class="stat-label">of Q1 2026 layoffs</div>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-cell"><div class="stat-val">414k+</div><div class="stat-sub">jobs cut in 2026</div></div>
+  <div class="stat-cell"><div class="stat-val">150+</div><div class="stat-sub">companies tracked</div></div>
+  <div class="stat-cell"><div class="stat-val">3,900</div><div class="stat-sub">per day average</div></div>
+  <div class="stat-cell"><div class="stat-val">64%</div><div class="stat-sub">AI-driven cuts</div></div>
+</div>
+
+<div class="tracker">
+  <div class="tracker-header">
+    <h2>recent layoffs · live data</h2>
+    <span style="font-family:monospace;font-size:11px;color:#aaa">this isn't a rough patch. it's a structural shift.</span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>company</th>
+        <th>people cut</th>
+        <th>industry</th>
+        <th>date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Oracle</td><td class="num">30,000</td><td class="mono">Enterprise Software</td><td class="mono">Mar 2026</td></tr>
+      <tr><td>Amazon</td><td class="num">30,000</td><td class="mono">E-commerce / Cloud</td><td class="mono">Feb 2026</td></tr>
+      <tr><td>Meta</td><td class="num">16,000</td><td class="mono">Social Media</td><td class="mono">Mar 2026</td></tr>
+      <tr><td>Salesforce</td><td class="num">8,000</td><td class="mono">CRM / SaaS</td><td class="mono">Jan 2026</td></tr>
+      <tr><td>Microsoft</td><td class="num">6,000</td><td class="mono">Enterprise Software</td><td class="mono">Nov 2025</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
