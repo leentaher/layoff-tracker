@@ -266,22 +266,48 @@
       </div>
 
       <!-- Directory -->
-      <div class="community" id="sec-directory">
+      <div class="community" id="sec-directory" style="padding:32px 40px;">
         <div class="eyebrow">👥 directory</div>
         <h2>find people in the same boat.</h2>
-        <p>a directory of people navigating this. laid off, keeping an eye on things, or hiring. add yourself. get found by the people who can actually help.</p>
-        <div style="display:inline-flex;align-items:flex-end;gap:16px;border:1px solid #ddd;background:#fff;padding:10px 16px;margin-bottom:16px;border-bottom-color:#aaa;border-right-color:#aaa;">
+        <p style="max-width:560px;margin-bottom:24px;">a directory of people navigating this. laid off, keeping an eye on things, or hiring. add yourself. get found by the people who can actually help.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;">
+          <!-- Left: stats -->
           <div>
-            <div style="font-size:24px;font-weight:900;color:#3333aa;line-height:1;">100</div>
-            <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:#888;">people in the directory</div>
+            <!-- Count box -->
+            <div style="border:1px solid #ddd;border-bottom-color:#aaa;border-right-color:#aaa;background:#fff;padding:20px 24px;margin-bottom:12px;">
+              <div style="font-size:48px;font-weight:900;color:#3333aa;line-height:1;letter-spacing:-2px;">100+</div>
+              <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:2px;color:#888;margin-top:4px;">people in the directory</div>
+              <div style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;background:#fff3cd;border:1px solid #ffc107;padding:4px 10px;">
+                <span style="width:6px;height:6px;border-radius:50%;background:#ff6600;display:inline-block;"></span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#cc4400;letter-spacing:1px;text-transform:uppercase;">3 hiring managers in here</span>
+              </div>
+              <div style="margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#aaa;">last added · product manager · 2d ago</div>
+            </div>
+            <p style="font-size:11px;color:#666;line-height:1.6;">laid off, keeping an eye on things, or actively hiring — everyone's welcome. your info is only visible to others in the directory.</p>
           </div>
-          <div style="width:1px;height:32px;background:#ddd;"></div>
-          <div style="font-size:10px;color:#888;font-family:'IBM Plex Mono',monospace;">last added · Product Manager · 13d ago</div>
+
+          <!-- Right: form -->
+          <div style="border:1px solid #ddd;border-bottom-color:#aaa;border-right-color:#aaa;background:#f8f8f8;padding:20px;">
+            <div style="font-size:10px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:12px;">add yourself →</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <input placeholder="first & last name *" style="width:100%;border:1px solid #aaa;border-bottom-color:#666;border-right-color:#666;padding:6px 8px;font-size:12px;font-family:inherit;background:#fff;outline:none;" />
+              <input placeholder="your@email.com" type="email" style="width:100%;border:1px solid #aaa;border-bottom-color:#666;border-right-color:#666;padding:6px 8px;font-size:12px;font-family:inherit;background:#fff;outline:none;" />
+              <input placeholder="your role *" style="width:100%;border:1px solid #aaa;border-bottom-color:#666;border-right-color:#666;padding:6px 8px;font-size:12px;font-family:inherit;background:#fff;outline:none;" />
+              <input placeholder="last company (optional)" style="width:100%;border:1px solid #aaa;border-bottom-color:#666;border-right-color:#666;padding:6px 8px;font-size:12px;font-family:inherit;background:#fff;outline:none;" />
+              <input placeholder="linkedin URL" style="width:100%;border:1px solid #aaa;border-bottom-color:#666;border-right-color:#666;padding:6px 8px;font-size:12px;font-family:inherit;background:#fff;outline:none;" />
+              <label style="display:flex;align-items:center;gap:8px;padding:6px 4px;font-size:11px;cursor:pointer;">
+                <input type="checkbox" style="width:13px;height:13px;" />
+                i'm hiring / open to making intros
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;padding:2px 4px;font-size:11px;cursor:pointer;color:#666;">
+                <input type="checkbox" style="width:13px;height:13px;" />
+                subscribe to the weekly dispatch
+              </label>
+              <button class="btn primary" style="margin-top:4px;width:100%;justify-content:center;">add me to the directory →</button>
+            </div>
+          </div>
         </div>
-        <br>
-        <a href="#" class="btn primary">add me to the directory →</a>
-        &nbsp;
-        <a href="#" class="btn">browse members</a>
       </div>
 
       <!-- Waiting room -->
