@@ -11,14 +11,12 @@ import AboutJuicebokx from '@/components/AboutJuicebokx'
 import TwitterFeed from '@/components/TwitterFeed'
 import FooterCTA from '@/components/FooterCTA'
 import ChatRoom from '@/components/ChatRoom'
-import GatePopup from '@/components/GatePopup'
 
 export const revalidate = 3600
 
 export default function LayoffTrackerPage() {
   return (
     <>
-      <GatePopup />
       <Ticker />
       <Nav />
 
