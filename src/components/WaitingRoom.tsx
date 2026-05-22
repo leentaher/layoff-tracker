@@ -25,10 +25,10 @@ export default function WaitingRoom() {
           <div>
             <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)', marginBottom: 14 }}>live · right now</p>
             <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1.0, color: 'var(--black)', marginBottom: 16 }}>
-              the waiting<br />room is open.
+              you don't have to<br />process this alone.
             </h2>
             <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(0,0,0,0.5)', marginBottom: 28, maxWidth: 360 }}>
-              anonymous. no account. a place to sit with other people going through the same thing. say hi or just read. no pressure either way.
+              anonymous, no account. a room full of people in the same situation. say something or just read. either way, you're not the only one in here.
             </p>
             <button
               onClick={openChat}
@@ -42,7 +42,7 @@ export default function WaitingRoom() {
               <span>💬</span> join the waiting room
             </button>
             <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(0,0,0,0.25)', marginTop: 14, letterSpacing: '0.08em' }}>
-              no login · anonymous · real people
+              no login · no account · real people going through the same thing
             </p>
           </div>
 

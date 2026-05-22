@@ -95,10 +95,10 @@ export default function Community() {
         {/* Header */}
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>directory</p>
         <h2 style={{ fontSize: 'clamp(36px,5vw,64px)', fontWeight: 900, letterSpacing: '-2.5px', lineHeight: 1.0, color: 'white', marginBottom: 12 }}>
-          find people<br />in the same boat.
+          build the network that<br />actually gets people jobs.
         </h2>
         <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)', marginBottom: 48, lineHeight: 1.6 }}>
-          a directory of people navigating this. laid off, keeping an eye on things, or hiring. add yourself. get found by the people who can actually help.
+          the best jobs don't get posted. they get passed along. this is the room where that happens. add yourself. show up for someone else.
         </p>
 
         {/* Card */}
