@@ -90,22 +90,30 @@ function parseCsvLine(line: string): string[] {
   return result
 }
 
-// Handles "May 20" → "2026-05-20"
+// Handles: "May 20" → "2026-05-20", "Mar 2026" → "2026-03-01", "2026" → "2026-01-01"
 function parseDate(dateStr: string): string {
   const months: Record<string, string> = {
     jan: '01', feb: '02', mar: '03', apr: '04', may: '05', jun: '06',
     jul: '07', aug: '08', sep: '09', oct: '10', nov: '11', dec: '12',
   }
-  const parts = dateStr.trim().split(' ')
+  const s = dateStr.trim()
+  const parts = s.split(' ')
   if (parts.length === 2) {
     const m = months[parts[0].toLowerCase().slice(0, 3)]
-    const d = parts[1].padStart(2, '0')
-    if (m) return `2026-${m}-${d}`
+    if (m) {
+      const second = parts[1]
+      // "May 20" — second part is a day number (1-2 digits)
+      if (second.length <= 2) return `2026-${m}-${second.padStart(2, '0')}`
+      // "Mar 2026" — second part is a 4-digit year
+      return `2026-${m}-01`
+    }
   }
-  // fallback: already ISO or M/D/YYYY
-  if (dateStr.includes('/')) {
-    const [m, d, y] = dateStr.split('/')
+  // M/D/YYYY
+  if (s.includes('/')) {
+    const [m, d, y] = s.split('/')
     return `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`
   }
-  return dateStr
+  // "2026" or "2025-26" — use Jan 1
+  if (/^\d{4}/.test(s)) return '2026-01-01'
+  return s
 }
