@@ -48,7 +48,8 @@ async function fetchLayoffHedge() {
   if (!res.ok) throw new Error(`layoffhedge responded with ${res.status}`)
 
   const csv = await res.text()
-  const lines = csv.trim().split('\n')
+  const allLines = csv.trim().split('\n')
+  const lines = allLines.filter(l => !l.startsWith('#'))
   const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase())
 
   const events = lines.slice(1).map(line => {
