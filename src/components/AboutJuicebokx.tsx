@@ -10,14 +10,14 @@ export default function AboutJuicebokx() {
         <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
 
           {/* ── Juicebokx ─────────────────────────────────────────────────── */}
-          <div style={{ background: 'var(--yellow)', borderRadius: 12, padding: '36px 32px' }}>
+          <div style={{ background: 'var(--yellow)', borderRadius: 12, padding: '36px 32px', display: 'flex', flexDirection: 'column' }}>
             <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(0,0,0,0.4)', marginBottom: 12 }}>
               juicebokx
             </p>
             <h3 style={{ fontSize: 28, fontWeight: 900, letterSpacing: '-1px', color: 'var(--black)', lineHeight: 1.0, marginBottom: 16 }}>
               what's juicebokx?
             </h3>
-            <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(0,0,0,0.7)', marginBottom: 28 }}>
+            <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(0,0,0,0.7)', marginBottom: 28, flex: 1 }}>
               we started by making something you hold with your hands. then we noticed how many people needed help navigating what's happening right now. so we built this. everything here is free. more at juicebokx.com.
             </p>
             <a
@@ -31,14 +31,14 @@ export default function AboutJuicebokx() {
           </div>
 
           {/* ── New Consensus ──────────────────────────────────────────────── */}
-          <div style={{ background: '#0D1B3E', borderRadius: 12, padding: '36px 32px' }}>
+          <div style={{ background: '#0D1B3E', borderRadius: 12, padding: '36px 32px', display: 'flex', flexDirection: 'column' }}>
             <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>
               new consensus
             </p>
             <h3 style={{ fontSize: 28, fontWeight: 900, letterSpacing: '-1px', color: 'white', lineHeight: 1.0, marginBottom: 16 }}>
               what's new consensus?
             </h3>
-            <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(255,255,255,0.6)', marginBottom: 28 }}>
+            <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(255,255,255,0.6)', marginBottom: 28, flex: 1 }}>
               a think tank focused on the economic policy response to AI displacement. working on the frameworks and plans that governments will need as this wave continues to build.
             </p>
             <a
