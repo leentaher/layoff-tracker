@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 
-type Entry = { id: string; handle: string; role: string; contact: string; created_at: string }
+type Entry = { id: string; handle: string; role: string; contact: string; created_at: string; is_hiring?: boolean }
 
 function timeAgo(ts: string) {
   const diff = Date.now() - new Date(ts).getTime()
@@ -37,6 +37,7 @@ export default function Community() {
   const [joined, setJoined] = useState(false)
   const [dirError, setDirError] = useState('')
   const [subscribeDispatch, setSubscribeDispatch] = useState(false)
+  const [isHiring, setIsHiring] = useState(false)
 
   useEffect(() => {
     fetch('/api/directory')
@@ -62,7 +63,7 @@ export default function Community() {
     const res = await fetch('/api/directory', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ handle: handle.trim(), email: email.trim(), company: company.trim(), role: role.trim(), contact: contact.trim() }),
+      body: JSON.stringify({ handle: handle.trim(), email: email.trim(), company: company.trim(), role: role.trim(), contact: contact.trim(), is_hiring: isHiring }),
     })
     if (res.ok) {
       const newEntry: Entry = { id: crypto.randomUUID(), handle: handle.trim(), role: role.trim(), contact: contact.trim(), created_at: new Date().toISOString() }
@@ -84,6 +85,7 @@ export default function Community() {
 
   const COUNT_OFFSET = 97
   const count = entries.length + COUNT_OFFSET
+  const hiringCount = entries.filter(e => e.is_hiring).length
   const latest = entries[0]
 
   return (
@@ -122,14 +124,17 @@ export default function Community() {
                   people in the directory
                 </span>
               </div>
+              {hiringCount > 0 && (
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(255,165,0,0.12)', border: '1px solid rgba(255,165,0,0.25)', borderRadius: 6, padding: '4px 10px', marginBottom: 10 }}>
+                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--orange)', display: 'inline-block' }} />
+                  <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'var(--orange)', letterSpacing: '0.08em' }}>
+                    {hiringCount} hiring {hiringCount === 1 ? 'manager' : 'managers'} in here
+                  </span>
+                </div>
+              )}
               {latest && (
                 <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.25)', letterSpacing: '0.06em' }}>
                   last added · <span style={{ color: 'rgba(255,255,255,0.45)' }}>{latest.role || latest.handle}</span> · {timeAgo(latest.created_at)}
-                </p>
-              )}
-              {!latest && (
-                <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.2)' }}>
-                  be the first to join.
                 </p>
               )}
             </div>
@@ -150,6 +155,17 @@ export default function Community() {
                 <input style={inputStyle} placeholder="last company (optional)" value={company} onChange={e => setCompany(e.target.value)} />
                 <input style={inputStyle} placeholder="linkedin URL" type="url" value={contact} onChange={e => setContact(e.target.value)} />
                 {dirError && <p style={{ fontSize: 11, color: 'var(--orange)', marginTop: -2 }}>{dirError}</p>}
+                <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '6px 2px', background: isHiring ? 'rgba(255,165,0,0.08)' : 'transparent', borderRadius: 6, transition: 'background 0.2s' }}>
+                  <input
+                    type="checkbox"
+                    checked={isHiring}
+                    onChange={e => setIsHiring(e.target.checked)}
+                    style={{ width: 16, height: 16, accentColor: 'var(--orange)', cursor: 'pointer', flexShrink: 0 }}
+                  />
+                  <span style={{ fontSize: 12, color: isHiring ? 'var(--orange)' : 'rgba(255,255,255,0.5)', fontWeight: isHiring ? 700 : 400, lineHeight: 1.4 }}>
+                    i'm hiring / open to making intros
+                  </span>
+                </label>
                 <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '6px 2px' }}>
                   <input
                     type="checkbox"

@@ -4,7 +4,8 @@ import { supabaseAdmin } from '@/lib/supabase'
 export async function GET() {
   const { data, error } = await supabaseAdmin()
     .from('directory')
-    .select('id, handle, role, company, contact, created_at')
+    .select('id, handle, role, company, contact, created_at, is_hiring')
+    .order('is_hiring', { ascending: false })
     .order('created_at', { ascending: false })
     .limit(50)
 
@@ -13,7 +14,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const { handle, email, company, role, contact } = await req.json()
+  const { handle, email, company, role, contact, is_hiring } = await req.json()
 
   if (!handle) {
     return NextResponse.json({ error: 'name is required' }, { status: 400 })
@@ -27,6 +28,7 @@ export async function POST(req: NextRequest) {
       company: company?.trim() || null,
       role: role?.trim() || null,
       contact: contact?.trim() || null,
+      is_hiring: !!is_hiring,
     })
 
   if (error) {
