@@ -1,24 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase'
 
-// This runs daily at 6am UTC via vercel.json cron config
-// It scrapes layoffs.fyi and upserts into Supabase
+// Runs daily at 6am UTC via vercel.json cron config
+// Fetches from layoffhedge.com public CSV and upserts into Supabase
 
 export async function GET(req: NextRequest) {
-  // Verify the request is from Vercel cron (or your own call with secret)
   const authHeader = req.headers.get('authorization')
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 
   try {
-    const events = await scrapeLayoffsFyi()
-    
+    const events = await fetchLayoffHedge()
+
     if (events.length === 0) {
       return NextResponse.json({ ok: true, message: 'no new events found', count: 0 })
     }
 
-    // Upsert — won't duplicate on company+date conflict
     const { error, count } = await supabaseAdmin()
       .from('layoff_events')
       .upsert(events, { onConflict: 'company,date', ignoreDuplicates: true })
@@ -38,45 +36,40 @@ export async function GET(req: NextRequest) {
   }
 }
 
-async function scrapeLayoffsFyi() {
-  // layoffs.fyi exposes a public CSV at this URL
-  // This is the cleanest way to get their data without scraping HTML
-  const CSV_URL = 'https://layoffs.fyi/layoffs.csv'
-  
+async function fetchLayoffHedge() {
+  // layoffhedge.com public CSV — columns: Company, Industry, People Cut, Workforce %, Total Workforce, Date, Category, Source URL
+  const CSV_URL = 'https://layoffhedge.com/data/layoffs-2026.csv'
+
   const res = await fetch(CSV_URL, {
     headers: { 'User-Agent': 'layofftracker/1.0 (juicebokx.com)' },
-    next: { revalidate: 0 }, // never cache this
+    next: { revalidate: 0 },
   })
 
-  if (!res.ok) {
-    throw new Error(`layoffs.fyi responded with ${res.status}`)
-  }
+  if (!res.ok) throw new Error(`layoffhedge responded with ${res.status}`)
 
   const csv = await res.text()
   const lines = csv.trim().split('\n')
   const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase())
 
-  // Parse CSV — layoffs.fyi columns: Company, Reported_Employees_Laid_Off, Date, Industry, Stage, Country, Source
-  const events = lines.slice(1).slice(0, 100).map(line => {
+  const events = lines.slice(1).map(line => {
     const cols = parseCsvLine(line)
     const get = (key: string) => cols[headers.indexOf(key)]?.replace(/"/g, '').trim() || null
 
     const company = get('company')
-    const date = get('date')
-    if (!company || !date) return null
+    const dateStr = get('date')
+    if (!company || !dateStr) return null
 
-    const numStr = get('reported_employees_laid_off') || get('# laid off') || ''
+    const numStr = get('people cut') || ''
     const num_laid_off = numStr ? parseInt(numStr.replace(/,/g, ''), 10) || null : null
 
     return {
       company,
       num_laid_off,
-      date: parseDate(date),
+      date: parseDate(dateStr),
       industry: get('industry'),
-      stage: get('stage'),
-      country: get('country') || 'United States',
-      source_url: get('source') || get('sources') || null,
-      notes: null,
+      notes: get('category'),
+      source_url: get('source url'),
+      country: 'United States',
     }
   }).filter(Boolean)
 
@@ -96,8 +89,19 @@ function parseCsvLine(line: string): string[] {
   return result
 }
 
+// Handles "May 20" → "2026-05-20"
 function parseDate(dateStr: string): string {
-  // Handle M/D/YYYY and YYYY-MM-DD formats
+  const months: Record<string, string> = {
+    jan: '01', feb: '02', mar: '03', apr: '04', may: '05', jun: '06',
+    jul: '07', aug: '08', sep: '09', oct: '10', nov: '11', dec: '12',
+  }
+  const parts = dateStr.trim().split(' ')
+  if (parts.length === 2) {
+    const m = months[parts[0].toLowerCase().slice(0, 3)]
+    const d = parts[1].padStart(2, '0')
+    if (m) return `2026-${m}-${d}`
+  }
+  // fallback: already ISO or M/D/YYYY
   if (dateStr.includes('/')) {
     const [m, d, y] = dateStr.split('/')
     return `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`
