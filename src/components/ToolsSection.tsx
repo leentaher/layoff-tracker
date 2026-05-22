@@ -224,7 +224,7 @@ export default function ToolsSection() {
         </p>
 
         {/* ── Tool cards ─────────────────────────────────────────────────────── */}
-        <div className="grid-tools" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }}>
+        <div className="grid-tools" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 14 }}>
           {TOOLS.map(tool => {
             const isActive = activeTab === tool.id
             return (
