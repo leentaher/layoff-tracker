@@ -234,7 +234,13 @@ export default function ToolsSection() {
             return (
               <div
                 key={tool.id}
-                onClick={() => toggleTab(tool.id)}
+                onClick={() => {
+                  if (tool.id === 'nextmove') {
+                    document.getElementById('community')?.scrollIntoView({ behavior: 'smooth' })
+                  } else {
+                    toggleTab(tool.id)
+                  }
+                }}
                 style={{
                   background: 'white',
                   border: `1.5px solid ${isActive ? 'var(--orange)' : 'rgba(0,0,0,0.08)'}`,
