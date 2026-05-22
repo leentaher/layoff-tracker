@@ -12,7 +12,7 @@ const bios = [
   {
     initial: 'Z',
     name: 'zack',
-    role: 'new consensus',
+    role: 'founder · new consensus',
     desc: 'has spent years on economic policy. now building the frameworks governments will need as AI reshapes the labor market. believes the people displaced should be part of writing what comes next. started new consensus to make that happen.',
     link: 'https://www.newconsensus.com',
     linkText: 'newconsensus.com →',

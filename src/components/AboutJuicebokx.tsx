@@ -18,7 +18,7 @@ export default function AboutJuicebokx() {
               what's juicebokx?
             </h3>
             <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(0,0,0,0.7)', marginBottom: 28, flex: 1 }}>
-              we started by making something you hold with your hands. then we noticed how many people needed help navigating what's happening right now. so we built this. everything here is free. more at juicebokx.com.
+              we make analog things for the moments when screens aren't enough. then the layoffs hit people we knew, and we built this. everything here is free.
             </p>
             <a
               href="https://juicebokx.com"
