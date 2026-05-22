@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>macOS Classic Mockup</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700;900&family=IBM+Plex+Mono:wght@400;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text y='28' font-size='26'>🧃</text></svg>") 4 4, auto; }
+  body {
+    background: #b0b0b0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,0.15) 1px, rgba(255,255,255,0.15) 2px),
+      repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255,255,255,0.15) 1px, rgba(255,255,255,0.15) 2px);
+    background-size: 4px 4px;
+    font-family: 'Chicago', 'Geneva', 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 12px;
+    color: #000;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ── Menu bar ── */
+  .menubar {
+    background: linear-gradient(180deg, #f0f0f0 0%, #d8d8d8 100%);
+    border-bottom: 1px solid #888;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+  }
+  .apple-menu { font-size: 16px; padding: 0 10px; cursor: pointer; border-right: 1px solid #aaa; height: 100%; display: flex; align-items: center; }
+  .apple-menu:hover { background: #000; color: #fff; }
+  .menu-item { padding: 0 10px; height: 100%; display: flex; align-items: center; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .menu-item:hover { background: #000; color: #fff; }
+  .menubar-right { margin-left: auto; display: flex; align-items: center; padding-right: 8px; gap: 12px; font-size: 11px; color: #333; }
+
+  /* ── Window ── */
+  .window {
+    background: #d8d8d8;
+    border: 1px solid #000;
+    margin: 16px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 54px);
+  }
+  .titlebar {
+    background: linear-gradient(180deg, #f8f8f8 0%, #c8c8c8 100%);
+    border-bottom: 1px solid #888;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .titlebar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.06) 1px, rgba(0,0,0,0.06) 2px);
+  }
+  .titlebar-close { width: 12px; height: 12px; border: 1px solid #000; background: #fff; cursor: pointer; flex-shrink: 0; position: relative; z-index: 1; }
+  .titlebar-title { flex: 1; text-align: center; font-size: 12px; font-weight: 700; color: #000; position: relative; z-index: 1; }
+  .titlebar-zoom { width: 12px; height: 12px; border: 1px solid #000; background: #fff; cursor: pointer; flex-shrink: 0; position: relative; z-index: 1; }
+
+  /* ── Content area ── */
+  .content { background: #fff; display: flex; flex: 1; overflow: hidden; }
+  .sidebar {
+    width: 160px;
+    flex-shrink: 0;
+    background: linear-gradient(180deg, #e8e8e8 0%, #d8d8d8 100%);
+    border-right: 1px solid #888;
+    padding: 8px 0;
+    overflow-y: auto;
+  }
+  .sidebar-item { display: flex; align-items: center; gap: 6px; padding: 3px 12px; font-size: 12px; cursor: pointer; user-select: none; }
+  .sidebar-item:hover { background: #3333aa; color: #fff; }
+  .sidebar-item.active { background: #3333aa; color: #fff; }
+  .sidebar-icon { font-size: 14px; flex-shrink: 0; }
+  .sidebar-sep { height: 1px; background: #888; margin: 4px 8px; }
+  .sidebar-section { font-size: 10px; font-weight: 700; color: #666; padding: 6px 12px 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .main { flex: 1; overflow-y: auto; }
+
+  /* ── Hero ── */
+  .hero { padding: 48px 40px; border-bottom: 1px solid #ddd; background: #fff; }
+  .eyebrow { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; font-family: 'IBM Plex Mono', monospace; }
+  h1 { font-size: 56px; font-weight: 900; line-height: 0.93; letter-spacing: -3px; color: #000; margin-bottom: 18px; }
+  .hero-body { font-size: 14px; line-height: 1.7; color: #444; max-width: 520px; margin-bottom: 24px; }
+
+  .btn { display: inline-block; padding: 5px 18px; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer; text-decoration: none; background: linear-gradient(180deg, #f0f0f0 0%, #c8c8c8 100%); border: 1px solid #888; border-bottom-color: #444; border-right-color: #444; color: #000; margin-right: 8px; }
+  .btn.primary { background: linear-gradient(180deg, #5555cc 0%, #3333aa 100%); color: #fff; border-color: #2222aa; border-bottom-color: #111166; border-right-color: #111166; outline: 2px solid #000; outline-offset: 2px; }
+
+  /* ── Section header ── */
+  .section-head {
+    background: linear-gradient(180deg, #e8e8e8 0%, #d8d8d8 100%);
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #888;
+    padding: 5px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .section-head span { font-size: 11px; font-weight: 700; color: #333; }
+  .section-head small { font-size: 10px; color: #888; font-weight: 400; }
+
+  /* ── Stats ── */
+  .stats-area { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid #ddd; background: #f5f5f5; }
+  .stat-box { padding: 8px 14px; border-right: 1px solid #ddd; }
+  .stat-box:last-child { border-right: none; }
+  .stat-box-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 2px; font-family: 'IBM Plex Mono', monospace; }
+  .stat-box-val { font-size: 20px; font-weight: 900; color: #3333aa; letter-spacing: -1px; line-height: 1; }
+  .stat-box-sub { font-size: 9px; color: #888; margin-top: 1px; }
+
+  /* ── Tools grid ── */
+  .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid #ddd; }
+  .tool-card {
+    padding: 20px 24px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+  }
+  .tool-card:nth-child(even) { border-right: none; }
+  .tool-card:nth-last-child(-n+2) { border-bottom: none; }
+  .tool-card-icon { font-size: 20px; margin-bottom: 8px; }
+  .tool-card-title { font-size: 14px; font-weight: 900; color: #000; margin-bottom: 4px; letter-spacing: -0.3px; }
+  .tool-card-desc { font-size: 11px; color: #666; line-height: 1.6; margin-bottom: 12px; }
+  .tool-card-fields { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+  .field-row { display: flex; align-items: center; gap: 8px; }
+  .field-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #888; font-family: 'IBM Plex Mono', monospace; width: 80px; flex-shrink: 0; }
+  .field-input {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #888;
+    border-bottom-color: #444;
+    border-right-color: #444;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-family: inherit;
+    color: #000;
+  }
+  .field-select {
+    flex: 1;
+    background: linear-gradient(180deg, #f0f0f0 0%, #d8d8d8 100%);
+    border: 1px solid #888;
+    border-bottom-color: #444;
+    border-right-color: #444;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-family: inherit;
+  }
+
+  /* ── Table ── */
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { background: linear-gradient(180deg, #e8e8e8 0%, #d8d8d8 100%); }
+  th { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #555; padding: 5px 16px; text-align: left; border-bottom: 1px solid #888; border-right: 1px solid #ccc; font-family: 'IBM Plex Mono', monospace; }
+  th:last-child { border-right: none; }
+  td { padding: 9px 16px; border-bottom: 1px solid #eee; border-right: 1px solid #f0f0f0; font-size: 12px; }
+  td:last-child { border-right: none; }
+  td.company { font-weight: 700; }
+  td.num { color: #3333aa; font-weight: 700; font-family: 'IBM Plex Mono', monospace; }
+  td.mono { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #666; }
+  tr:hover td { background: #3333aa; color: #fff; }
+  tr:hover td.num, tr:hover td.mono { color: #ccc; }
+
+  /* ── Community ── */
+  .community { padding: 16px 24px; border-bottom: 1px solid #ddd; background: #f9f9f9; }
+  .community h2 { font-size: 18px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .community p { font-size: 12px; color: #555; line-height: 1.65; max-width: 460px; margin-bottom: 12px; }
+  .input-row { display: flex; gap: 0; max-width: 380px; }
+  .email-input { flex: 1; border: 1px solid #888; border-right: none; border-bottom-color: #444; padding: 5px 10px; font-size: 12px; font-family: inherit; }
+
+  /* ── Status bar ── */
+  .statusbar { background: linear-gradient(180deg, #d8d8d8 0%, #c8c8c8 100%); border-top: 1px solid #888; padding: 3px 12px; font-size: 11px; color: #666; display: flex; gap: 16px; flex-shrink: 0; align-items: center; font-family: 'IBM Plex Mono', monospace; }
+  .statusbar span { padding-right: 16px; border-right: 1px solid #bbb; }
+  .statusbar span:last-child { border-right: none; }
+</style>
+</head>
+<body>
+
+
+<div class="window">
+  <div class="titlebar">
+    <div class="titlebar-title">navigate · juicebokx × new consensus · 2026</div>
+  </div>
+
+  <div class="content">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-section">Navigate</div>
+      <div class="sidebar-item active"><span class="sidebar-icon">🏠</span> Home</div>
+      <div class="sidebar-item"><span class="sidebar-icon">🔧</span> Tools</div>
+      <div class="sidebar-item"><span class="sidebar-icon">📊</span> Tracker</div>
+      <div class="sidebar-item"><span class="sidebar-icon">👥</span> Directory</div>
+      <div class="sidebar-sep"></div>
+      <div class="sidebar-section">More</div>
+      <div class="sidebar-item"><span class="sidebar-icon">📋</span> The Plan</div>
+      <div class="sidebar-item"><span class="sidebar-icon">✉️</span> Newsletter</div>
+      <div class="sidebar-item"><span class="sidebar-icon">ℹ️</span> About</div>
+    </div>
+
+    <!-- Main scrollable content -->
+    <div class="main">
+
+      <!-- Hero -->
+      <div class="hero">
+        <h1>this is what a<br>tech labor crisis<br>looks like.</h1>
+        <p class="hero-body">414,000 people cut so far this year. if you're in it or watching it approach, you're in the right place. tools, community, and people who get it.</p>
+        <a href="#" class="btn primary">find your people →</a>
+      </div>
+
+      <!-- Tools -->
+      <div class="section-head"><span>🔧 tools</span><small>built for people going through it</small></div>
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-card-icon">💰</div>
+          <div class="tool-card-title">severance calculator</div>
+          <div class="tool-card-desc">estimate your package and whether it's worth negotiating.</div>
+          <div class="tool-card-fields">
+            <div class="field-row"><span class="field-label">years</span><input class="field-input" type="number" placeholder="3" value="3"></div>
+            <div class="field-row"><span class="field-label">level</span><select class="field-select"><option>IC / Individual</option><option>Senior IC</option><option>Manager</option></select></div>
+            <div class="field-row"><span class="field-label">company</span><select class="field-select"><option>Mid-size startup</option><option>Large tech</option><option>FAANG</option></select></div>
+          </div>
+          <button class="btn" style="width:100%;text-align:center">calculate →</button>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-card-icon">🧭</div>
+          <div class="tool-card-title">what's your next move?</div>
+          <div class="tool-card-desc">role, timeline, and realistic options based on your situation.</div>
+          <div class="tool-card-fields">
+            <div class="field-row"><span class="field-label">role</span><input class="field-input" type="text" placeholder="e.g. Product Manager"></div>
+            <div class="field-row"><span class="field-label">yrs exp</span><input class="field-input" type="number" placeholder="5"></div>
+            <div class="field-row"><span class="field-label">timeline</span><select class="field-select"><option>ASAP</option><option>3 months</option><option>6 months</option></select></div>
+          </div>
+          <button class="btn" style="width:100%;text-align:center">explore options →</button>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-card-icon">🏥</div>
+          <div class="tool-card-title">healthcare options</div>
+          <div class="tool-card-desc">COBRA vs marketplace — what you'll actually pay.</div>
+          <div class="tool-card-fields">
+            <div class="field-row"><span class="field-label">state</span><select class="field-select"><option>California</option><option>New York</option><option>Texas</option></select></div>
+            <div class="field-row"><span class="field-label">income/yr</span><input class="field-input" type="number" placeholder="80000"></div>
+            <div class="field-row"><span class="field-label">coverage</span><select class="field-select"><option>Just me</option><option>Me + spouse</option><option>Family</option></select></div>
+          </div>
+          <button class="btn" style="width:100%;text-align:center">see options →</button>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-card-icon">📝</div>
+          <div class="tool-card-title">resume gap helper</div>
+          <div class="tool-card-desc">how to frame the gap honestly without tanking your chances.</div>
+          <div class="tool-card-fields">
+            <div class="field-row"><span class="field-label">gap length</span><select class="field-select"><option>Under 3 months</option><option>3–6 months</option><option>6–12 months</option></select></div>
+            <div class="field-row"><span class="field-label">reason</span><select class="field-select"><option>Layoff</option><option>Burnout</option><option>Caregiving</option></select></div>
+            <div class="field-row"><span class="field-label">target role</span><input class="field-input" type="text" placeholder="e.g. Engineer"></div>
+          </div>
+          <button class="btn" style="width:100%;text-align:center">get language →</button>
+        </div>
+
+      </div>
+
+      <!-- Directory -->
+      <div class="community">
+        <div class="eyebrow">👥 directory</div>
+        <h2>find people in the same boat.</h2>
+        <p>a directory of people navigating this. laid off, keeping an eye on things, or hiring. add yourself. get found by the people who can actually help.</p>
+        <div style="display:inline-flex;align-items:flex-end;gap:16px;border:1px solid #ddd;background:#fff;padding:10px 16px;margin-bottom:16px;border-bottom-color:#aaa;border-right-color:#aaa;">
+          <div>
+            <div style="font-size:24px;font-weight:900;color:#3333aa;line-height:1;">100</div>
+            <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:#888;">people in the directory</div>
+          </div>
+          <div style="width:1px;height:32px;background:#ddd;"></div>
+          <div style="font-size:10px;color:#888;font-family:'IBM Plex Mono',monospace;">last added · Product Manager · 13d ago</div>
+        </div>
+        <br>
+        <a href="#" class="btn primary">add me to the directory →</a>
+        &nbsp;
+        <a href="#" class="btn">browse members</a>
+      </div>
+
+      <!-- Waiting room -->
+      <div class="community" style="background:#f5f5f5;">
+        <div class="eyebrow">💬 live · right now</div>
+        <h2>the waiting room is open.</h2>
+        <p>anonymous. no account. a place to sit with other people going through the same thing. say hi or just read. no pressure either way.</p>
+
+        <!-- MSN Messenger window -->
+        <div style="margin-top:16px;max-width:360px;border:1px solid #000;box-shadow:2px 2px 0 #000;font-family:'Courier New',monospace;font-size:11px;">
+          <!-- Title bar -->
+          <div style="background:linear-gradient(90deg,#003087 0%,#1e6bbd 50%,#003087 100%);padding:3px 6px;display:flex;align-items:center;justify-content:space-between;">
+            <span style="color:#fff;font-size:11px;font-weight:bold;">💬 juicebokx messenger</span>
+            <div style="display:flex;gap:2px;">
+              <div style="background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;width:14px;height:13px;font-size:9px;display:flex;align-items:center;justify-content:center;color:#000;">_</div>
+              <div style="background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;width:14px;height:13px;font-size:9px;display:flex;align-items:center;justify-content:center;color:#000;">□</div>
+              <div style="background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;width:14px;height:13px;font-size:9px;display:flex;align-items:center;justify-content:center;color:#000;">×</div>
+            </div>
+          </div>
+          <!-- Menu bar -->
+          <div style="background:#c0c0c0;border-bottom:1px solid #808080;padding:1px 6px;display:flex;gap:12px;">
+            <span style="font-size:11px;cursor:pointer;">File</span>
+            <span style="font-size:11px;cursor:pointer;">View</span>
+            <span style="font-size:11px;cursor:pointer;">Actions</span>
+            <span style="font-size:11px;cursor:pointer;">Help</span>
+          </div>
+          <!-- User info -->
+          <div style="background:#e8f0fb;border-bottom:1px solid #aac;padding:6px 8px;display:flex;align-items:center;gap:8px;">
+            <div style="width:28px;height:28px;background:#c0c0c0;border:1px solid #808080;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">😶</div>
+            <div>
+              <div style="font-size:11px;font-weight:bold;">exhausted_pm_27</div>
+              <div style="font-size:10px;color:#555;">waiting for recruiter to reply 🪄</div>
+              <div style="font-size:10px;color:#080;">● online</div>
+            </div>
+          </div>
+          <!-- Channel -->
+          <div style="background:#d6e4f7;border-bottom:1px solid #aac;padding:3px 8px;font-size:11px;font-weight:bold;">▼ the waiting room (10)</div>
+          <!-- Messages -->
+          <div style="background:#fff;height:140px;overflow-y:auto;padding:6px 8px;display:flex;flex-direction:column;gap:4px;">
+            <div style="font-size:11px;"><span style="color:#00f;font-weight:bold;">exhausted_pm_19</span> <span style="color:#808080;font-size:10px;">says: (07:49 PM)</span><br>hi</div>
+            <div style="font-size:11px;"><span style="color:#800080;font-weight:bold;">ghosted_again_64</span> <span style="color:#808080;font-size:10px;">says: (08:04 PM)</span><br>hi im worried someone's going to lay me off</div>
+            <div style="font-size:11px;"><span style="color:#008000;font-weight:bold;">jobless_in_sf_47</span> <span style="color:#808080;font-size:10px;">says: (08:04 PM)</span><br>hey im confused</div>
+            <div style="font-size:11px;"><span style="color:#800080;font-weight:bold;">ghosted_again_64</span> <span style="color:#808080;font-size:10px;">says: (08:05 PM)</span><br>hi leen</div>
+            <div style="font-size:11px;"><span style="color:#b8860b;font-weight:bold;">day_12_still_weird_22</span> <span style="color:#808080;font-size:10px;">says: (09:21 PM)</span><br>anyone else just sitting here refreshing linkedin?</div>
+          </div>
+          <!-- Input -->
+          <div style="background:#c0c0c0;border-top:1px solid #808080;padding:4px 6px;display:flex;gap:4px;">
+            <input style="flex:1;border:1px solid;border-color:#808080 #fff #fff #808080;background:#fff;padding:2px 4px;font-family:'Courier New',monospace;font-size:11px;" placeholder="type a message..." />
+            <button style="background:#c0c0c0;border:1px solid;border-color:#fff #808080 #808080 #fff;padding:2px 8px;font-size:11px;font-family:'Courier New',monospace;cursor:pointer;">Send</button>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;font-size:10px;color:#888;font-family:'IBM Plex Mono',monospace;">no login · anonymous · real people</div>
+      </div>
+
+      <!-- Tracker -->
+      <div class="section-head"><span>📊 layoff tracker · live data</span><small>sorted by impact</small></div>
+      <div style="background:#f9f9f9;padding:16px 32px;border-bottom:1px solid #ddd;">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:16px;">
+          <div class="stat-box" style="border:1px solid #ddd;border-right:none;background:#fff;"><div class="stat-box-label">2026 total</div><div class="stat-box-val">414,000+</div><div class="stat-box-sub">jobs cut so far</div></div>
+          <div class="stat-box" style="border:1px solid #ddd;border-right:none;background:#fff;"><div class="stat-box-label">companies</div><div class="stat-box-val">150+</div><div class="stat-box-sub">tracked in 2026</div></div>
+          <div class="stat-box" style="border:1px solid #ddd;border-right:none;background:#fff;"><div class="stat-box-label">per day</div><div class="stat-box-val">3,900+</div><div class="stat-box-sub">jobs lost on avg</div></div>
+          <div class="stat-box" style="border:1px solid #ddd;background:#fff;"><div class="stat-box-label">AI-driven</div><div class="stat-box-val">64%</div><div class="stat-box-sub">of Q1 2026 cuts</div></div>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr><th>company</th><th>people cut</th><th>industry</th><th>date</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="company">Volkswagen Group</td><td class="num">50,000</td><td class="mono">Automotive</td><td class="mono">Feb 2026</td></tr>
+          <tr><td class="company">Oracle</td><td class="num">30,000</td><td class="mono">Enterprise Software</td><td class="mono">Mar 2026</td></tr>
+          <tr><td class="company">Amazon</td><td class="num">30,000</td><td class="mono">E-commerce / Cloud</td><td class="mono">Feb 2026</td></tr>
+          <tr><td class="company">Meta</td><td class="num">16,000</td><td class="mono">Social Media</td><td class="mono">Mar 2026</td></tr>
+          <tr><td class="company">Salesforce</td><td class="num">8,000</td><td class="mono">CRM / SaaS</td><td class="mono">Jan 2026</td></tr>
+        </tbody>
+      </table>
+
+      <!-- NC Mission -->
+      <div class="community" style="background:#f0f0f0;">
+        <div class="eyebrow">🏛 new consensus</div>
+        <h2>the policy response to this has to come from people who actually lived it.</h2>
+        <p>new consensus is building the economic frameworks governments will need as AI reshapes work. they want input from people on the inside — not just analysts on the outside.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:16px 0;">
+          <div style="border:1px solid #ccc;background:#fff;padding:12px 14px;"><div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:4px;">Mission for America</div><div style="font-size:12px;font-weight:700;margin-bottom:4px;">the break-glass plan</div><a href="#" style="font-size:11px;color:#3333aa;">read it →</a></div>
+          <div style="border:1px solid #ccc;background:#fff;padding:12px 14px;"><div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:4px;">Crashlab</div><div style="font-size:12px;font-weight:700;margin-bottom:4px;">the AI bubble</div><a href="#" style="font-size:11px;color:#3333aa;">explore →</a></div>
+          <div style="border:1px solid #ccc;background:#fff;padding:12px 14px;"><div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:4px;">Bigsim</div><div style="font-size:12px;font-weight:700;margin-bottom:4px;">modeling mass AI layoffs</div><a href="#" style="font-size:11px;color:#3333aa;">explore →</a></div>
+        </div>
+        <a href="#" class="btn primary">get involved →</a>
+      </div>
+
+      <!-- Team Bios -->
+      <div class="community" style="background:#fff;">
+        <div class="eyebrow">the people behind this</div>
+        <h2>who built this.</h2>
+        <p>we started with something physical. then the layoffs hit people we knew, and we built this. the goal was never a platform. it was a room full of people who can actually help each other.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px;">
+          <div style="border:1px solid #ddd;padding:16px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:#ff6600;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px;margin-bottom:8px;">M</div>
+            <div style="font-size:13px;font-weight:900;margin-bottom:2px;">mandira</div>
+            <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:#888;margin-bottom:8px;">cofounder · juicebokx</div>
+            <div style="font-size:11px;color:#555;line-height:1.6;margin-bottom:8px;">worked in tech. saw burnout get rebranded as a personality. now focused on what helps people when the worst week of their career arrives.</div>
+            <a href="#" style="font-size:11px;color:#ff6600;font-weight:700;text-decoration:none;">juicebokx.com →</a>
+          </div>
+          <div style="border:1px solid #ddd;padding:16px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:#3333aa;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px;margin-bottom:8px;">Z</div>
+            <div style="font-size:13px;font-weight:900;margin-bottom:2px;">zack</div>
+            <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:#888;margin-bottom:8px;">new consensus</div>
+            <div style="font-size:11px;color:#555;line-height:1.6;margin-bottom:8px;">has spent years on economic policy. now building the frameworks governments will need as AI reshapes the labor market.</div>
+            <a href="#" style="font-size:11px;color:#3333aa;font-weight:700;text-decoration:none;">newconsensus.com →</a>
+          </div>
+          <div style="border:1px solid #ddd;padding:16px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:#000;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px;margin-bottom:8px;">L</div>
+            <div style="font-size:13px;font-weight:900;margin-bottom:2px;">leen</div>
+            <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:#888;margin-bottom:8px;">cofounder · juicebokx</div>
+            <div style="font-size:11px;color:#555;line-height:1.6;margin-bottom:8px;">worked in tech. watched friends get laid off. got angry about it. channeled that into building tools instead of a coping mechanism.</div>
+            <a href="#" style="font-size:11px;color:#ff6600;font-weight:700;text-decoration:none;">juicebokx.com →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- About -->
+      <div class="section-head"><span>ℹ️ about the collaboration</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #ddd;">
+        <div style="padding:20px 24px;border-right:1px solid #ddd;background:#fff;">
+          <div class="eyebrow">juicebokx</div>
+          <div style="font-size:13px;font-weight:900;margin-bottom:6px;">what's juicebokx?</div>
+          <div style="font-size:11px;color:#555;line-height:1.7;margin-bottom:10px;">we started by making something you hold with your hands. then we noticed how many people needed help navigating what's happening right now. so we built this. everything here is free.</div>
+          <a href="#" style="font-size:11px;color:#3333aa;font-weight:700;text-decoration:none;">visit juicebokx.com →</a>
+        </div>
+        <div style="padding:20px 24px;background:#fff;">
+          <div class="eyebrow">new consensus</div>
+          <div style="font-size:13px;font-weight:900;margin-bottom:6px;">what's new consensus?</div>
+          <div style="font-size:11px;color:#555;line-height:1.7;margin-bottom:10px;">a think tank focused on the economic policy response to AI displacement. working on the frameworks and plans that governments will need as this wave continues to build.</div>
+          <a href="#" style="font-size:11px;color:#3333aa;font-weight:700;text-decoration:none;">visit newconsensus.com →</a>
+        </div>
+      </div>
+
+      <!-- Social feed -->
+      <div class="section-head"><span>📡 live · what people are saying</span><small>#techlayoffs · updated every 5 min</small></div>
+      <div style="background:#fff;padding:0;">
+        <div style="padding:10px 16px;border-bottom:1px solid #eee;display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#e0e0e0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">S</div>
+          <div><div style="font-size:11px;font-weight:700;">sarah k. <span style="color:#888;font-weight:400;font-family:'IBM Plex Mono',monospace;">@pmlife_sarah · 1h</span></div><div style="font-size:11px;color:#333;line-height:1.6;margin-top:2px;">just got laid off from my PM role at a series C. 6 years in tech. didn't see it coming. if anyone knows of openings, i'm open to it.</div></div>
+        </div>
+        <div style="padding:10px 16px;border-bottom:1px solid #eee;display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#e0e0e0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">M</div>
+          <div><div style="font-size:11px;font-weight:700;">marcus <span style="color:#888;font-weight:400;font-family:'IBM Plex Mono',monospace;">@devs_perspective · 1h</span></div><div style="font-size:11px;color:#333;line-height:1.6;margin-top:2px;">the "it's not personal, it's business" line hits different when it's you. 3rd layoff in 4 years in tech.</div></div>
+        </div>
+        <div style="padding:10px 16px;border-bottom:1px solid #eee;display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#e0e0e0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">P</div>
+          <div><div style="font-size:11px;font-weight:700;">priya m. <span style="color:#888;font-weight:400;font-family:'IBM Plex Mono',monospace;">@eng_journey · 2h</span></div><div style="font-size:11px;color:#333;line-height:1.6;margin-top:2px;">day 1 of being laid off: panic. day 7: realizing i was burned out anyway. day 30: applying intentionally. the reset is real.</div></div>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="community" style="background:#f5f5f5;">
+        <div class="eyebrow">✉️ the weekly dispatch</div>
+        <h2>stay in the loop.</h2>
+        <p>one email, once a week. what's moving, who's hiring, what the policy conversation looks like. written by people paying close attention.</p>
+        <div class="input-row">
+          <input class="email-input" type="email" placeholder="your@email.com">
+          <button class="btn primary" style="border-left:none;outline:none;margin:0">subscribe →</button>
+        </div>
+        <div style="margin-top:10px;font-size:10px;color:#888;font-family:'IBM Plex Mono',monospace;">no spam · unsubscribe anytime · written by people who've been through it</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="statusbar"></div>
+</div>
+
+<!-- Waiting room chat bubble -->
+<div style="position:fixed; bottom:24px; right:24px; z-index:999; display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+  <!-- Chat button -->
+  <div style="background:linear-gradient(180deg,#5555cc 0%,#3333aa 100%); color:#fff; border:1px solid #2222aa; border-bottom-color:#111166; border-right-color:#111166; outline:2px solid #000; outline-offset:2px; padding:8px 18px; font-size:12px; font-weight:700; cursor:pointer; font-family:inherit; display:flex; align-items:center; gap:10px; box-shadow:2px 2px 0 rgba(0,0,0,0.3);">
+    <span>💬 the waiting room</span>
+    <span style="background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.3); padding:1px 7px; font-size:10px; font-family:'IBM Plex Mono',monospace; font-weight:400; letter-spacing:0.5px;">17 online</span>
+  </div>
+</div>
+
+<!-- Email gate modal -->
+<script>
+  if (localStorage.getItem('navigate_gate_seen')) {
+    document.addEventListener('DOMContentLoaded', function() {
+      var gate = document.getElementById('gate');
+      if (gate) gate.style.display = 'none';
+    });
+  }
+  function dismissGate() {
+    localStorage.setItem('navigate_gate_seen', '1');
+    document.getElementById('gate').style.display = 'none';
+  }
+</script>
+<div id="gate" style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;">
+  <!-- Backdrop -->
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,0.45);backdrop-filter:blur(1px);"></div>
+
+  <!-- Modal window -->
+  <div style="position:relative;width:380px;background:#d8d8d8;border:1px solid #000;box-shadow:4px 4px 0 rgba(0,0,0,0.5);font-family:'Chicago','Geneva','IBM Plex Sans',system-ui,sans-serif;">
+
+    <!-- Title bar -->
+    <div style="background:linear-gradient(180deg,#f8f8f8 0%,#c8c8c8 100%);border-bottom:1px solid #888;height:20px;display:flex;align-items:center;padding:0 8px;position:relative;">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,0.06) 1px,rgba(0,0,0,0.06) 2px);pointer-events:none;"></div>
+      <span style="flex:1;text-align:center;font-size:12px;font-weight:700;position:relative;z-index:1;">navigate — enter your email to continue</span>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:24px 28px;">
+      <!-- Icon + heading -->
+      <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;">
+        <div style="width:48px;height:48px;flex-shrink:0;border:1px solid #888;border-bottom-color:#444;border-right-color:#444;background:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;">📬</div>
+        <div>
+          <div style="font-size:15px;font-weight:900;color:#000;margin-bottom:6px;letter-spacing:-0.3px;">you're not alone in here.</div>
+          <div style="font-size:12px;color:#444;line-height:1.65;">enter your email to access the tools, tracker, and community. one email a week — no spam. unsubscribe anytime.</div>
+        </div>
+      </div>
+
+      <!-- Inset box -->
+      <div style="border:1px solid #808080;border-top-color:#444;border-left-color:#444;background:#f5f5f5;padding:14px;margin-bottom:16px;">
+        <div style="font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px;">your email</div>
+        <div style="display:flex;gap:0;">
+          <input id="gate-email" type="email" placeholder="you@example.com" style="flex:1;border:1px solid #808080;border-bottom-color:#fff;border-right-color:#fff;background:#fff;padding:5px 10px;font-size:12px;font-family:inherit;outline:none;">
+          <button onclick="dismissGate()" style="background:linear-gradient(180deg,#5555cc 0%,#3333aa 100%);color:#fff;border:1px solid #2222aa;border-bottom-color:#111166;border-right-color:#111166;padding:5px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;outline:2px solid #000;outline-offset:1px;">enter →</button>
+        </div>
+      </div>
+
+      <!-- Fine print + skip -->
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-size:10px;color:#888;font-family:'IBM Plex Mono',monospace;">no spam · written by people who've been through it</div>
+        <button onclick="dismissGate()" style="background:none;border:none;font-size:11px;color:#3333aa;cursor:pointer;text-decoration:underline;font-family:inherit;padding:0;">skip for now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

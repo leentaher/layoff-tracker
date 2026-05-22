@@ -82,7 +82,8 @@ export default function Community() {
     setSubmitting(false)
   }
 
-  const count = entries.length
+  const COUNT_OFFSET = 97
+  const count = entries.length + COUNT_OFFSET
   const latest = entries[0]
 
   return (
@@ -115,7 +116,7 @@ export default function Community() {
             <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 10, padding: '20px 24px' }}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 8 }}>
                 <span style={{ fontSize: 42, fontWeight: 900, color: 'white', letterSpacing: '-2px', lineHeight: 1 }}>
-                  {count > 0 ? count : '—'}
+                  {count}
                 </span>
                 <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
                   people in the directory
