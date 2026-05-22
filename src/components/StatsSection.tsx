@@ -111,6 +111,10 @@ export default function StatsSection() {
           ))}
         </div>
 
+        <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.2)', marginTop: 16, letterSpacing: '0.06em' }}>
+          data source · <a href="https://layoffhedge.com/data/" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}>layoffhedge.com</a> · updated daily
+        </p>
+
       </div>
     </div>
   )
