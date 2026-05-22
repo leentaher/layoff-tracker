@@ -25,7 +25,7 @@ export default function WaitingRoom() {
           <div>
             <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.3)', marginBottom: 14 }}>live · right now</p>
             <h2 style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1.0, color: 'var(--black)', marginBottom: 16 }}>
-              you don't have to<br />process this alone.
+              you've got people.
             </h2>
             <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(0,0,0,0.5)', marginBottom: 28, maxWidth: 360 }}>
               anonymous, no account. a room full of people in the same situation. say something or just read. either way, you're not the only one in here.
