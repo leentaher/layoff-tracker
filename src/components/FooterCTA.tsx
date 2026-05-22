@@ -23,7 +23,7 @@ export default function FooterCTA() {
           the weekly<br /><span style={{ color: 'var(--orange)' }}>dispatch.</span>
         </h2>
         <p style={{ fontSize: 14, color: 'rgba(0,0,0,0.5)', marginBottom: 28, lineHeight: 1.6 }}>
-          one email a week. what's actually hiring, who got funded, what industries are moving. no fluff. written by people paying attention.
+          one email, once a week. what's moving, who's hiring, what the policy conversation looks like. written by people paying close attention. including some of you.
         </p>
         {done ? (
           <p style={{ fontWeight: 800, fontSize: 16, color: 'var(--orange)' }}>you're on the list. we'll be in touch.</p>
@@ -41,16 +41,16 @@ export default function FooterCTA() {
               onClick={join}
               style={{ background: 'var(--yellow)', color: 'var(--black)', border: 'none', borderRadius: 6, padding: '0 24px', fontWeight: 800, fontSize: 14, cursor: 'pointer', height: 52 }}
             >
-              join the conversation
+              subscribe →
             </button>
           </div>
         )}
         <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(0,0,0,0.3)', letterSpacing: '0.1em' }}>
-          no spam · unsubscribe anytime · written by real people
+          no spam · unsubscribe anytime · written by people who've been through it
         </p>
       </div>
       <footer style={{ background: 'var(--black)', borderTop: '1px solid rgba(255,255,255,0.05)', padding: '16px 20px', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-        <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, color: 'rgba(255,255,255,0.18)' }}>© 2026 juicebokx · yourenotalone</span>
+        <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, color: 'rgba(255,255,255,0.18)' }}>© 2026 juicebokx · navigate</span>
         <a href="https://juicebokx.com" style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, color: 'var(--yellow)', textDecoration: 'none', opacity: 0.45 }}>juicebokx.com →</a>
       </footer>
     </>

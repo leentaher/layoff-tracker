@@ -3,7 +3,7 @@ const bios = [
     initial: 'M',
     name: 'mandira',
     role: 'cofounder · juicebokx',
-    desc: 'got laid off and bought a word search book to cope. decided other people needed better tools for the worst week of their career. built this instead of updating her linkedin.',
+    desc: 'worked in tech. saw burnout get rebranded as a personality. now focused on what helps people when the worst week of their career arrives. believes analog objects deserve more credit than they get.',
     link: 'https://juicebokx.com',
     linkText: 'juicebokx.com →',
     avatarBg: 'var(--orange)',
@@ -13,7 +13,7 @@ const bios = [
     initial: 'Z',
     name: 'zack',
     role: 'new consensus',
-    desc: 'has spent years working on economic policy. now focused on what governments and institutions need to do as AI reshapes the labor market. believes the people most affected should be part of building the response.',
+    desc: 'has spent years on economic policy. now building the frameworks governments will need as AI reshapes the labor market. believes the people displaced should be part of writing what comes next. started new consensus to make that happen.',
     link: 'https://www.newconsensus.com',
     linkText: 'newconsensus.com →',
     avatarBg: '#1A4DB5',
@@ -23,7 +23,7 @@ const bios = [
     initial: 'L',
     name: 'leen',
     role: 'cofounder · juicebokx',
-    desc: 'watched the layoff wave hit people she cared about and decided someone should build the thing that actually helps. believes the emotional side of losing a job deserves as much attention as the practical side.',
+    desc: 'worked in tech. watched friends get laid off. got angry about it. channeled that into building tools instead of a coping mechanism. (also built the coping mechanism. it\'s a word search book. it helps.)',
     link: 'https://juicebokx.com',
     linkText: 'juicebokx.com →',
     avatarBg: 'var(--black)',
@@ -43,7 +43,7 @@ export default function TeamBios() {
           who built this.
         </h2>
         <p style={{ fontSize: 14, color: 'rgba(0,0,0,0.5)', lineHeight: 1.75, maxWidth: 560, marginBottom: 48 }}>
-          we believe screens aren't always the answer. sometimes the best thing the internet can do is help you find the humans on the other side of it.
+          we started with something physical. then the layoffs hit people we knew, and we built this. the goal was never a platform. it was a room full of people who can actually help each other.
         </p>
 
         <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 20 }}>

@@ -5,10 +5,10 @@ export default function Hero() {
         navigate · by juicebokx × new consensus · 2026
       </p>
       <h1 style={{ fontSize: 'clamp(52px, 10vw, 96px)', fontWeight: 900, lineHeight: 0.92, letterSpacing: '-3px', marginBottom: 20 }}>
-        im editing on mandy laptop
+        this is what a<br />labor crisis<br />looks like.
       </h1>
       <p style={{ fontSize: 16, lineHeight: 1.65, opacity: 0.6, maxWidth: 520, marginBottom: 32 }}>
-        414,000 people have been laid off in 2026. if you're trying to understand what's happening, covering your role, your industry, and your options, this is a place to start.
+        414,000 people cut so far this year. if you're in it or watching it approach, you're in the right place. tools, community, and people who get it.
       </p>
       <a
         href="#tools"
@@ -20,7 +20,7 @@ export default function Hero() {
           letterSpacing: '-0.3px',
         }}
       >
-        check my role →
+        find your people →
       </a>
     </div>
   )

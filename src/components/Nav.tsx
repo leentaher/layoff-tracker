@@ -42,7 +42,7 @@ export default function Nav() {
         </a>
         <ul style={{ display: 'flex', gap: 24, listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}>
           {[
-            ['#tools',      'am i next?'],
+            ['#tools',      'tools'],
             ['#tracker',    'tracker'],
             ['#community',  'directory'],
           ].map(([href, label]) => (

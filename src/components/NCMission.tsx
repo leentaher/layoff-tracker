@@ -33,10 +33,10 @@ export default function NCMission() {
           new consensus
         </p>
         <h2 style={{ fontSize: 'clamp(36px,5vw,64px)', fontWeight: 900, letterSpacing: '-2.5px', lineHeight: 1.0, color: 'white', marginBottom: 12 }}>
-          what happens<br />to the economy<br />matters too.
+          the policy response to this<br />has to come from people<br />who actually lived it.
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.5)', maxWidth: 560, marginBottom: 48 }}>
-          new consensus is a think tank working on the policy response to what's happening right now. tracking the economic impact of AI displacement and building the frameworks that will shape what comes next.
+          new consensus is building the economic frameworks governments will need as AI reshapes work. they want input from people on the inside. not just analysts on the outside.
         </p>
 
         {/* ── Plan cards ──────────────────────────────────────────────────── */}
@@ -77,10 +77,10 @@ export default function NCMission() {
         <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: '28px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, flexWrap: 'wrap' }}>
           <div style={{ flex: 1, minWidth: 240 }}>
             <h3 style={{ fontSize: 20, fontWeight: 900, color: 'white', letterSpacing: '-0.5px', marginBottom: 8, lineHeight: 1.2 }}>
-              want to work on this?
+              want a seat at the table?
             </h3>
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, margin: 0 }}>
-              new consensus is looking for people who understand what's happening from the inside. if you've been displaced and have something to contribute to the policy response, there's a place for that here.
+              if you've been displaced and have something to say about what comes next, new consensus wants to hear from you. this is how policy gets built by the people it's supposed to serve.
             </p>
           </div>
           <a
@@ -89,7 +89,7 @@ export default function NCMission() {
             rel="noopener noreferrer"
             style={{ background: 'var(--yellow)', color: 'var(--black)', borderRadius: 8, padding: '12px 24px', fontWeight: 800, fontSize: 13, textDecoration: 'none', flexShrink: 0 }}
           >
-            learn more →
+            get involved →
           </a>
         </div>
 
