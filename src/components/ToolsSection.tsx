@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // ─── Shared styles ────────────────────────────────────────────────────────────
 const fieldStyle = {
@@ -142,6 +142,10 @@ export default function ToolsSection() {
   function toggleTab(id: TabId) {
     setActiveTab(prev => (prev === id ? null : id))
   }
+
+  useEffect(() => {
+    if (sevResult) calcSeverance()
+  }, [sevYears, sevLevel, sevSize]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function calcSeverance() {
     const y = parseFloat(sevYears) || 1
