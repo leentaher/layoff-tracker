@@ -11,20 +11,22 @@ type LayoffEvent = {
 }
 
 const FALLBACK: LayoffEvent[] = [
-  { id: '1', company: 'Volkswagen Group', num_laid_off: 50000, date: '2026-03-01', industry: 'Automotive', notes: 'Shift to EV and cost restructuring across all divisions.' },
-  { id: '2', company: 'Oracle',           num_laid_off: 30000, date: '2026-03-15', industry: 'Enterprise Software', notes: 'Shift to AI-driven automation across business units.' },
-  { id: '3', company: 'UPS',              num_laid_off: 20000, date: '2026-01-15', industry: 'Logistics', notes: 'AI-driven automation replacing package sorting and routing roles.' },
-  { id: '4', company: 'Meta',             num_laid_off: 16000, date: '2026-03-01', industry: 'Social Media', notes: 'Second round of cuts targeting middle management.' },
-  { id: '5', company: 'Amazon',           num_laid_off: 16000, date: '2026-01-20', industry: 'E-commerce / Cloud', notes: 'Q1 restructuring across AWS and retail divisions.' },
-  { id: '6', company: 'Intel',            num_laid_off: 15000, date: '2026-01-10', industry: 'Semiconductors', notes: 'Major reorganization following product delays and market share loss.' },
-  { id: '7', company: 'Dell',             num_laid_off: 11000, date: '2026-03-10', industry: 'Hardware / Cloud', notes: 'AI-driven automation replacing hardware support and sales roles.' },
-  { id: '8', company: 'Salesforce',       num_laid_off: 8000,  date: '2026-01-10', industry: 'CRM / SaaS', notes: 'Continued restructuring following 2023–2024 cuts.' },
+  { id: '1', company: 'Oracle',     num_laid_off: 30000, date: '2026-03-10', industry: 'Tech',                notes: 'AI-DRIVEN' },
+  { id: '2', company: 'Citigroup',  num_laid_off: 20000, date: '2026-03-01', industry: 'Finance & Banking',   notes: 'COST CUT' },
+  { id: '3', company: 'HSBC',       num_laid_off: 20000, date: '2026-03-19', industry: 'Finance & Banking',   notes: 'AI-DRIVEN' },
+  { id: '4', company: 'Amazon',     num_laid_off: 16000, date: '2026-01-28', industry: 'Tech',                notes: 'AI-DRIVEN' },
+  { id: '5', company: 'Meta',       num_laid_off: 16000, date: '2026-03-16', industry: 'Tech',                notes: 'AI-DRIVEN' },
+  { id: '6', company: 'Intel',      num_laid_off: 15000, date: '2026-01-15', industry: 'Tech',                notes: 'COST CUT' },
+  { id: '7', company: 'Cognizant',  num_laid_off: 15000, date: '2026-04-29', industry: 'Tech',                notes: 'AI-DRIVEN' },
+  { id: '8', company: 'Accenture',  num_laid_off: 11000, date: '2026-02-01', industry: 'Tech',                notes: 'AI-DRIVEN' },
+  { id: '9', company: 'Dell',       num_laid_off: 11000, date: '2026-03-16', industry: 'Tech',                notes: 'AI-DRIVEN' },
+  { id: '10', company: 'Kyndryl',   num_laid_off: 10000, date: '2026-05-06', industry: 'Tech',                notes: 'COST CUT' },
 ]
 
 const SUMMARY_STATS = [
-  { label: '2026 total',  value: '414,000+', sub: 'jobs cut so far',             color: 'var(--orange)' },
-  { label: 'companies',   value: '150+',      sub: 'tracked in 2026',             color: 'white'         },
-  { label: 'per day',     value: '3,900+',    sub: 'jobs lost on average',        color: 'var(--yellow)' },
+  { label: '2026 total',  value: '444,000+', sub: 'jobs cut so far',             color: 'var(--orange)' },
+  { label: 'companies',   value: '171+',      sub: 'tracked in 2026',             color: 'white'         },
+  { label: 'per day',     value: '3,400+',    sub: 'jobs lost on average',        color: 'var(--yellow)' },
   { label: 'ai-driven',   value: '64%',       sub: 'of Q1 2026 cuts linked to AI', color: '#85B7EB'      },
 ]
 
