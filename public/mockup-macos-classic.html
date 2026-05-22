@@ -190,15 +190,15 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <div class="sidebar-section">Navigate</div>
-      <div class="sidebar-item active" onclick="scrollTo('sec-home')"><span class="sidebar-icon">🏠</span> Home</div>
-      <div class="sidebar-item" onclick="scrollTo('sec-tools')"><span class="sidebar-icon">🔧</span> Tools</div>
-      <div class="sidebar-item" onclick="scrollTo('sec-tracker')"><span class="sidebar-icon">📊</span> Tracker</div>
-      <div class="sidebar-item" onclick="scrollTo('sec-directory')"><span class="sidebar-icon">👥</span> Directory</div>
+      <div class="sidebar-item active" onclick="navTo(this,'sec-home')"><span class="sidebar-icon">🏠</span> Home</div>
+      <div class="sidebar-item" onclick="navTo(this,'sec-tools')"><span class="sidebar-icon">🔧</span> Tools</div>
+      <div class="sidebar-item" onclick="navTo(this,'sec-tracker')"><span class="sidebar-icon">📊</span> Tracker</div>
+      <div class="sidebar-item" onclick="navTo(this,'sec-directory')"><span class="sidebar-icon">👥</span> Directory</div>
       <div class="sidebar-sep"></div>
       <div class="sidebar-section">More</div>
-      <div class="sidebar-item" onclick="scrollTo('sec-plan')"><span class="sidebar-icon">📋</span> The Plan</div>
-      <div class="sidebar-item" onclick="scrollTo('sec-newsletter')"><span class="sidebar-icon">✉️</span> Newsletter</div>
-      <div class="sidebar-item" onclick="scrollTo('sec-about')"><span class="sidebar-icon">ℹ️</span> About</div>
+      <div class="sidebar-item" onclick="navTo(this,'sec-plan')"><span class="sidebar-icon">📋</span> The Plan</div>
+      <div class="sidebar-item" onclick="navTo(this,'sec-newsletter')"><span class="sidebar-icon">✉️</span> Newsletter</div>
+      <div class="sidebar-item" onclick="navTo(this,'sec-about')"><span class="sidebar-icon">ℹ️</span> About</div>
     </div>
 
     <!-- Main scrollable content -->
@@ -465,12 +465,11 @@
 </div>
 
 <script>
-  function scrollTo(id) {
-    const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    // update active state
+  function navTo(el, id) {
+    const target = document.getElementById(id)
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })
     document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'))
-    event.currentTarget.classList.add('active')
+    el.classList.add('active')
   }
 </script>
 
