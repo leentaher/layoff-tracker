@@ -5,7 +5,7 @@ export default function Hero() {
         navigate · by juicebokx × new consensus · 2026
       </p>
       <h1 style={{ fontSize: 'clamp(52px, 10vw, 96px)', fontWeight: 900, lineHeight: 0.92, letterSpacing: '-3px', marginBottom: 20 }}>
-        this is what a<br />labor crisis<br />looks like.
+        you just got laid off.<br />here's what to do first.
       </h1>
       <p style={{ fontSize: 16, lineHeight: 1.65, opacity: 0.6, maxWidth: 520, marginBottom: 32 }}>
         414,000 people cut so far this year. if you're in it or watching it approach, you're in the right place. tools, community, and people who get it.
