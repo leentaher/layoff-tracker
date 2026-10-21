@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: "you're not alone — juicebokx layoff tracker",
-  description: '332,000+ workers laid off in 2026. You are not alone. Track tech layoffs, share confessions, and find support.',
+  title: 'laid off, burned out, or just over it? join the directory · juicebokx',
+  description: 'Laid off, burned out, or just over it? Skip the LinkedIn black hole and join a directory of people and companies actually hiring. Free, quick, and private.',
   openGraph: {
-    title: "you're not alone",
-    description: 'tech layoff tracker 2026 · juicebokx',
+    title: 'laid off, burned out, or just over it?',
+    description: 'your next job is in here somewhere · juicebokx',
     url: 'https://directory.juicebokx.com',
   },
 }
