@@ -18,7 +18,7 @@ export default function AboutJuicebokx() {
               what's juicebokx?
             </h3>
             <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(0,0,0,0.7)', marginBottom: 28, flex: 1 }}>
-              we make analog things for the moments when screens aren't enough. then the layoffs hit people we knew, and we built this. everything here is free.
+              we make analog things for the moments when screens aren't enough. then the layoffs hit people we knew, so we built this. everything here is free.
             </p>
             <a
               href="https://juicebokx.com"
@@ -39,7 +39,7 @@ export default function AboutJuicebokx() {
               what's new consensus?
             </h3>
             <p style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(255,255,255,0.6)', marginBottom: 28, flex: 1 }}>
-              a think tank focused on the economic policy response to AI displacement. working on the frameworks and plans that governments will need as this wave continues to build.
+              a think tank from the people behind the Green New Deal. now they're working on the economic policy response to AI displacement: the frameworks and plans governments will need as this wave keeps building.
             </p>
             <a
               href="https://www.newconsensus.com"
@@ -47,7 +47,7 @@ export default function AboutJuicebokx() {
               rel="noopener noreferrer"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#1A4DB5', color: 'white', borderRadius: 8, padding: '12px 24px', fontWeight: 800, fontSize: 13, textDecoration: 'none', letterSpacing: '-0.3px' }}
             >
-              visit newconsensus.com →
+              visit new consensus →
             </a>
           </div>
 
