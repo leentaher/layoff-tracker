@@ -84,7 +84,7 @@ export default function NCMission() {
             </p>
           </div>
           <a
-            href="https://new.newconsensus.ai/join"
+            href="https://www.newconsensus.com/"
             target="_blank"
             rel="noopener noreferrer"
             style={{ background: 'var(--yellow)', color: 'var(--black)', borderRadius: 8, padding: '12px 24px', fontWeight: 800, fontSize: 13, textDecoration: 'none', flexShrink: 0 }}
