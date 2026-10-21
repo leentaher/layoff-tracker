@@ -20,7 +20,6 @@ export default function LayoffTrackerPage() {
       <Nav />
 
       <Hero />
-      <ToolsSection />
       <Community />
       <WaitingRoom />
       <StatsSection />
@@ -28,6 +27,7 @@ export default function LayoffTrackerPage() {
       <AboutJuicebokx />
       <TwitterFeed />
       <FooterCTA />
+      <ToolsSection />
       <ChatRoom />
     </>
   )
