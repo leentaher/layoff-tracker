@@ -6,7 +6,6 @@ import Community from '@/components/Community'
 import WaitingRoom from '@/components/WaitingRoom'
 import StatsSection from '@/components/StatsSection'
 import NCMission from '@/components/NCMission'
-import TeamBios from '@/components/TeamBios'
 import AboutJuicebokx from '@/components/AboutJuicebokx'
 import TwitterFeed from '@/components/TwitterFeed'
 import FooterCTA from '@/components/FooterCTA'
@@ -26,7 +25,6 @@ export default function LayoffTrackerPage() {
       <WaitingRoom />
       <StatsSection />
       <NCMission />
-      <TeamBios />
       <AboutJuicebokx />
       <TwitterFeed />
       <FooterCTA />
