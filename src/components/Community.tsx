@@ -174,7 +174,7 @@ export default function Community() {
                     style={{ width: 16, height: 16, accentColor: 'var(--orange)', cursor: 'pointer', flexShrink: 0 }}
                   />
                   <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', lineHeight: 1.4 }}>
-                    subscribe to the weekly dispatch
+                    subscribe to the weekly dispatch. one email, once a week. what's moving, who's hiring.
                   </span>
                 </label>
                 <button
